@@ -49,7 +49,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'server_misconfigured' });
   }
 
-  const langTag = _lang === 'en' ? 'EN' : _lang === 'es' ? 'ES' : 'NO';
+  const langTag = _lang === 'en' ? 'EN' : _lang === 'es' ? 'ES' : _lang === 'tr' ? 'TR' : 'NO';
   const subject = emne
     ? `[Netkem.no · ${langTag}] ${emne}`
     : `[Netkem.no · ${langTag}] Henvendelse fra ${navn}`;

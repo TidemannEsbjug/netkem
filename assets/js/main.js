@@ -97,10 +97,10 @@
      =========================================================== */
   var contactForm = document.querySelector('form.form[action="/api/contact"]');
   if (contactForm) {
-    /* Detect language from URL: /en/ or /es/ → en/es, otherwise nb */
+    /* Detect language from URL: /en/, /es/ or /tr/ → en/es/tr, otherwise nb */
     var lang = (function () {
       var seg = window.location.pathname.split('/').filter(Boolean)[0];
-      return (seg === 'en' || seg === 'es') ? seg : 'nb';
+      return (seg === 'en' || seg === 'es' || seg === 'tr') ? seg : 'nb';
     })();
 
     var STATUS = {
@@ -127,6 +127,14 @@
         invalid: 'La dirección de correo no parece válida.',
         toolong: 'El mensaje es demasiado largo.',
         failed:  'Algo salió mal. Escríbanos a post@netkem.no.',
+      },
+      tr: {
+        sending: 'Gönderiliyor …',
+        success: 'Teşekkürler! En kısa sürede size dönüş yapacağız.',
+        missing: 'Lütfen ad, telefon ve e-posta alanlarını doldurun.',
+        invalid: 'Bu e-posta adresi geçerli görünmüyor.',
+        toolong: 'Mesajınız çok uzun.',
+        failed:  'Bir sorun oluştu. Bunun yerine post@netkem.no adresine e-posta gönderin.',
       },
     }[lang];
 

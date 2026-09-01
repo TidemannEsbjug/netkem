@@ -2129,6 +2129,10 @@ html:not(.js) .hero--photo-first .hero__cta-row {
   background:
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 18'><rect width='30' height='18' fill='%23005EB8'/><path d='M0,0 L30,18 M30,0 L0,18' stroke='%23fff' stroke-width='3'/></svg>") center / cover no-repeat;
 }
+.lang-switch__flag--tr {
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 16'><rect width='24' height='16' fill='%23E30A17'/><circle cx='8.5' cy='8' r='4' fill='%23fff'/><circle cx='9.5' cy='8' r='3.2' fill='%23E30A17'/><polygon fill='%23fff' points='15.65,8.00 14.23,8.46 14.23,9.95 13.36,8.74 11.94,9.20 12.82,8.00 11.94,6.80 13.36,7.26 14.23,6.05 14.23,7.54'/></svg>") center / cover no-repeat;
+}
 
 /* ==========================================================================
    Transparent header — color states for "over hero" vs "scrolled"
