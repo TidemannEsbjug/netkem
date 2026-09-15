@@ -31,7 +31,8 @@
       search: 'Søk lokalitet eller kommune',
       noHits: 'Ingen treff',
       mtb: 'MTB',
-      inStretch: 'i'
+      inStretch: 'i',
+      change: 'Velg en annen'
     },
     en: {
       chips: { all: 'Full coast', sor: 'South', rog: 'Rogaland', vest: 'Vestland', more: 'Møre', trond: 'Trøndelag', nordl: 'Nordland', nord: 'Troms & Finnmark' },
@@ -48,7 +49,8 @@
       search: 'Search site or municipality',
       noHits: 'No matches',
       mtb: 'MTB',
-      inStretch: 'in'
+      inStretch: 'in',
+      change: 'Choose another'
     },
     es: {
       chips: { all: 'Toda la costa', sor: 'Sur', rog: 'Rogaland', vest: 'Vestland', more: 'Møre', trond: 'Trøndelag', nordl: 'Nordland', nord: 'Troms y Finnmark' },
@@ -65,7 +67,8 @@
       search: 'Buscar centro o municipio',
       noHits: 'Sin resultados',
       mtb: 'MTB',
-      inStretch: 'en'
+      inStretch: 'en',
+      change: 'Elegir otro'
     },
     tr: {
       chips: { all: 'Tüm kıyı', sor: 'Güney', rog: 'Rogaland', vest: 'Vestland', more: 'Møre', trond: 'Trøndelag', nordl: 'Nordland', nord: 'Troms ve Finnmark' },
@@ -82,7 +85,8 @@
       search: 'Tesis veya belediye ara',
       noHits: 'Sonuç yok',
       mtb: 'MTB',
-      inStretch: '—'
+      inStretch: '—',
+      change: 'Başka seç'
     }
   };
 
@@ -237,7 +241,8 @@
     var mapEl = root.querySelector('#coast-map');
     var searchEl = root.querySelector('[data-coast-search]');
     var hitsEl = root.querySelector('[data-coast-hits]');
-    if (!chipsEl || !panelEl || !mapEl || !searchEl || !hitsEl) return;
+    var stageEl = root.querySelector('.coast__stage');
+    if (!chipsEl || !panelEl || !mapEl || !searchEl || !hitsEl || !stageEl) return;
 
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var current = 'all';
@@ -249,6 +254,18 @@
 
     searchEl.setAttribute('placeholder', t.search);
     searchEl.setAttribute('aria-label', t.search);
+
+    var switchEl = document.createElement('button');
+    switchEl.type = 'button';
+    switchEl.className = 'coast__switch';
+    stageEl.appendChild(switchEl);
+
+    var brandEl = document.createElement('a');
+    brandEl.className = 'coast__brand';
+    brandEl.href = lang === 'nb' ? 'index.html' : 'index.html';
+    brandEl.setAttribute('aria-label', 'NetKem');
+    brandEl.innerHTML = 'Net<span>K</span>em<span class="coast__brand-src"> · Mapbox · Fiskeridirektoratet</span>';
+    stageEl.appendChild(brandEl);
 
     GROUPS.forEach(function (g) {
       var b = document.createElement('button');
@@ -274,8 +291,15 @@
     }
 
     function padForMap() {
-      if (isMobile()) return { top: 168, bottom: 24, left: 20, right: 20 };
-      return { top: 148, bottom: 36, left: 28, right: picked || current !== 'all' ? 380 : 28 };
+      var choosing = root.classList.contains('is-choosing');
+      var open = root.classList.contains('is-open');
+      if (isMobile()) return { top: choosing || !open ? 168 : 56, bottom: 24, left: 20, right: 20 };
+      return {
+        top: choosing || !open ? 148 : 56,
+        bottom: 40,
+        left: 28,
+        right: open ? 400 : 28
+      };
     }
 
     function foulingHtml(r) {
@@ -377,18 +401,27 @@
       });
     }
 
+    function updateSwitch() {
+      var label = picked ? (picked.properties.n || '') : (current !== 'all' ? t.chips[current] : '');
+      switchEl.innerHTML = '<strong>' + esc(label) + '</strong><span>' + esc(t.change) + '</span>';
+    }
+
     function markChips(id) {
       chipsEl.querySelectorAll('.coast__chip').forEach(function (b) {
         var on = b.getAttribute('data-group') === id;
         b.classList.toggle('is-on', on);
         b.setAttribute('aria-pressed', on ? 'true' : 'false');
       });
-      root.classList.toggle('is-open', id !== 'all' || !!picked);
+      var open = id !== 'all' || !!picked;
+      root.classList.toggle('is-open', open);
+      if (!open) root.classList.remove('is-choosing');
+      updateSwitch();
     }
 
     function setGroup(id) {
       current = id;
       picked = null;
+      root.classList.remove('is-choosing');
       markChips(id);
       renderPanel();
       if (!map || !farms) return;
@@ -401,6 +434,7 @@
     function selectFarm(feat) {
       picked = feat;
       current = feat.properties.g || current;
+      root.classList.remove('is-choosing');
       markChips(current);
       renderPanel();
       if (!map) return;
@@ -476,15 +510,12 @@
       minZoom: 3.4,
       maxZoom: 12,
       attributionControl: false,
-      cooperativeGestures: true,
+      cooperativeGestures: false,
       fadeDuration: reduce ? 0 : 300,
       pitchWithRotate: false,
       dragRotate: false
     });
-    map.addControl(new mapboxgl.AttributionControl({
-      compact: true,
-      customAttribution: 'Lokaliteter: Fiskeridirektoratet'
-    }), 'bottom-right');
+    map.scrollZoom.disable();
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'bottom-left');
 
     var mapReady = new Promise(function (resolve) {
@@ -635,6 +666,12 @@
       if (!b) return;
       searchEl.value = '';
       setGroup(b.getAttribute('data-group'));
+    });
+
+    switchEl.addEventListener('click', function () {
+      root.classList.add('is-choosing');
+      closeHits();
+      try { searchEl.focus(); } catch (e) {}
     });
 
     var searchTimer = 0;
