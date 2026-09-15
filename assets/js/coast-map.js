@@ -298,7 +298,7 @@
         top: choosing || !open ? 148 : 56,
         bottom: 40,
         left: 28,
-        right: open ? 400 : 28
+        right: open ? (choosing ? 380 : 580) : 28
       };
     }
 

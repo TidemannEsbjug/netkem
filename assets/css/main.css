@@ -2499,7 +2499,7 @@ img[aria-hidden="true"],
 }
 .coast.is-open .coast__panel { display: block; }
 .coast.is-open:not(.is-choosing) .coast__panel {
-  width: min(400px, 40vw);
+  width: min(560px, 48vw);
   top: 20px;
   bottom: 20px;
 }
@@ -2509,7 +2509,7 @@ img[aria-hidden="true"],
   position: absolute;
   top: 18px;
   left: 0;
-  right: min(424px, calc(40vw + 24px));
+  right: min(584px, calc(48vw + 24px));
   z-index: 5;
   pointer-events: auto;
   margin: 0 auto;
