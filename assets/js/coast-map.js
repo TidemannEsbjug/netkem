@@ -331,7 +331,7 @@
         top: choosing || !open ? 148 : 88,
         bottom: 40,
         left: 28,
-        right: open ? (choosing ? 380 : 580) : 28
+        right: open ? 540 : 28
       };
     }
 

@@ -2396,12 +2396,9 @@ img[aria-hidden="true"],
   transition: right 220ms ease;
 }
 .coast.is-open .coast__top {
-  right: min(400px, 40vw);
+  right: min(520px, 42vw);
 }
-.coast.is-open:not(.is-choosing) .coast__top {
-  right: min(560px, 48vw);
-}
-.coast.is-open:not(.is-choosing) .coast__intro,
+.coast.is-open .coast__intro { display: none; }
 .coast.is-open:not(.is-choosing) .coast__chips { display: none; }
 .coast.is-open:not(.is-choosing) .coast__search { margin-bottom: 0; }
 .coast.is-open:not(.is-choosing) .coast__stage::before {
@@ -2544,13 +2541,6 @@ img[aria-hidden="true"],
 }
 .coast.is-open .coast__panel {
   display: block;
-  animation: coast-panel-in 280ms cubic-bezier(.2,.6,.2,1) both;
-}
-@keyframes coast-panel-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.coast.is-open:not(.is-choosing) .coast__panel {
   box-sizing: border-box;
   width: min(520px, 42vw);
   max-width: calc(100% - 48px);
@@ -2562,6 +2552,11 @@ img[aria-hidden="true"],
   max-height: calc(100% - 96px);
   overflow: hidden;
   padding: 22px 22px 18px;
+  animation: coast-panel-in 280ms cubic-bezier(.2,.6,.2,1) both;
+}
+@keyframes coast-panel-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .coast__switch {
@@ -2629,9 +2624,10 @@ img[aria-hidden="true"],
 .coast__head { margin: 0 0 14px; }
 .coast__head-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 8px 12px;
   margin: 0 0 6px;
 }
 .coast__panel h3 {
@@ -2648,6 +2644,7 @@ img[aria-hidden="true"],
 .coast__press {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
   margin: 0;
   font-size: 11px;
@@ -2655,7 +2652,9 @@ img[aria-hidden="true"],
   letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--c-text-muted);
-  flex: none;
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: flex-end;
 }
 .coast__press-bar { display: flex; gap: 4px; }
 .coast__press-bar i {
@@ -2724,7 +2723,7 @@ img[aria-hidden="true"],
   margin: 0 0 8px !important;
 }
 .coast__products { display: grid; gap: 8px; margin: 0; }
-.coast.is-open:not(.is-choosing) .coast__products {
+.coast.is-open .coast__products {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .coast__prod {
@@ -2796,48 +2795,64 @@ img[aria-hidden="true"],
 .coast .mapboxgl-popup-close-button { color: var(--c-navy-900); }
 
 @media (max-width: 860px) {
+  html.is-map-using .coast__stage {
+    height: auto;
+    max-height: none;
+  }
   .coast__stage {
     height: auto;
     display: flex;
     flex-direction: column;
     min-height: 0;
   }
+  .coast__stage::before { height: 96px; }
+  .coast h2 { font-size: 1.28rem; }
   .coast__map,
   .coast__map.mapboxgl-map {
     position: relative;
     inset: auto;
-    height: min(58vh, 480px);
-    min-height: 320px;
+    height: min(48vh, 380px);
+    min-height: 260px;
     width: 100%;
+    order: 1;
+  }
+  .coast__top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 10px 12px 0;
+    order: 0;
   }
   .coast.is-open .coast__top,
   .coast.is-open.is-choosing .coast__top { right: 0; }
-  .coast__top { padding: 16px 16px 0; }
-
-  .coast.is-open:not(.is-choosing) .coast__panel {
-    width: 100%;
-    top: auto;
-    bottom: auto;
-    overflow: hidden;
-    max-height: none;
-  }
-  .coast.is-open:not(.is-choosing) .coast__split {
-    display: flex;
-    flex-direction: column;
-  }
-  .coast.is-open:not(.is-choosing) .coast__products {
-    grid-template-columns: 1fr;
-  }
+  .coast__find { width: 100%; }
+  .coast__chips { gap: 5px; }
+  .coast__chip { font-size: 12px; padding: 7px 10px; }
   .coast__panel {
     position: relative;
     top: auto; right: auto; bottom: auto;
     width: 100%;
+    max-width: none;
     max-height: none;
+    order: 2;
     border-left: 0;
     border-right: 0;
     border-bottom: 0;
+    box-shadow: none;
+    padding: 18px 16px 20px;
   }
-  .coast__zoom { left: 12px; bottom: 12px; }
+  .coast.is-open .coast__panel {
+    width: 100%;
+    max-width: none;
+    top: auto;
+    right: auto;
+    max-height: none;
+    padding: 18px 16px 20px;
+  }
+  .coast.is-open .coast__products {
+    grid-template-columns: 1fr;
+  }
+  .coast__press { justify-content: flex-start; }
+  .coast__zoom { left: 10px; bottom: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .coast__chip { transition: none; }
