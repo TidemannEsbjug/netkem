@@ -97,17 +97,20 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 </section>
 <!-- ======================== COAST MAP ======================== -->
 <section class="coast" id="produktvelger" data-assets="assets" data-products="produkter">
-<div class="container coast__intro reveal">
-<span class="eyebrow">Langs kysten</span>
-<h2>Riktig beskyttelse starter med lokaliteten</h2>
-<p class="lead">Begroingstrykket skifter fra sør til nord. Velg en kyststrekning — kartet går dit, med typiske begroingstyper, press og hvilke NetKem-produkter som passer.</p>
-</div>
 <div class="coast__stage">
 <div id="coast-map" class="coast__map" role="img" aria-label="Kart over lakseoppdrett langs norskekysten"></div>
-<div class="coast__ui">
-<div class="coast__chips" data-coast-chips="" role="tablist" aria-label="Kyststrekninger"></div>
-<aside class="coast__panel" data-coast-panel="" aria-live="polite"></aside>
+<div class="coast__top">
+<div class="coast__intro">
+<span class="eyebrow">Langs kysten</span>
+<h2>Finn lokaliteten. Se hva nota trenger.</h2>
 </div>
+<div class="coast__tools">
+<input class="coast__search" data-coast-search="" type="search" autocomplete="off" spellcheck="false"/>
+<div class="coast__hits" data-coast-hits="" hidden></div>
+<div class="coast__chips" data-coast-chips="" role="tablist" aria-label="Kyststrekninger"></div>
+</div>
+</div>
+<aside class="coast__panel" data-coast-panel="" aria-live="polite"></aside>
 </div>
 </section>
 <!-- ======================== BPR-BÅND ======================== -->

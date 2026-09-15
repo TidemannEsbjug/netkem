@@ -97,17 +97,20 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 </section>
 <!-- ======================== COAST MAP ======================== -->
 <section class="coast" id="produktvelger" data-assets="../assets" data-products="productos">
-<div class="container coast__intro reveal">
-<span class="eyebrow">A lo largo de la costa</span>
-<h2>La protección correcta empieza en el centro</h2>
-<p class="lead">La presión de incrustación cambia de sur a norte. Elija un tramo de costa: el mapa se desplaza, con incrustación típica, presión y los productos NetKem que encajan.</p>
-</div>
 <div class="coast__stage">
 <div id="coast-map" class="coast__map" role="img" aria-label="Mapa de centros de salmón a lo largo de la costa noruega"></div>
-<div class="coast__ui">
-<div class="coast__chips" data-coast-chips="" role="tablist" aria-label="Tramos de costa"></div>
-<aside class="coast__panel" data-coast-panel="" aria-live="polite"></aside>
+<div class="coast__top">
+<div class="coast__intro">
+<span class="eyebrow">A lo largo de la costa</span>
+<h2>Encuentre el centro. Vea qué necesita la red.</h2>
 </div>
+<div class="coast__tools">
+<input class="coast__search" data-coast-search="" type="search" autocomplete="off" spellcheck="false"/>
+<div class="coast__hits" data-coast-hits="" hidden></div>
+<div class="coast__chips" data-coast-chips="" role="tablist" aria-label="Tramos de costa"></div>
+</div>
+</div>
+<aside class="coast__panel" data-coast-panel="" aria-live="polite"></aside>
 </div>
 </section>
 <!-- ======================== BPR-BÅND ======================== -->

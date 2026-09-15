@@ -97,17 +97,20 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 </section>
 <!-- ======================== COAST MAP ======================== -->
 <section class="coast" id="produktvelger" data-assets="../assets" data-products="urunler">
-<div class="container coast__intro reveal">
-<span class="eyebrow">Kıyı boyunca</span>
-<h2>Doğru koruma lokaliteden başlar</h2>
-<p class="lead">Kirlenme baskısı güneyden kuzeye değişir. Bir kıyı şeridi seçin — harita oraya gider; tipik kirlenme, baskı ve uyan NetKem ürünleri gelir.</p>
-</div>
 <div class="coast__stage">
 <div id="coast-map" class="coast__map" role="img" aria-label="Norveç kıyısındaki somon çiftliklerinin haritası"></div>
-<div class="coast__ui">
-<div class="coast__chips" data-coast-chips="" role="tablist" aria-label="Kıyı şeritleri"></div>
-<aside class="coast__panel" data-coast-panel="" aria-live="polite"></aside>
+<div class="coast__top">
+<div class="coast__intro">
+<span class="eyebrow">Kıyı boyunca</span>
+<h2>Lokaliteyi bulun. Ağın neye ihtiyacı var, görün.</h2>
 </div>
+<div class="coast__tools">
+<input class="coast__search" data-coast-search="" type="search" autocomplete="off" spellcheck="false"/>
+<div class="coast__hits" data-coast-hits="" hidden></div>
+<div class="coast__chips" data-coast-chips="" role="tablist" aria-label="Kıyı şeritleri"></div>
+</div>
+</div>
+<aside class="coast__panel" data-coast-panel="" aria-live="polite"></aside>
 </div>
 </section>
 <!-- ======================== BPR-BÅND ======================== -->

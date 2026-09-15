@@ -97,17 +97,20 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 </section>
 <!-- ======================== COAST MAP ======================== -->
 <section class="coast" id="produktvelger" data-assets="../assets" data-products="products">
-<div class="container coast__intro reveal">
-<span class="eyebrow">Along the coast</span>
-<h2>The right protection starts with the site</h2>
-<p class="lead">Fouling pressure shifts from south to north. Choose a stretch of coast — the map moves there, with typical fouling, pressure and the NetKem products that fit.</p>
-</div>
 <div class="coast__stage">
 <div id="coast-map" class="coast__map" role="img" aria-label="Map of salmon farms along the Norwegian coast"></div>
-<div class="coast__ui">
-<div class="coast__chips" data-coast-chips="" role="tablist" aria-label="Coastal stretches"></div>
-<aside class="coast__panel" data-coast-panel="" aria-live="polite"></aside>
+<div class="coast__top">
+<div class="coast__intro">
+<span class="eyebrow">Along the coast</span>
+<h2>Find the site. See what the net needs.</h2>
 </div>
+<div class="coast__tools">
+<input class="coast__search" data-coast-search="" type="search" autocomplete="off" spellcheck="false"/>
+<div class="coast__hits" data-coast-hits="" hidden></div>
+<div class="coast__chips" data-coast-chips="" role="tablist" aria-label="Coastal stretches"></div>
+</div>
+</div>
+<aside class="coast__panel" data-coast-panel="" aria-live="polite"></aside>
 </div>
 </section>
 <!-- ======================== BPR-BÅND ======================== -->
