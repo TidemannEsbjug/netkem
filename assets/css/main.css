@@ -2795,6 +2795,10 @@ img[aria-hidden="true"],
 .coast .mapboxgl-popup-close-button { color: var(--c-navy-900); }
 
 @media (max-width: 860px) {
+  html.is-map-using .site-header {
+    transform: none;
+    pointer-events: auto;
+  }
   html.is-map-using .coast__stage {
     height: auto;
     max-height: none;
@@ -2804,28 +2808,42 @@ img[aria-hidden="true"],
     display: flex;
     flex-direction: column;
     min-height: 0;
+    overflow: visible;
   }
-  .coast__stage::before { height: 96px; }
-  .coast h2 { font-size: 1.28rem; }
+  .coast__stage::before { display: none; }
+  .coast h2 { font-size: 1.2rem; }
+  .coast__intro { margin-bottom: 10px; }
   .coast__map,
   .coast__map.mapboxgl-map {
     position: relative;
     inset: auto;
-    height: min(48vh, 380px);
-    min-height: 260px;
+    height: 220px;
+    min-height: 220px;
+    max-height: 220px;
     width: 100%;
     order: 1;
+    touch-action: pan-y;
   }
   .coast__top {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    padding: 10px 12px 0;
+    position: relative;
+    top: auto; left: auto; right: auto;
+    padding: 14px 16px 12px;
     order: 0;
+    background: rgba(247, 250, 247, .96);
   }
   .coast.is-open .coast__top,
-  .coast.is-open.is-choosing .coast__top { right: 0; }
-  .coast__find { width: 100%; }
-  .coast__chips { gap: 5px; }
+  .coast.is-open.is-choosing .coast__top { right: auto; }
+  .coast__find { width: 100%; margin-bottom: 8px; }
+  .coast__chips {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    mask-image: linear-gradient(90deg, #000 88%, transparent);
+    padding-bottom: 2px;
+  }
+  .coast__chips::-webkit-scrollbar { display: none; }
   .coast__chip { font-size: 12px; padding: 7px 10px; }
   .coast__panel {
     position: relative;
@@ -2838,7 +2856,7 @@ img[aria-hidden="true"],
     border-right: 0;
     border-bottom: 0;
     box-shadow: none;
-    padding: 18px 16px 20px;
+    padding: 14px 16px 18px;
   }
   .coast.is-open .coast__panel {
     width: 100%;
@@ -2846,13 +2864,29 @@ img[aria-hidden="true"],
     top: auto;
     right: auto;
     max-height: none;
-    padding: 18px 16px 20px;
+    padding: 14px 16px 18px;
+    animation: none;
   }
   .coast.is-open .coast__products {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
   }
+  .coast__blurb { display: none !important; }
+  .coast__head { margin: 0 0 10px; }
+  .coast__panel h3 { font-size: 1.15rem; }
+  .coast__fouling {
+    grid-template-columns: 22px max-content 1fr;
+    column-gap: 8px;
+    row-gap: 5px;
+  }
+  .coast__icon { width: 22px; height: 22px; }
+  .coast__fouling li { font-size: 13px; }
+  .coast__prod { padding: 8px 8px; }
+  .coast__prod strong { font-size: 12px; }
+  .coast__cta { margin-top: 12px; padding: 11px 14px; }
   .coast__press { justify-content: flex-start; }
   .coast__zoom { left: 10px; bottom: 10px; }
+  .coast__zoom-btn { width: 32px; height: 32px; font-size: 18px; box-shadow: 0 2px 8px rgba(7,24,43,.1); }
 }
 @media (prefers-reduced-motion: reduce) {
   .coast__chip { transition: none; }
