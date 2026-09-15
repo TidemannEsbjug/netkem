@@ -296,15 +296,17 @@
       if (document.documentElement.classList.contains('is-map-using')) return;
       document.documentElement.classList.add('is-map-using');
       ignoreScroll = true;
-      var top = root.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo(0, Math.max(0, top));
-      mapLockY = window.pageYOffset;
       requestAnimationFrame(function () {
-        if (map) map.resize();
-        setTimeout(function () {
+        requestAnimationFrame(function () {
+          var top = root.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo(0, Math.max(0, top));
           mapLockY = window.pageYOffset;
-          ignoreScroll = false;
-        }, 180);
+          if (map) map.resize();
+          setTimeout(function () {
+            mapLockY = window.pageYOffset;
+            ignoreScroll = false;
+          }, 180);
+        });
       });
     }
     function exitMapMode() {
@@ -699,7 +701,12 @@
       panelEl.innerHTML = '<p>' + esc(t.allBody) + '</p>';
     });
 
-    stageEl.addEventListener('pointerdown', function () { enterMapMode(); });
+    stageEl.addEventListener('pointerdown', function (e) {
+      if (e.target.closest('button, a, input, .coast__chip, .coast__switch, .coast__panel, .coast__hit, .coast__search, .coast__top, .coast__brand')) {
+        return;
+      }
+      enterMapMode();
+    });
     window.addEventListener('scroll', function () {
       if (ignoreScroll) return;
       if (!document.documentElement.classList.contains('is-map-using')) return;
