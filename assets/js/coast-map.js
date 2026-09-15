@@ -224,7 +224,7 @@
         ],
         paint: {
           'fill-color': '#7eafc4',
-          'fill-opacity': 0.9
+          'fill-opacity': 1
         }
       }
     ]
