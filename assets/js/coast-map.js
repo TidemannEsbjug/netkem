@@ -189,8 +189,7 @@
     name: 'NetKem Coast',
     glyphs: 'mapbox://fonts/mapbox/{fontstack}/{range}.pbf',
     sources: {
-      composite: { type: 'vector', url: 'mapbox://mapbox.mapbox-streets-v8' },
-      countries: { type: 'vector', url: 'mapbox://mapbox.country-boundaries-v1' }
+      composite: { type: 'vector', url: 'mapbox://mapbox.mapbox-streets-v8' }
     },
     layers: [
       { id: 'background', type: 'background', paint: { 'background-color': '#d2dcd4' } },
@@ -210,21 +209,6 @@
           'line-color': '#4e7d8e',
           'line-width': 0.7,
           'line-opacity': 0.4
-        }
-      },
-      {
-        id: 'outside-norway',
-        type: 'fill',
-        source: 'countries',
-        'source-layer': 'country_boundaries',
-        filter: [
-          'all',
-          ['match', ['get', 'worldview'], ['all', 'US'], true, false],
-          ['!=', ['get', 'iso_3166_1'], 'NO']
-        ],
-        paint: {
-          'fill-color': '#7eafc4',
-          'fill-opacity': 1
         }
       }
     ]
@@ -597,9 +581,17 @@
 
     Promise.all([
       fetch(assets + '/data/lokaliteter.geojson').then(function (r) { return r.json(); }),
+      fetch(assets + '/data/norge-mask.geojson').then(function (r) { return r.json(); }),
       mapReady
     ]).then(function (pair) {
       farms = pair[0];
+      map.addSource('norge-mask', { type: 'geojson', data: pair[1] });
+      map.addLayer({
+        id: 'outside-norway',
+        type: 'fill',
+        source: 'norge-mask',
+        paint: { 'fill-color': '#7eafc4', 'fill-opacity': 1 }
+      });
       farms.features.forEach(function (f) {
         f.id = f.properties.id;
         counts[f.properties.g] = (counts[f.properties.g] || 0) + 1;
