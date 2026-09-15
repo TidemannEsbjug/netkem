@@ -184,7 +184,7 @@
       composite: { type: 'vector', url: 'mapbox://mapbox.mapbox-streets-v8' }
     },
     layers: [
-      { id: 'background', type: 'background', paint: { 'background-color': '#07182b' } },
+      { id: 'background', type: 'background', paint: { 'background-color': '#1a3d54' } },
       {
         id: 'water',
         type: 'fill',
@@ -198,9 +198,9 @@
         source: 'composite',
         'source-layer': 'water',
         paint: {
-          'line-color': '#1a4a5c',
-          'line-width': 0.6,
-          'line-opacity': 0.28
+          'line-color': '#1a5c6e',
+          'line-width': 0.5,
+          'line-opacity': 0.35
         }
       }
     ]
