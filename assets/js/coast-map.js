@@ -264,7 +264,7 @@
     brandEl.className = 'coast__brand';
     brandEl.href = lang === 'nb' ? 'index.html' : 'index.html';
     brandEl.setAttribute('aria-label', 'NetKem');
-    brandEl.innerHTML = 'Net<span>K</span>em<span class="coast__brand-src"> · Mapbox · Fiskeridirektoratet</span>';
+    brandEl.innerHTML = 'Net<span>K</span>em';
     stageEl.appendChild(brandEl);
 
     GROUPS.forEach(function (g) {
@@ -318,9 +318,9 @@
     function padForMap() {
       var choosing = root.classList.contains('is-choosing');
       var open = root.classList.contains('is-open');
-      if (isMobile()) return { top: choosing || !open ? 168 : 56, bottom: 24, left: 20, right: 20 };
+      if (isMobile()) return { top: choosing || !open ? 168 : 88, bottom: 24, left: 20, right: 20 };
       return {
-        top: choosing || !open ? 148 : 56,
+        top: choosing || !open ? 148 : 88,
         bottom: 40,
         left: 28,
         right: open ? (choosing ? 380 : 580) : 28
@@ -387,16 +387,14 @@
           '<div class="coast__split">' +
             '<ul class="coast__fouling">' + foulingHtml(r) + '</ul>' +
             recsHtml(r, t.forSite) +
-          '</div>' +
-          '<p class="coast__note">' + esc(t.siteNote) + '</p>';
+          '</div>';
         return;
       }
       if (current === 'all') {
         panelEl.innerHTML =
           '<span class="coast__kicker">' + esc(t.kicker) + '</span>' +
           '<h3>' + esc(t.allTitle) + '</h3>' +
-          '<p>' + esc(t.allBody) + '</p>' +
-          '<p class="coast__note">' + esc(t.note) + '</p>';
+          '<p>' + esc(t.allBody) + '</p>';
         return;
       }
       var r2 = REGIONS[current];
@@ -412,8 +410,7 @@
         '<div class="coast__split">' +
           '<ul class="coast__fouling">' + foulingHtml(r2) + '</ul>' +
           recsHtml(r2) +
-        '</div>' +
-        '<p class="coast__note">' + esc(t.note) + '</p>';
+        '</div>';
     }
 
     function farmFcFor(id) {
@@ -701,10 +698,16 @@
       panelEl.innerHTML = '<p>' + esc(t.allBody) + '</p>';
     });
 
+    stageEl.addEventListener('selectstart', function (e) {
+      if (e.target.closest('input, textarea')) return;
+      e.preventDefault();
+    });
     stageEl.addEventListener('pointerdown', function (e) {
       if (e.target.closest('button, a, input, .coast__chip, .coast__switch, .coast__panel, .coast__hit, .coast__search, .coast__top, .coast__brand')) {
         return;
       }
+      var sel = window.getSelection && window.getSelection();
+      if (sel && sel.removeAllRanges) sel.removeAllRanges();
       enterMapMode();
     });
     window.addEventListener('scroll', function () {

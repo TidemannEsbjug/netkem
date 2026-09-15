@@ -2348,6 +2348,13 @@ img[aria-hidden="true"],
   color: #d8e2ec;
   padding: 0;
   scroll-margin-top: var(--header-h);
+  -webkit-user-select: none;
+  user-select: none;
+}
+.coast input,
+.coast textarea {
+  -webkit-user-select: text;
+  user-select: text;
 }
 .coast h2 { color: #fff; margin: 0 0 8px; font-size: clamp(1.45rem, 2.4vw, 2rem); }
 .coast .eyebrow { color: var(--c-green-500); margin-bottom: 8px; }
@@ -2391,7 +2398,12 @@ img[aria-hidden="true"],
 .coast.is-open .coast__top {
   right: min(400px, 40vw);
 }
-.coast.is-open:not(.is-choosing) .coast__top { display: none; }
+.coast.is-open:not(.is-choosing) .coast__top {
+  right: min(560px, 48vw);
+}
+.coast.is-open:not(.is-choosing) .coast__intro,
+.coast.is-open:not(.is-choosing) .coast__chips { display: none; }
+.coast.is-open:not(.is-choosing) .coast__search { margin-bottom: 0; }
 .coast.is-open:not(.is-choosing) .coast__stage::before {
   height: 88px;
   opacity: .55;
@@ -2519,13 +2531,18 @@ img[aria-hidden="true"],
   border: 2px solid transparent;
   background-clip: padding-box;
 }
-.coast.is-open .coast__panel { display: flex; flex-direction: column; }
+.coast.is-open .coast__panel { display: block; }
 .coast.is-open:not(.is-choosing) .coast__panel {
+  box-sizing: border-box;
   width: min(560px, 48vw);
-  top: 20px;
+  max-width: calc(100% - 48px);
+  top: 72px;
+  right: 24px;
   bottom: auto;
   height: auto;
-  max-height: calc(100% - 40px);
+  min-height: 0;
+  max-height: calc(100% - 96px);
+  overflow: hidden auto;
 }
 
 .coast__switch {
@@ -2551,7 +2568,7 @@ img[aria-hidden="true"],
   align-items: center;
   gap: 8px;
 }
-.coast.is-open:not(.is-choosing) .coast__switch { display: inline-flex; }
+.coast.is-open:not(.is-choosing) .coast__switch { display: none; }
 .coast__switch strong { font-weight: 600; }
 .coast__switch span {
   color: var(--c-green-500);
@@ -2637,8 +2654,11 @@ img[aria-hidden="true"],
 .coast.is-open:not(.is-choosing) .coast__split {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, .95fr);
+  grid-auto-rows: min-content;
   gap: 18px 22px;
   align-items: start;
+  align-content: start;
+  height: auto;
 }
 
 .coast__fouling { list-style: none; margin: 0; padding: 0; }
