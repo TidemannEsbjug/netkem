@@ -190,26 +190,10 @@
     glyphs: 'mapbox://fonts/mapbox/{fontstack}/{range}.pbf',
     sources: {
       composite: { type: 'vector', url: 'mapbox://mapbox.mapbox-streets-v8' },
-      dem: {
-        type: 'raster-dem',
-        url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
-        tileSize: 512,
-        maxzoom: 14
-      }
+      countries: { type: 'vector', url: 'mapbox://mapbox.country-boundaries-v1' }
     },
     layers: [
-      { id: 'background', type: 'background', paint: { 'background-color': '#c8d4cc' } },
-      {
-        id: 'hillshade',
-        type: 'hillshade',
-        source: 'dem',
-        paint: {
-          'hillshade-exaggeration': 0.42,
-          'hillshade-shadow-color': '#5e7268',
-          'hillshade-highlight-color': '#f4f7f4',
-          'hillshade-illumination-direction': 315
-        }
-      },
+      { id: 'background', type: 'background', paint: { 'background-color': '#d2dcd4' } },
       {
         id: 'water',
         type: 'fill',
@@ -224,8 +208,23 @@
         'source-layer': 'water',
         paint: {
           'line-color': '#4e7d8e',
-          'line-width': 0.8,
-          'line-opacity': 0.55
+          'line-width': 0.7,
+          'line-opacity': 0.4
+        }
+      },
+      {
+        id: 'outside-norway',
+        type: 'fill',
+        source: 'countries',
+        'source-layer': 'country_boundaries',
+        filter: [
+          'all',
+          ['match', ['get', 'worldview'], ['all', 'US'], true, false],
+          ['!=', ['get', 'iso_3166_1'], 'NO']
+        ],
+        paint: {
+          'fill-color': '#7eafc4',
+          'fill-opacity': 0.9
         }
       }
     ]
