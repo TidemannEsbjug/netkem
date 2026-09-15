@@ -32,7 +32,8 @@
       noHits: 'Ingen treff',
       mtb: 'MTB',
       inStretch: 'i',
-      change: 'Velg en annen'
+      change: 'Velg strekning',
+      cta: 'Kontakt oss'
     },
     en: {
       chips: { all: 'Full coast', sor: 'South', rog: 'Rogaland', vest: 'Vestland', more: 'Møre', trond: 'Trøndelag', nordl: 'Nordland', nord: 'Troms & Finnmark' },
@@ -50,7 +51,8 @@
       noHits: 'No matches',
       mtb: 'MTB',
       inStretch: 'in',
-      change: 'Choose another'
+      change: 'Choose stretch',
+      cta: 'Contact us'
     },
     es: {
       chips: { all: 'Toda la costa', sor: 'Sur', rog: 'Rogaland', vest: 'Vestland', more: 'Møre', trond: 'Trøndelag', nordl: 'Nordland', nord: 'Troms y Finnmark' },
@@ -68,7 +70,8 @@
       noHits: 'Sin resultados',
       mtb: 'MTB',
       inStretch: 'en',
-      change: 'Elegir otro'
+      change: 'Elegir tramo',
+      cta: 'Contáctenos'
     },
     tr: {
       chips: { all: 'Tüm kıyı', sor: 'Güney', rog: 'Rogaland', vest: 'Vestland', more: 'Møre', trond: 'Trøndelag', nordl: 'Nordland', nord: 'Troms ve Finnmark' },
@@ -86,7 +89,8 @@
       noHits: 'Sonuç yok',
       mtb: 'MTB',
       inStretch: '—',
-      change: 'Başka seç'
+      change: 'Kıyı seç',
+      cta: 'Bize ulaşın'
     }
   };
 
@@ -236,6 +240,7 @@
     var t = COPY[lang];
     var assets = root.getAttribute('data-assets') || 'assets';
     var productsDir = root.getAttribute('data-products') || 'produkter';
+    var contactHref = ({ nb: 'kontakt.html', en: 'contact.html', es: 'contacto.html', tr: 'iletisim.html' })[lang] || 'kontakt.html';
     var chipsEl = root.querySelector('[data-coast-chips]');
     var panelEl = root.querySelector('[data-coast-panel]');
     var mapEl = root.querySelector('#coast-map');
@@ -258,7 +263,11 @@
     var switchEl = document.createElement('button');
     switchEl.type = 'button';
     switchEl.className = 'coast__switch';
-    stageEl.appendChild(switchEl);
+    var findEl = document.createElement('div');
+    findEl.className = 'coast__find';
+    searchEl.parentNode.insertBefore(findEl, searchEl);
+    findEl.appendChild(searchEl);
+    findEl.appendChild(switchEl);
 
     var brandEl = document.createElement('a');
     brandEl.className = 'coast__brand';
@@ -277,6 +286,7 @@
       chipsEl.appendChild(b);
     });
     root.classList.remove('is-open');
+    updateSwitch();
 
     function productUrl(key) {
       return productsDir + '/' + PRODUCTS[key].file;
@@ -354,6 +364,10 @@
         '<div class="coast__products">' + recs + '</div></div>';
     }
 
+    function ctaHtml() {
+      return '<a class="coast__cta" href="' + esc(contactHref) + '">' + esc(t.cta) + '</a>';
+    }
+
     function pressHtml(r) {
       var ticks = '';
       for (var i = 1; i <= 4; i++) {
@@ -387,7 +401,8 @@
           '<div class="coast__split">' +
             '<ul class="coast__fouling">' + foulingHtml(r) + '</ul>' +
             recsHtml(r, t.forSite) +
-          '</div>';
+          '</div>' +
+          ctaHtml();
         return;
       }
       if (current === 'all') {
@@ -410,7 +425,8 @@
         '<div class="coast__split">' +
           '<ul class="coast__fouling">' + foulingHtml(r2) + '</ul>' +
           recsHtml(r2) +
-        '</div>';
+        '</div>' +
+        ctaHtml();
     }
 
     function farmFcFor(id) {
@@ -437,8 +453,7 @@
     }
 
     function updateSwitch() {
-      var label = picked ? (picked.properties.n || '') : (current !== 'all' ? t.chips[current] : '');
-      switchEl.innerHTML = '<strong>' + esc(label) + '</strong><span>' + esc(t.change) + '</span>';
+      switchEl.textContent = t.change;
     }
 
     function markChips(id) {
