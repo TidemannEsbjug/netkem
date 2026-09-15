@@ -331,7 +331,7 @@
       return FOUL_ORDER.map(function (k) {
         var v = r.foul[k] || 0;
         return '<li>' +
-          '<img class="coast__icon" src="' + esc(iconUrl(k)) + '" alt="" width="28" height="28">' +
+          '<img class="coast__icon" src="' + esc(iconUrl(k)) + '" alt="" width="36" height="36">' +
           '<span>' + esc(t.foul[k]) + '</span>' +
           '<div class="coast__meter"><span style="width:' + (v * 20) + '%"></span></div>' +
           '</li>';
