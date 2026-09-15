@@ -192,13 +192,13 @@
       composite: { type: 'vector', url: 'mapbox://mapbox.mapbox-streets-v8' }
     },
     layers: [
-      { id: 'background', type: 'background', paint: { 'background-color': '#1a3d54' } },
+      { id: 'background', type: 'background', paint: { 'background-color': '#e7eee8' } },
       {
         id: 'water',
         type: 'fill',
         source: 'composite',
         'source-layer': 'water',
-        paint: { 'fill-color': '#07182b' }
+        paint: { 'fill-color': '#d5e7ee' }
       },
       {
         id: 'coastline',
@@ -206,9 +206,9 @@
         source: 'composite',
         'source-layer': 'water',
         paint: {
-          'line-color': '#1a5c6e',
-          'line-width': 0.5,
-          'line-opacity': 0.35
+          'line-color': '#8eafb8',
+          'line-width': 0.7,
+          'line-opacity': 0.7
         }
       }
     ]
@@ -604,7 +604,7 @@
         filter: ['has', 'point_count'],
         paint: {
           'circle-color': '#008237',
-          'circle-stroke-color': '#07182b',
+          'circle-stroke-color': '#ffffff',
           'circle-stroke-width': 1.5,
           'circle-opacity': 0.92,
           'circle-radius': ['step', ['get', 'point_count'], 11, 12, 14, 40, 17, 100, 22]
@@ -628,8 +628,8 @@
         source: 'farms',
         filter: ['!', ['has', 'point_count']],
         paint: {
-          'circle-color': '#3dcc6a',
-          'circle-opacity': 0.22,
+          'circle-color': '#008237',
+          'circle-opacity': 0.16,
           'circle-radius': 7,
           'circle-blur': 0.4
         }
@@ -640,8 +640,8 @@
         source: 'farms',
         filter: ['!', ['has', 'point_count']],
         paint: {
-          'circle-color': '#9ae08e',
-          'circle-stroke-color': '#07182b',
+          'circle-color': '#008237',
+          'circle-stroke-color': '#ffffff',
           'circle-stroke-width': 1,
           'circle-radius': ['interpolate', ['linear'], ['zoom'], 4, 2.4, 7, 3.6, 10, 5.5]
         }
@@ -652,7 +652,7 @@
         type: 'circle',
         source: 'picked',
         paint: {
-          'circle-color': '#d4f5c8',
+          'circle-color': '#008237',
           'circle-opacity': 0.35,
           'circle-radius': 16,
           'circle-blur': 0.6

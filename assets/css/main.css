@@ -2344,8 +2344,8 @@ img[aria-hidden="true"],
 
 /* ---------- Coast map (home §2) --------------------------------------- */
 .coast {
-  background: #07182b;
-  color: #d8e2ec;
+  background: #d5e7ee;
+  color: var(--c-navy-900);
   padding: 0;
   scroll-margin-top: var(--header-h);
   -webkit-user-select: none;
@@ -2356,14 +2356,14 @@ img[aria-hidden="true"],
   -webkit-user-select: text;
   user-select: text;
 }
-.coast h2 { color: #fff; margin: 0 0 8px; font-size: clamp(1.45rem, 2.4vw, 2rem); }
-.coast .eyebrow { color: var(--c-green-500); margin-bottom: 8px; }
-.coast .eyebrow::before { background: var(--c-green-500); }
+.coast h2 { color: var(--c-navy-900); margin: 0 0 8px; font-size: clamp(1.45rem, 2.4vw, 2rem); }
+.coast .eyebrow { color: var(--c-brand-green); margin-bottom: 8px; }
+.coast .eyebrow::before { background: var(--c-brand-green); }
 
 .coast__stage {
   position: relative;
   height: clamp(620px, 86vh, 900px);
-  background: #07182b;
+  background: #d5e7ee;
   overflow: hidden;
 }
 .coast__map,
@@ -2381,7 +2381,7 @@ img[aria-hidden="true"],
   top: 0; left: 0; right: 0;
   height: 200px;
   z-index: 2;
-  background: linear-gradient(to bottom, rgba(7,24,43,.78), rgba(7,24,43,0));
+  background: linear-gradient(to bottom, rgba(245,250,247,.82), rgba(245,250,247,0));
   pointer-events: none;
 }
 .coast__top {
@@ -2429,9 +2429,9 @@ img[aria-hidden="true"],
   min-width: 0;
   margin: 0;
   appearance: none;
-  border: 1px solid rgba(255,255,255,.16);
-  background: rgba(7,24,43,.72);
-  color: #fff;
+  border: 1px solid var(--c-border);
+  background: rgba(255,255,255,.9);
+  color: var(--c-navy-900);
   font-family: var(--font-sans);
   font-size: 14px;
   padding: 10px 14px;
@@ -2439,7 +2439,7 @@ img[aria-hidden="true"],
   backdrop-filter: blur(10px);
   text-align: center;
 }
-.coast__search::placeholder { color: rgba(255,255,255,.45); }
+.coast__search::placeholder { color: var(--c-text-soft); }
 .coast__search:focus {
   outline: 2px solid var(--c-green-500);
   outline-offset: 2px;
@@ -2452,12 +2452,13 @@ img[aria-hidden="true"],
   transform: translateX(-50%);
   top: 52px;
   width: min(460px, 100%);
-  background: rgba(7,24,43,.94);
-  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.96);
+  border: 1px solid var(--c-border);
   z-index: 5;
   max-height: 280px;
   overflow: auto;
   text-align: left;
+  box-shadow: 0 12px 28px rgba(7,24,43,.12);
 }
 .coast__hit {
   display: block;
@@ -2465,16 +2466,16 @@ img[aria-hidden="true"],
   appearance: none;
   border: 0;
   background: transparent;
-  color: #fff;
+  color: var(--c-navy-900);
   text-align: left;
   padding: 10px 14px;
   cursor: pointer;
   font-family: var(--font-sans);
 }
 .coast__hit strong { display: block; font-size: 13px; }
-.coast__hit span { display: block; font-size: 11px; color: rgba(255,255,255,.5); margin-top: 1px; }
-.coast__hit:hover { background: rgba(0,130,55,.28); }
-.coast__hit.is-empty { color: rgba(255,255,255,.5); cursor: default; }
+.coast__hit span { display: block; font-size: 11px; color: var(--c-text-soft); margin-top: 1px; }
+.coast__hit:hover { background: var(--c-green-100); }
+.coast__hit.is-empty { color: var(--c-text-soft); cursor: default; }
 
 .coast__chips {
   display: flex;
@@ -2487,9 +2488,9 @@ img[aria-hidden="true"],
 .coast__chip {
   flex: none;
   appearance: none;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(7,24,43,.62);
-  color: rgba(255,255,255,.86);
+  border: 1px solid var(--c-border);
+  background: rgba(255,255,255,.88);
+  color: var(--c-navy-800);
   font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 600;
@@ -2506,9 +2507,9 @@ img[aria-hidden="true"],
   margin-left: 6px;
   font-size: 11px;
   font-weight: 500;
-  color: rgba(255,255,255,.48);
+  color: var(--c-text-soft);
 }
-.coast__chip:hover { border-color: rgba(255,255,255,.34); color: #fff; }
+.coast__chip:hover { border-color: var(--c-brand-green); color: var(--c-navy-900); }
 .coast__chip.is-on {
   background: var(--c-brand-green);
   border-color: var(--c-brand-green);
@@ -2560,9 +2561,9 @@ img[aria-hidden="true"],
   display: none;
   flex: none;
   appearance: none;
-  border: 1px solid rgba(255,255,255,.16);
-  background: rgba(7,24,43,.78);
-  color: #fff;
+  border: 1px solid var(--c-border);
+  background: rgba(255,255,255,.9);
+  color: var(--c-navy-800);
   font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 600;
@@ -2573,7 +2574,7 @@ img[aria-hidden="true"],
   white-space: nowrap;
 }
 .coast.is-open:not(.is-choosing) .coast__switch { display: inline-flex; }
-.coast__switch:hover { border-color: var(--c-green-500); color: #fff; }
+.coast__switch:hover { border-color: var(--c-brand-green); color: var(--c-navy-900); }
 
 .coast__brand {
   position: absolute;
@@ -2768,29 +2769,29 @@ img[aria-hidden="true"],
   bottom: 44px;
 }
 .coast .mapboxgl-ctrl-group {
-  background: rgba(7,24,43,.78);
-  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.92);
+  border: 1px solid var(--c-border);
   box-shadow: none;
   border-radius: 0;
 }
 .coast .mapboxgl-ctrl-group button { width: 32px; height: 32px; }
-.coast .mapboxgl-ctrl-group button + button { border-top-color: rgba(255,255,255,.12); }
-.coast .mapboxgl-ctrl-icon { filter: invert(1); opacity: .85; }
+.coast .mapboxgl-ctrl-group button + button { border-top-color: var(--c-border); }
+.coast .mapboxgl-ctrl-icon { filter: none; opacity: .75; }
 .coast .mapboxgl-ctrl-attrib.mapboxgl-compact {
   background: transparent;
   min-height: 20px;
 }
 .coast .mapboxgl-popup-content {
-  background: #0a2540;
-  color: #fff;
+  background: #fff;
+  color: var(--c-navy-900);
   padding: 8px 10px;
   border-radius: 0;
-  box-shadow: none;
+  box-shadow: 0 8px 20px rgba(7,24,43,.12);
   font-size: 12px;
   font-weight: 600;
 }
-.coast .mapboxgl-popup-tip { border-top-color: #0a2540; }
-.coast .mapboxgl-popup-close-button { color: #fff; }
+.coast .mapboxgl-popup-tip { border-top-color: #fff; }
+.coast .mapboxgl-popup-close-button { color: var(--c-navy-900); }
 
 @media (max-width: 860px) {
   .coast__stage {
