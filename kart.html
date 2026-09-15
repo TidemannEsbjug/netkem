@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="nb">
+<head>
+<meta charset="utf-8"/>
+<script>
+(function(){var h=document.documentElement;h.classList.add('js');
+var go=function(){h.classList.add('fonts-ready')};
+if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeout(go,900)}else{go()}
+})();
+</script>
+
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>NetKem AS – Kart over lokaliteter</title>
+<meta content="NetKem AS utvikler, produserer og leverer impregnerings- og coatingprodukter, notrensemidler, desinfeksjonsmidler og notvaskemaskiner til akvakulturnæringen siden 2001." name="description"/>
+<link href="assets/css/main.css" rel="stylesheet"/>
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css" rel="stylesheet"/>
+<link href="assets/img/favicon.png" rel="icon" type="image/png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<meta content="noindex, nofollow" name="robots"/>
+<base target="_blank"/>
+<style>
+  /* Innbygget visning: bare kartet, fyller rammen det vises i. */
+  html, body { margin: 0; height: 100%; background: #0b2530; overflow: hidden; }
+  .coast { min-height: 100% !important; height: 100% !important; }
+  .coast__stage { height: 100% !important; min-height: 100% !important; }
+</style>
+</head>
+<body class="kart-embed">
+<section class="coast" id="produktvelger" data-assets="assets" data-products="produkter">
+<div class="coast__stage">
+<div id="coast-map" class="coast__map" role="img" aria-label="Kart over lakseoppdrett langs norskekysten"></div>
+<div class="coast__top">
+<div class="coast__intro">
+<span class="eyebrow">Langs kysten</span>
+<h2>Finn lokaliteten. Se hva nota trenger.</h2>
+</div>
+<div class="coast__tools">
+<input class="coast__search" data-coast-search="" type="search" autocomplete="off" spellcheck="false"/>
+<div class="coast__hits" data-coast-hits="" hidden></div>
+<div class="coast__chips" data-coast-chips="" role="tablist" aria-label="Kyststrekninger"></div>
+</div>
+</div>
+<aside class="coast__panel" data-coast-panel="" aria-live="polite"></aside>
+</div>
+</section>
+<script defer="" src="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js"></script>
+<script defer="" src="assets/js/coast-map.js"></script>
+</body>
+</html>
