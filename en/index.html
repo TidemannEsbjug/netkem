@@ -13,8 +13,9 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title data-i18n="meta.home.title">Netkem AS – Coatings and net impregnation for aquaculture</title>
-<meta content="Netkem AS utvikler, produserer og leverer impregnerings- og coatingprodukter, notrensemidler, desinfeksjonsmidler og notvaskemaskiner til akvakulturnæringen siden 2001." name="description"/>
+<meta content="Netkem AS has developed, manufactured and supplied impregnation and coating products, net cleaners, disinfectants and net washing machines for the aquaculture industry since 2001." name="description"/>
 <link href="../assets/css/main.css" rel="stylesheet"/>
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css" rel="stylesheet"/>
 <link href="../assets/img/favicon.png" rel="icon" type="image/png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -36,7 +37,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 <li><a href="products/netwax-ni-gold.html"><span data-i18n="pn.nigold">Netwax NI Gold</span> <small data-i18n="dd.netimp">Net impregnation</small></a></li>
 <li><a href="products/netwax-e5-greenline.html"><span data-i18n="pn.e5">Netwax E5 Greenline</span> <small data-i18n="dd.green">For green licences</small></a></li>
 <li><a href="products/netwax-e8-greenline.html"><span data-i18n="pn.e8">Netwax E8 Greenline</span> <small data-i18n="dd.heavy">Heavy-duty net impregnation</small></a></li>
-<li><a href="products/netpolish-np.html"><span data-i18n="pn.np">Netpolish NP</span> <small>Coating &amp; impregnering</small></a></li>
+<li><a href="products/netpolish-np.html"><span data-i18n="pn.np">Netpolish NP</span> <small>Coating &amp; impregnation</small></a></li>
 <li><a href="products/netkem-net-wash.html"><span data-i18n="pn.notvask">Netkem Net Wash</span> <small data-i18n="dd.wash">Net wash</small></a></li>
 <li><a href="products/grotanol-3025.html"><span data-i18n="pn.grotanol">Grotanol 3025</span> <small data-i18n="dd.disinf">Disinfection</small></a></li>
 <li><a href="products/gigant-net-washing-machine.html"><span data-i18n="pn.gigant_short">Gigant Universal</span> <small data-i18n="dd.machine">Net washing machine</small></a></li>
@@ -94,173 +95,20 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 </div>
 <a class="hero__scroll" href="#produktvelger" aria-label="Scroll down"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></a>
 </section>
-<!-- ======================== FEATURED PRODUCTS ======================== -->
-<section class="section section--surface" id="produktvelger">
-<style>
-#produktvelger .section-head__text h2{font-family:'Playfair Display',Georgia,serif;font-weight:500}
-.pv-controls{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-5) var(--sp-6);margin-bottom:var(--sp-6)}
-.pv-radios{display:flex;flex-wrap:wrap;gap:10px;border:0;padding:0;margin:0}
-.pv-radio{display:inline-flex;align-items:center;gap:10px;padding:11px 16px;border:1px solid var(--c-border);border-radius:var(--radius-md);background:#fff;cursor:pointer;font-family:var(--font-sans);font-size:var(--fs-sm);font-weight:600;color:var(--c-navy-800);line-height:1.2;transition:border-color var(--transition),background var(--transition),box-shadow var(--transition)}
-.pv-radio:hover{border-color:var(--c-navy-600)}
-.pv-radio.is-checked{border-color:var(--c-navy-800);background:var(--c-navy-800);color:#fff;box-shadow:var(--shadow-sm)}
-.pv-radio input{position:absolute;opacity:0;width:0;height:0}
-.pv-dot{flex:none;width:18px;height:18px;border-radius:50%;border:2px solid var(--c-border-strong);position:relative;transition:border-color var(--transition)}
-.pv-radio.is-checked .pv-dot{border-color:#fff}
-.pv-radio.is-checked .pv-dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:#fff}
-.pv-radio input:focus-visible~.pv-dot{outline:2px solid var(--c-green-500);outline-offset:2px}
-.pv-radio small{display:block;font-size:11px;font-weight:500;color:var(--c-text-soft);text-transform:none;margin-top:1px}
-.pv-radio.is-checked small{color:rgba(255,255,255,.72)}
-.pv-check{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-family:var(--font-sans);font-size:var(--fs-sm);font-weight:600;color:var(--c-navy-800);user-select:none}
-.pv-check input{position:absolute;opacity:0;width:0;height:0}
-.pv-box{flex:none;width:20px;height:20px;border-radius:var(--radius-sm);border:2px solid var(--c-border-strong);background:#fff;position:relative;transition:background var(--transition),border-color var(--transition)}
-.pv-check.is-checked .pv-box{background:var(--c-green-600);border-color:var(--c-green-600)}
-.pv-check.is-checked .pv-box::after{content:"";position:absolute;left:5px;top:1px;width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
-.pv-check input:focus-visible~.pv-box{outline:2px solid var(--c-green-500);outline-offset:2px}
-.pv-badge{position:absolute;top:12px;right:12px;display:inline-flex;align-items:center;gap:4px;background:var(--c-green-100);color:var(--c-green-800);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 9px;border-radius:var(--radius-sm);box-shadow:0 1px 2px rgba(7,24,43,.12)}
-.pv-badge svg{width:12px;height:12px}
-.pv-item.is-hidden{display:none}
-.product-card__media--icon{display:flex;align-items:center;justify-content:center}
-.product-card__media--icon svg{width:58px;height:58px;stroke:var(--c-teal-600);stroke-width:1.4}
-.product-card__media--contain{background:#fff;display:flex;align-items:center;justify-content:center}
-.product-card__media--contain img{object-fit:contain;padding:8px;mix-blend-mode:multiply}
-</style>
-<div class="container">
-<div class="section-head reveal">
-<div class="section-head__text">
-<h2>Our Products</h2>
+<!-- ======================== COAST MAP ======================== -->
+<section class="coast" id="produktvelger" data-assets="../assets" data-products="products">
+<div class="container coast__intro reveal">
+<span class="eyebrow">Along the coast</span>
+<h2>The right protection starts with the site</h2>
+<p class="lead">Fouling pressure shifts from south to north. Choose a stretch of coast — the map moves there, with typical fouling, pressure and the NetKem products that fit.</p>
+</div>
+<div class="coast__stage">
+<div id="coast-map" class="coast__map" role="img" aria-label="Map of salmon farms along the Norwegian coast"></div>
+<div class="coast__ui">
+<div class="coast__chips" data-coast-chips="" role="tablist" aria-label="Coastal stretches"></div>
+<aside class="coast__panel" data-coast-panel="" aria-live="polite"></aside>
 </div>
 </div>
-
-<form class="pv-controls reveal">
-<fieldset class="pv-radios">
-<legend style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Washing strategy</legend>
-<label class="pv-radio"><input type="radio" name="pv-track" value="coating"/><span class="pv-dot" aria-hidden="true"></span><span>Coating</span></label>
-<label class="pv-radio"><input type="radio" name="pv-track" value="biocid"/><span class="pv-dot" aria-hidden="true"></span><span>Impregnation</span></label>
-</fieldset>
-<label class="pv-check"><input type="checkbox" id="pv-eco"/><span class="pv-box" aria-hidden="true"></span><span>Organic farming</span></label>
-</form>
-<div class="products-grid" id="pv-grid">
-<a class="product-card pv-item" data-track="coating" data-eco="true" href="products/netpolish-np.html">
-<div class="product-card__media">
-<span class="product-card__tag">Coating</span>
-<span class="pv-badge"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Organic</span>
-<img alt="Netpolish NP" src="../assets/img/products/netpolish-np-molekyl.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">Netpolish NP</h3>
-<p class="product-card__sub">Biocide-free coating that protects netting against mechanical wear and UV. Withstands frequent washing at sea and is approved for organic production.</p>
-<span class="product-card__cta">Read more →</span>
-</div>
-</a>
-<a class="product-card pv-item" data-track="biocid" data-eco="false" href="products/netwax-ni-3.html">
-<div class="product-card__media">
-<span class="product-card__tag">Net impregnation</span>
-<img alt="Netwax NI 3" src="../assets/img/products/netwax-ni-3-molekyl.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">Netwax NI 3</h3>
-<p class="product-card__sub">Effective standard impregnation that reduces fouling, eases cleaning and prevents drying out. Safe on nylon and Dyneema.</p>
-<span class="product-card__cta">Read more →</span>
-</div>
-</a>
-<a class="product-card pv-item" data-track="biocid" data-eco="false" href="products/netwax-ni-gold.html">
-<div class="product-card__media">
-<span class="product-card__tag">Net impregnation</span>
-<img alt="Netwax NI Gold" src="../assets/img/products/netwax-ni-gold-molekyl.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">Netwax NI Gold</h3>
-<p class="product-card__sub">Our most effective impregnation for sites with high fouling pressure. BPR-approved by the Norwegian Environment Agency until 2033.</p>
-<span class="product-card__cta">Read more →</span>
-</div>
-</a>
-<a class="product-card pv-item" data-track="biocid" data-eco="true" href="products/netwax-e5-greenline.html">
-<div class="product-card__media">
-<span class="product-card__tag">Green license</span>
-<span class="pv-badge"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Organic</span>
-<img alt="Netwax E5 Greenline" src="../assets/img/products/netwax-e5-greenline-molekyl.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">Netwax E5 Greenline</h3>
-<p class="product-card__sub">ECOCERT-approved and OMRI-listed. Controlled leaching developed for green licenses and organic aquaculture.</p>
-<span class="product-card__cta">Read more →</span>
-</div>
-</a>
-<a class="product-card pv-item" data-track="biocid" data-eco="true" href="products/netwax-e8-greenline.html">
-<div class="product-card__media">
-<span class="product-card__tag">Green license</span>
-<span class="pv-badge"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Organic</span>
-<img alt="Netwax E8 Greenline" src="../assets/img/products/netwax-e8-greenline-molekyl.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">Netwax E8 Greenline</h3>
-<p class="product-card__sub">Powerful impregnation approved for organic agriculture and BPR-approved until 2033. For demanding green licenses.</p>
-<span class="product-card__cta">Read more →</span>
-</div>
-</a>
-<a class="product-card pv-item" data-track="any" href="products/netkem-net-wash.html">
-<div class="product-card__media">
-<span class="product-card__tag">Net cleaning</span>
-<img alt="NetKem Net Wash" src="../assets/img/products/netkem-notvask-molekyl.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">NetKem Net Wash</h3>
-<p class="product-card__sub">Effective cleaner that dissolves fouling and deposits before re-impregnation. Relevant whatever your washing strategy.</p>
-<span class="product-card__cta">Read more →</span>
-</div>
-</a>
-<a class="product-card pv-item" data-track="any" href="products/grotanol-3025.html">
-<div class="product-card__media">
-<span class="product-card__tag">Disinfection</span>
-<img alt="Grotanol 3025" src="../assets/img/products/grotanol-3025-molekyl.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">Grotanol 3025</h3>
-<p class="product-card__sub">Disinfection of nets and equipment for good biosecurity between production cycles.</p>
-<span class="product-card__cta">Read more →</span>
-</div>
-</a>
-<a class="product-card pv-item" data-track="any" href="products/gigant-net-washing-machine.html">
-<div class="product-card__media product-card__media--contain">
-<span class="product-card__tag">Technical equipment</span>
-<img alt="Gigant Universal net washing machine – patented design" src="../assets/img/gigant-patent.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">Gigant Net Washing Machine</h3>
-<p class="product-card__sub">Robust, purpose-built washing machine for gentle and efficient cleaning of netting, with a patented design.</p>
-<span class="product-card__cta">Read more →</span>
-</div>
-</a>
-</div>
-</div>
-<script>
-(function(){
-  var sec=document.getElementById('produktvelger');
-  if(!sec)return;
-  var radios=sec.querySelectorAll('input[name="pv-track"]');
-  var items=sec.querySelectorAll('.pv-item');
-  var eco=sec.querySelector('#pv-eco');
-  var ecoLabel=eco.closest('.pv-check');
-  function apply(){
-    var track=null;
-    radios.forEach(function(r){
-      r.closest('.pv-radio').classList.toggle('is-checked',r.checked);
-      if(r.checked)track=r.value;
-    });
-    ecoLabel.classList.toggle('is-checked',eco.checked);
-    items.forEach(function(it){
-      var t=it.getAttribute('data-track');
-      if(t==='any'){it.classList.remove('is-hidden');return;}
-      var okTrack=(track===null||t===track);
-      var okEco=(!eco.checked||it.getAttribute('data-eco')==='true');
-      it.classList.toggle('is-hidden',!(okTrack&&okEco));
-    });
-  }
-  radios.forEach(function(r){r.addEventListener('change',apply);});
-  eco.addEventListener('change',apply);
-  apply();
-})();
-</script>
 </section>
 <!-- ======================== BPR-BÅND ======================== -->
 <section class="bpr-band">
@@ -384,7 +232,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 <circle cx="12" cy="22" fill="currentColor" r=".7"></circle>
 </svg>
 </div>
-<h3 class="card__title">Notrens &amp; vask</h3>
+<h3 class="card__title">Net cleaning &amp; wash</h3>
 <p class="card__body" data-i18n="home.core.c3_b">Water-based wash that preserves net strength and quality, with strong action on algae and old impregnation.</p>
 </div>
 <div class="card reveal reveal--delay-4">
@@ -404,7 +252,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 </svg>
 </div>
 <h3 class="card__title" data-i18n="eb.tech_equipment">Technical equipment</h3>
-<p class="card__body">Patenterte Gigant-vaskemaskiner i størrelser fra 9 m³ til 70 m³, med justerbare programmer.</p>
+<p class="card__body">Patented Gigant washing machines in sizes from 9 m³ to 70 m³, with adjustable programs.</p>
 </div>
 </div>
 </div>
@@ -477,6 +325,8 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 </div>
 </div>
 </footer>
+<script defer="" src="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js"></script>
+<script defer="" src="../assets/js/coast-map.js"></script>
 <script defer="" src="../assets/js/main.js"></script>
 </body>
 </html>

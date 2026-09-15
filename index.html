@@ -15,6 +15,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 <title data-i18n="meta.home.title">NetKem AS – Coating og notimpregnering for oppdrettsnæringen</title>
 <meta content="NetKem AS utvikler, produserer og leverer impregnerings- og coatingprodukter, notrensemidler, desinfeksjonsmidler og notvaskemaskiner til akvakulturnæringen siden 2001." name="description"/>
 <link href="assets/css/main.css" rel="stylesheet"/>
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css" rel="stylesheet"/>
 <link href="assets/img/favicon.png" rel="icon" type="image/png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -94,173 +95,20 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 </div>
 <a class="hero__scroll" href="#produktvelger" aria-label="Bla ned"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></a>
 </section>
-<!-- ======================== FEATURED PRODUCTS ======================== -->
-<section class="section section--surface" id="produktvelger">
-<style>
-#produktvelger .section-head__text h2{font-family:'Playfair Display',Georgia,serif;font-weight:500}
-.pv-controls{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-5) var(--sp-6);margin-bottom:var(--sp-6)}
-.pv-radios{display:flex;flex-wrap:wrap;gap:10px;border:0;padding:0;margin:0}
-.pv-radio{display:inline-flex;align-items:center;gap:10px;padding:11px 16px;border:1px solid var(--c-border);border-radius:var(--radius-md);background:#fff;cursor:pointer;font-family:var(--font-sans);font-size:var(--fs-sm);font-weight:600;color:var(--c-navy-800);line-height:1.2;transition:border-color var(--transition),background var(--transition),box-shadow var(--transition)}
-.pv-radio:hover{border-color:var(--c-navy-600)}
-.pv-radio.is-checked{border-color:var(--c-navy-800);background:var(--c-navy-800);color:#fff;box-shadow:var(--shadow-sm)}
-.pv-radio input{position:absolute;opacity:0;width:0;height:0}
-.pv-dot{flex:none;width:18px;height:18px;border-radius:50%;border:2px solid var(--c-border-strong);position:relative;transition:border-color var(--transition)}
-.pv-radio.is-checked .pv-dot{border-color:#fff}
-.pv-radio.is-checked .pv-dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:#fff}
-.pv-radio input:focus-visible~.pv-dot{outline:2px solid var(--c-green-500);outline-offset:2px}
-.pv-radio small{display:block;font-size:11px;font-weight:500;color:var(--c-text-soft);text-transform:none;margin-top:1px}
-.pv-radio.is-checked small{color:rgba(255,255,255,.72)}
-.pv-check{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-family:var(--font-sans);font-size:var(--fs-sm);font-weight:600;color:var(--c-navy-800);user-select:none}
-.pv-check input{position:absolute;opacity:0;width:0;height:0}
-.pv-box{flex:none;width:20px;height:20px;border-radius:var(--radius-sm);border:2px solid var(--c-border-strong);background:#fff;position:relative;transition:background var(--transition),border-color var(--transition)}
-.pv-check.is-checked .pv-box{background:var(--c-green-600);border-color:var(--c-green-600)}
-.pv-check.is-checked .pv-box::after{content:"";position:absolute;left:5px;top:1px;width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
-.pv-check input:focus-visible~.pv-box{outline:2px solid var(--c-green-500);outline-offset:2px}
-.pv-badge{position:absolute;top:12px;right:12px;display:inline-flex;align-items:center;gap:4px;background:var(--c-green-100);color:var(--c-green-800);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 9px;border-radius:var(--radius-sm);box-shadow:0 1px 2px rgba(7,24,43,.12)}
-.pv-badge svg{width:12px;height:12px}
-.pv-item.is-hidden{display:none}
-.product-card__media--icon{display:flex;align-items:center;justify-content:center}
-.product-card__media--icon svg{width:58px;height:58px;stroke:var(--c-teal-600);stroke-width:1.4}
-.product-card__media--contain{background:#fff;display:flex;align-items:center;justify-content:center}
-.product-card__media--contain img{object-fit:contain;padding:8px;mix-blend-mode:multiply}
-</style>
-<div class="container">
-<div class="section-head reveal">
-<div class="section-head__text">
-<h2>Våre Produkter</h2>
+<!-- ======================== COAST MAP ======================== -->
+<section class="coast" id="produktvelger" data-assets="assets" data-products="produkter">
+<div class="container coast__intro reveal">
+<span class="eyebrow">Langs kysten</span>
+<h2>Riktig beskyttelse starter med lokaliteten</h2>
+<p class="lead">Begroingstrykket skifter fra sør til nord. Velg en kyststrekning — kartet går dit, med typiske begroingstyper, press og hvilke NetKem-produkter som passer.</p>
+</div>
+<div class="coast__stage">
+<div id="coast-map" class="coast__map" role="img" aria-label="Kart over lakseoppdrett langs norskekysten"></div>
+<div class="coast__ui">
+<div class="coast__chips" data-coast-chips="" role="tablist" aria-label="Kyststrekninger"></div>
+<aside class="coast__panel" data-coast-panel="" aria-live="polite"></aside>
 </div>
 </div>
-
-<form class="pv-controls reveal">
-<fieldset class="pv-radios">
-<legend style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Vaskestrategi</legend>
-<label class="pv-radio"><input type="radio" name="pv-track" value="coating"/><span class="pv-dot" aria-hidden="true"></span><span>Coating</span></label>
-<label class="pv-radio"><input type="radio" name="pv-track" value="biocid"/><span class="pv-dot" aria-hidden="true"></span><span>Impregnering</span></label>
-</fieldset>
-<label class="pv-check"><input type="checkbox" id="pv-eco"/><span class="pv-box" aria-hidden="true"></span><span>Økologisk oppdrett</span></label>
-</form>
-<div class="products-grid" id="pv-grid">
-<a class="product-card pv-item" data-track="coating" data-eco="true" href="produkter/netpolish-np.html">
-<div class="product-card__media">
-<span class="product-card__tag">Coating</span>
-<span class="pv-badge"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Økologisk</span>
-<img alt="Netpolish NP" src="assets/img/products/netpolish-np-molekyl.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">Netpolish NP</h3>
-<p class="product-card__sub">Biocidfri coating som beskytter notlin mot mekanisk slitasje og UV. Tåler hyppig spyling i sjø og er godkjent for økologisk produksjon.</p>
-<span class="product-card__cta">Les mer →</span>
-</div>
-</a>
-<a class="product-card pv-item" data-track="biocid" data-eco="false" href="produkter/netwax-ni-3.html">
-<div class="product-card__media">
-<span class="product-card__tag">Notimpregnering</span>
-<img alt="Netwax NI 3" src="assets/img/products/netwax-ni-3-molekyl.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">Netwax NI 3</h3>
-<p class="product-card__sub">Effektiv standardimpregnering som reduserer groing, letter rengjøring og hindrer uttørking. Trygg på nylon og Dyneema.</p>
-<span class="product-card__cta">Les mer →</span>
-</div>
-</a>
-<a class="product-card pv-item" data-track="biocid" data-eco="false" href="produkter/netwax-ni-gold.html">
-<div class="product-card__media">
-<span class="product-card__tag">Notimpregnering</span>
-<img alt="Netwax NI Gold" src="assets/img/products/netwax-ni-gold-molekyl.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">Netwax NI Gold</h3>
-<p class="product-card__sub">Vår mest effektive impregnering for lokaliteter med høyt groepress. BPR-godkjent av Miljødirektoratet frem til 2033.</p>
-<span class="product-card__cta">Les mer →</span>
-</div>
-</a>
-<a class="product-card pv-item" data-track="biocid" data-eco="true" href="produkter/netwax-e5-greenline.html">
-<div class="product-card__media">
-<span class="product-card__tag">Grønn konsesjon</span>
-<span class="pv-badge"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Økologisk</span>
-<img alt="Netwax E5 Greenline" src="assets/img/products/netwax-e5-greenline-molekyl.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">Netwax E5 Greenline</h3>
-<p class="product-card__sub">ECOCERT-godkjent og OMRI-listeført. Kontrollert utlekking utviklet for grønne konsesjoner og økologisk havbruk.</p>
-<span class="product-card__cta">Les mer →</span>
-</div>
-</a>
-<a class="product-card pv-item" data-track="biocid" data-eco="true" href="produkter/netwax-e8-greenline.html">
-<div class="product-card__media">
-<span class="product-card__tag">Grønn konsesjon</span>
-<span class="pv-badge"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Økologisk</span>
-<img alt="Netwax E8 Greenline" src="assets/img/products/netwax-e8-greenline-molekyl.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">Netwax E8 Greenline</h3>
-<p class="product-card__sub">Kraftig impregnering godkjent for økologisk landbruk og BPR-godkjent frem til 2033. For krevende grønne konsesjoner.</p>
-<span class="product-card__cta">Les mer →</span>
-</div>
-</a>
-<a class="product-card pv-item" data-track="any" href="produkter/netkem-notvask.html">
-<div class="product-card__media">
-<span class="product-card__tag">Notrens</span>
-<img alt="Netkem Notvask" src="assets/img/products/netkem-notvask-molekyl.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">NetKem Notvask</h3>
-<p class="product-card__sub">Effektivt vaskemiddel som løser opp groe og avleiringer før reimpregnering. Aktuelt uansett vaskestrategi.</p>
-<span class="product-card__cta">Les mer →</span>
-</div>
-</a>
-<a class="product-card pv-item" data-track="any" href="produkter/grotanol-3025.html">
-<div class="product-card__media">
-<span class="product-card__tag">Desinfeksjon</span>
-<img alt="Grotanol 3025" src="assets/img/products/grotanol-3025-molekyl.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">Grotanol 3025</h3>
-<p class="product-card__sub">Desinfeksjon av not og utstyr for god biosikkerhet mellom driftssykluser.</p>
-<span class="product-card__cta">Les mer →</span>
-</div>
-</a>
-<a class="product-card pv-item" data-track="any" href="produkter/gigant-vaskemaskin.html">
-<div class="product-card__media product-card__media--contain">
-<span class="product-card__tag">Teknisk utstyr</span>
-<img alt="Gigant Universal Notvaskemaskin – patentert konstruksjon" src="assets/img/gigant-patent.jpg"/>
-</div>
-<div class="product-card__body">
-<h3 class="product-card__title">Gigant Notvaskemaskin</h3>
-<p class="product-card__sub">Robust, egenutviklet vaskemaskin for skånsom og effektiv rengjøring av notlin – patentert konstruksjon.</p>
-<span class="product-card__cta">Les mer →</span>
-</div>
-</a>
-</div>
-</div>
-<script>
-(function(){
-  var sec=document.getElementById('produktvelger');
-  if(!sec)return;
-  var radios=sec.querySelectorAll('input[name="pv-track"]');
-  var items=sec.querySelectorAll('.pv-item');
-  var eco=sec.querySelector('#pv-eco');
-  var ecoLabel=eco.closest('.pv-check');
-  function apply(){
-    var track=null;
-    radios.forEach(function(r){
-      r.closest('.pv-radio').classList.toggle('is-checked',r.checked);
-      if(r.checked)track=r.value;
-    });
-    ecoLabel.classList.toggle('is-checked',eco.checked);
-    items.forEach(function(it){
-      var t=it.getAttribute('data-track');
-      if(t==='any'){it.classList.remove('is-hidden');return;}
-      var okTrack=(track===null||t===track);
-      var okEco=(!eco.checked||it.getAttribute('data-eco')==='true');
-      it.classList.toggle('is-hidden',!(okTrack&&okEco));
-    });
-  }
-  radios.forEach(function(r){r.addEventListener('change',apply);});
-  eco.addEventListener('change',apply);
-  apply();
-})();
-</script>
 </section>
 <!-- ======================== BPR-BÅND ======================== -->
 <section class="bpr-band">
@@ -477,6 +325,8 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 </div>
 </div>
 </footer>
+<script defer="" src="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js"></script>
+<script defer="" src="assets/js/coast-map.js"></script>
 <script defer="" src="assets/js/main.js"></script>
 </body>
 </html>
