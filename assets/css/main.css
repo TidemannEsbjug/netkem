@@ -2390,10 +2390,20 @@ img[aria-hidden="true"],
   left: 0;
   right: 0;
   z-index: 3;
-  pointer-events: auto;
+  pointer-events: none;
   padding: 28px 24px 0;
   text-align: center;
   transition: right 220ms ease;
+}
+.coast__tools,
+.coast__find,
+.coast__search,
+.coast__chips,
+.coast__chip,
+.coast__switch,
+.coast__hits,
+.coast__hit {
+  pointer-events: auto;
 }
 .coast.is-open .coast__top {
   right: min(520px, 42vw);

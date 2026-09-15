@@ -700,19 +700,44 @@
         }
       });
 
-      map.on('click', 'farm-clusters', function (e) {
-        var f = e.features[0];
+      function expandCluster(f) {
         map.getSource('farms').getClusterExpansionZoom(f.properties.cluster_id, function (err, zoom) {
           if (err) return;
           map.easeTo({ center: f.geometry.coordinates, zoom: zoom, duration: reduce ? 0 : 600 });
         });
+      }
+      function hitAt(point) {
+        var pad = 16;
+        var box = [
+          [point.x - pad, point.y - pad],
+          [point.x + pad, point.y + pad]
+        ];
+        var clusters = map.queryRenderedFeatures(box, { layers: ['farm-clusters'] });
+        if (clusters.length) {
+          expandCluster(clusters[0]);
+          return true;
+        }
+        var pts = map.queryRenderedFeatures(box, { layers: ['farm-point', 'picked-point'] });
+        if (pts.length) {
+          var feat = farmById(pts[0].properties.id);
+          if (feat) selectFarm(feat);
+          return true;
+        }
+        return false;
+      }
+      var tapOrigin = null;
+      map.getCanvas().addEventListener('pointerdown', function (e) {
+        tapOrigin = { x: e.clientX, y: e.clientY };
       });
-      map.on('click', 'farm-point', function (e) {
-        if (!e.features[0]) return;
-        var id = e.features[0].properties.id;
-        var feat = farmById(id);
-        if (feat) selectFarm(feat);
+      map.getCanvas().addEventListener('pointerup', function (e) {
+        if (!tapOrigin || !map) return;
+        var moved = Math.hypot(e.clientX - tapOrigin.x, e.clientY - tapOrigin.y) > 14;
+        tapOrigin = null;
+        if (moved) return;
+        var r = map.getCanvas().getBoundingClientRect();
+        hitAt({ x: e.clientX - r.left, y: e.clientY - r.top });
       });
+      map.getCanvas().addEventListener('pointercancel', function () { tapOrigin = null; });
       ['farm-clusters', 'farm-point', 'picked-point'].forEach(function (id) {
         map.on('mouseenter', id, function () { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', id, function () { map.getCanvas().style.cursor = ''; });
