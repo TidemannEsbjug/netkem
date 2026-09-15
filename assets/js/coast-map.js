@@ -290,6 +290,29 @@
       return window.matchMedia && window.matchMedia('(max-width: 860px)').matches;
     }
 
+    var ignoreScroll = false;
+    var mapLockY = 0;
+    function enterMapMode() {
+      if (document.documentElement.classList.contains('is-map-using')) return;
+      document.documentElement.classList.add('is-map-using');
+      ignoreScroll = true;
+      var top = root.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo(0, Math.max(0, top));
+      mapLockY = window.pageYOffset;
+      requestAnimationFrame(function () {
+        if (map) map.resize();
+        setTimeout(function () {
+          mapLockY = window.pageYOffset;
+          ignoreScroll = false;
+        }, 180);
+      });
+    }
+    function exitMapMode() {
+      if (!document.documentElement.classList.contains('is-map-using')) return;
+      document.documentElement.classList.remove('is-map-using');
+      if (map) map.resize();
+    }
+
     function padForMap() {
       var choosing = root.classList.contains('is-choosing');
       var open = root.classList.contains('is-open');
@@ -324,8 +347,9 @@
           '<em>' + esc(t.tracks[row.track]) + '</em>' +
           '<strong>' + esc(p.name) + '</strong></a>';
       }).join('');
-      return (heading ? '<p class="coast__rec-label">' + esc(heading) + '</p>' : '') +
-        '<div class="coast__products">' + recs + '</div>';
+      return '<div class="coast__recs">' +
+        (heading ? '<p class="coast__rec-label">' + esc(heading) + '</p>' : '') +
+        '<div class="coast__products">' + recs + '</div></div>';
     }
 
     function pressHtml(r) {
@@ -347,15 +371,21 @@
         }
         var mtb = p.c ? Math.round(p.c).toLocaleString('nb-NO') + ' t ' + t.mtb : '';
         panelEl.innerHTML =
-          '<span class="coast__kicker">' + esc(t.siteKicker) + '</span>' +
-          '<h3>' + esc(p.n) + '</h3>' +
-          '<p class="coast__where">' + esc(p.k || '') +
-            (gid ? ' · ' + esc(t.chips[gid]) : '') +
-            (mtb ? '<br>' + esc(mtb) : '') + '</p>' +
-          pressHtml(r) +
-          '<p>' + esc(r.body[lang] || r.body.nb) + '</p>' +
-          '<ul class="coast__fouling">' + foulingHtml(r) + '</ul>' +
-          recsHtml(r, t.forSite) +
+          '<div class="coast__head">' +
+            '<div class="coast__head-row">' +
+              '<span class="coast__kicker">' + esc(t.siteKicker) + '</span>' +
+              pressHtml(r) +
+            '</div>' +
+            '<h3>' + esc(p.n) + '</h3>' +
+            '<p class="coast__where">' + esc(p.k || '') +
+              (gid ? ' · ' + esc(t.chips[gid]) : '') +
+              (mtb ? ' · ' + esc(mtb) : '') + '</p>' +
+            '<p class="coast__blurb">' + esc(r.body[lang] || r.body.nb) + '</p>' +
+          '</div>' +
+          '<div class="coast__split">' +
+            '<ul class="coast__fouling">' + foulingHtml(r) + '</ul>' +
+            recsHtml(r, t.forSite) +
+          '</div>' +
           '<p class="coast__note">' + esc(t.siteNote) + '</p>';
         return;
       }
@@ -369,12 +399,18 @@
       }
       var r2 = REGIONS[current];
       panelEl.innerHTML =
-        '<span class="coast__kicker">' + esc(t.kicker) + '</span>' +
-        '<h3>' + esc(t.chips[current]) + '</h3>' +
-        pressHtml(r2) +
-        '<p>' + esc(r2.body[lang] || r2.body.nb) + '</p>' +
-        '<ul class="coast__fouling">' + foulingHtml(r2) + '</ul>' +
-        recsHtml(r2) +
+        '<div class="coast__head">' +
+          '<div class="coast__head-row">' +
+            '<span class="coast__kicker">' + esc(t.kicker) + '</span>' +
+            pressHtml(r2) +
+          '</div>' +
+          '<h3>' + esc(t.chips[current]) + '</h3>' +
+          '<p class="coast__blurb">' + esc(r2.body[lang] || r2.body.nb) + '</p>' +
+        '</div>' +
+        '<div class="coast__split">' +
+          '<ul class="coast__fouling">' + foulingHtml(r2) + '</ul>' +
+          recsHtml(r2) +
+        '</div>' +
         '<p class="coast__note">' + esc(t.note) + '</p>';
     }
 
@@ -422,6 +458,7 @@
       current = id;
       picked = null;
       root.classList.remove('is-choosing');
+      if (id !== 'all') enterMapMode();
       markChips(id);
       renderPanel();
       if (!map || !farms) return;
@@ -435,6 +472,7 @@
       picked = feat;
       current = feat.properties.g || current;
       root.classList.remove('is-choosing');
+      enterMapMode();
       markChips(current);
       renderPanel();
       if (!map) return;
@@ -660,6 +698,14 @@
     }).catch(function () {
       panelEl.innerHTML = '<p>' + esc(t.allBody) + '</p>';
     });
+
+    stageEl.addEventListener('pointerdown', function () { enterMapMode(); });
+    window.addEventListener('scroll', function () {
+      if (ignoreScroll) return;
+      if (!document.documentElement.classList.contains('is-map-using')) return;
+      if (Math.abs(window.pageYOffset - mapLockY) < 28) return;
+      exitMapMode();
+    }, { passive: true });
 
     chipsEl.addEventListener('click', function (e) {
       var b = e.target.closest('.coast__chip');
