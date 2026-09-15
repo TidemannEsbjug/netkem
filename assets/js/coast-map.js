@@ -189,16 +189,33 @@
     name: 'NetKem Coast',
     glyphs: 'mapbox://fonts/mapbox/{fontstack}/{range}.pbf',
     sources: {
-      composite: { type: 'vector', url: 'mapbox://mapbox.mapbox-streets-v8' }
+      composite: { type: 'vector', url: 'mapbox://mapbox.mapbox-streets-v8' },
+      dem: {
+        type: 'raster-dem',
+        url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+        tileSize: 512,
+        maxzoom: 14
+      }
     },
     layers: [
-      { id: 'background', type: 'background', paint: { 'background-color': '#e7eee8' } },
+      { id: 'background', type: 'background', paint: { 'background-color': '#c8d4cc' } },
+      {
+        id: 'hillshade',
+        type: 'hillshade',
+        source: 'dem',
+        paint: {
+          'hillshade-exaggeration': 0.42,
+          'hillshade-shadow-color': '#5e7268',
+          'hillshade-highlight-color': '#f4f7f4',
+          'hillshade-illumination-direction': 315
+        }
+      },
       {
         id: 'water',
         type: 'fill',
         source: 'composite',
         'source-layer': 'water',
-        paint: { 'fill-color': '#d5e7ee' }
+        paint: { 'fill-color': '#7eafc4' }
       },
       {
         id: 'coastline',
@@ -206,9 +223,9 @@
         source: 'composite',
         'source-layer': 'water',
         paint: {
-          'line-color': '#8eafb8',
-          'line-width': 0.7,
-          'line-opacity': 0.7
+          'line-color': '#4e7d8e',
+          'line-width': 0.8,
+          'line-opacity': 0.55
         }
       }
     ]
@@ -269,12 +286,10 @@
     findEl.appendChild(searchEl);
     findEl.appendChild(switchEl);
 
-    var brandEl = document.createElement('a');
-    brandEl.className = 'coast__brand';
-    brandEl.href = lang === 'nb' ? 'index.html' : 'index.html';
-    brandEl.setAttribute('aria-label', 'NetKem');
-    brandEl.innerHTML = 'Net<span>K</span>em';
-    stageEl.appendChild(brandEl);
+    var zoomEl = document.createElement('div');
+    zoomEl.className = 'coast__zoom';
+    zoomEl.innerHTML = '<button type="button" class="coast__zoom-btn" data-z="in" aria-label="+">+</button><button type="button" class="coast__zoom-btn" data-z="out" aria-label="−">−</button>';
+    stageEl.appendChild(zoomEl);
 
     GROUPS.forEach(function (g) {
       var b = document.createElement('button');
@@ -568,7 +583,12 @@
       dragRotate: false
     });
     map.scrollZoom.disable();
-    map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'bottom-left');
+    zoomEl.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-z]');
+      if (!b || !map) return;
+      var next = map.getZoom() + (b.getAttribute('data-z') === 'in' ? 1 : -1);
+      map.easeTo({ zoom: next, duration: reduce ? 0 : 280 });
+    });
 
     var mapReady = new Promise(function (resolve) {
       function go() { map.resize(); resolve(); }
@@ -718,7 +738,7 @@
       e.preventDefault();
     });
     stageEl.addEventListener('pointerdown', function (e) {
-      if (e.target.closest('button, a, input, .coast__chip, .coast__switch, .coast__panel, .coast__hit, .coast__search, .coast__top, .coast__brand')) {
+      if (e.target.closest('button, a, input, .coast__chip, .coast__switch, .coast__panel, .coast__hit, .coast__search, .coast__top, .coast__zoom')) {
         return;
       }
       var sel = window.getSelection && window.getSelection();
