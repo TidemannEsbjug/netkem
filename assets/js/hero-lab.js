@@ -7,7 +7,8 @@
   if (!hero) return;
 
   /* Copy variants for the «Det sikre valget» design (layout 'onimage').
-     long: smaller title size for headlines that run over several lines. */
+     long:    smaller title size for headlines that run over several lines.
+     oneLine: the title never wraps; its size shrinks to fit the width. */
   var NOT = {
     eneste: {
       eyebrow: 'Det sikre valget',
@@ -19,7 +20,7 @@
       eyebrow: 'Notimpregnering · Coating · Notrens',
       title: 'Det sikre valget for nota',
       lead: 'Gjennom 25 års erfaring i oppdrettsnæringen har produktene våre beskyttet og vedlikeholdt betydelige deler av all not i norsk sjø. Med ledende forskning i ryggen sikrer vi trygg drift og sunn fisk, sesong etter sesong.',
-      long: true
+      oneLine: true
     },
     sterk: {
       eyebrow: 'Det sikre valget',
@@ -42,7 +43,8 @@
     starter: {
       eyebrow: 'Det sikre valget',
       title: 'Alt starter med nota.',
-      lead: 'Fra impregnering før utsetting til vask og desinfeksjon mellom syklusene — vi har løsninger for hele driftsløpet.'
+      lead: 'Fra impregnering før utsetting til vask og desinfeksjon mellom syklusene — vi har løsninger for hele driftsløpet.',
+      oneLine: true
     },
     holder: {
       eyebrow: 'Det sikre valget',
@@ -51,13 +53,15 @@
     },
     kjemikalier: {
       eyebrow: 'Det sikre valget',
-      title: 'Kjemikalier<br/>til nøter.',
-      lead: 'Impregnering, coating, notrens og desinfeksjon for oppdrettsnæringen — utviklet og levert av NetKem siden 2001.'
+      title: 'Kjemikalier til nøter.',
+      lead: 'Impregnering, coating, notrens og desinfeksjon for oppdrettsnæringen — utviklet og levert av NetKem siden 2001.',
+      oneLine: true
     },
     spesialist: {
       eyebrow: 'Det sikre valget',
-      title: 'Spesialist<br/>på nøter.',
-      lead: 'I 25 år har vi utviklet kjemikalier og utstyr som beskytter, rengjør og vedlikeholder nota — sesong etter sesong.'
+      title: 'Spesialist på nøter.',
+      lead: 'I 25 år har vi utviklet kjemikalier og utstyr som beskytter, rengjør og vedlikeholder nota — sesong etter sesong.',
+      oneLine: true
     },
     stole: {
       eyebrow: 'Det sikre valget',
@@ -105,7 +109,25 @@
     block.querySelector('.hero-copy__title').innerHTML = t.title;
     block.querySelector('.hero-copy__lead').textContent = t.lead;
     block.querySelector('.hero-copy__title').classList.toggle('is-long', !!(text && text.long));
+    block.querySelector('.hero-copy__title').classList.toggle('is-one-line', !!(text && text.oneLine));
   }
+
+  /* Shrink a one-line title until it fits the content width */
+  function fit(block) {
+    var t = block.querySelector('.hero-copy__title');
+    t.style.fontSize = '';
+    if (!t.classList.contains('is-one-line') || !block.classList.contains('is-active')) return;
+    var c = block.parentElement;
+    var cs = window.getComputedStyle(c);
+    var bs = window.getComputedStyle(block);
+    var avail = c.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) -
+                parseFloat(bs.paddingLeft) - parseFloat(bs.paddingRight);
+    var w = t.getBoundingClientRect().width;
+    if (w > avail) {
+      t.style.fontSize = (parseFloat(window.getComputedStyle(t).fontSize) * avail / w * 0.98) + 'px';
+    }
+  }
+  function fitAll() { blocks.forEach(fit); }
 
   var params = new URLSearchParams(window.location.search);
   var idx = (parseInt(params.get('hero'), 10) || 1) - 1;
@@ -121,6 +143,7 @@
       b.classList.toggle('is-active', on);
       setText(b, on ? v.text : null);
     });
+    fitAll();
     if (animate) {
       hero.classList.remove('is-swapping');
       void hero.offsetWidth;
@@ -134,6 +157,14 @@
     }
   }
   apply(Math.min(Math.max(idx, 0), VARIANTS.length - 1), false);
+
+  var fitQueued = false;
+  window.addEventListener('resize', function () {
+    if (fitQueued) return;
+    fitQueued = true;
+    window.requestAnimationFrame(function () { fitQueued = false; fitAll(); });
+  });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
 
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {

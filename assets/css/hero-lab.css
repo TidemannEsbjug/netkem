@@ -45,6 +45,8 @@
   font-weight: 500;
   font-size: clamp(2.6rem, 6vw, 5rem);
 }
+/* One-line headlines never wrap (size is fitted by hero-lab.js) */
+.hero-copy__title.is-one-line { display: inline-block; white-space: nowrap; max-width: none; }
 /* Longer headlines (several lines) step down a size */
 .hero-copy--sikre .hero-copy__title.is-long { font-size: clamp(2.2rem, 4.4vw, 3.8rem); line-height: 1.08; }
 .hero-copy__lead {
