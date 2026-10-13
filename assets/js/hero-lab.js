@@ -10,7 +10,14 @@
   var SHADES = [
     'petrol',      // 1 petrol vignette, a hair further up than the original
     'petrol-more', // 2 a hair more
-    'petrol-less'  // 3 the original position, in petrol
+    'petrol-less',  // 3 the original position, in petrol
+    /* 4–9 inverted: light shade, dark text */
+    'light-white',  // 4 white vignette
+    'light-cream',  // 5 warm cream vignette
+    'light-mint',   // 6 light mint vignette, dark petrol type
+    'light-frost',  // 7 light frosted glass, photo blurred behind the text
+    'light-strong', // 8 white, stronger and wider
+    'light-band'    // 9 white band from the left edge
   ];
 
   /* Shrink the one-line title until it fits the content width */

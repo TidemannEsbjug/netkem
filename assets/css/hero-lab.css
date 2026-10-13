@@ -78,6 +78,67 @@
   }
 }
 
+/* ---------- 4–9 · inverted: light shade, dark text ---------------------- */
+.about-net[data-shade="light-white"]  { --shade: 255,255,255; }
+.about-net[data-shade="light-cream"]  { --shade: 247,242,234; }
+.about-net[data-shade="light-mint"]   { --shade: 233,243,240; }
+.about-net[data-shade="light-frost"]  { --shade: 255,255,255; }
+.about-net[data-shade="light-strong"] { --shade: 255,255,255; }
+.about-net[data-shade="light-band"]   { --shade: 255,255,255; }
+
+/* Dark type on the light shade */
+.about-net[data-shade^="light"] .hero-copy { color: var(--c-navy-900); text-shadow: none; }
+.about-net[data-shade^="light"] .hero-copy__title { color: var(--c-navy-900); }
+.about-net[data-shade^="light"] .hero-copy__lead { color: rgba(7,24,43,.84); }
+.about-net[data-shade^="light"] .hero-copy .eyebrow { color: var(--c-green-700); }
+.about-net[data-shade^="light"] .hero-copy .eyebrow::before { background: var(--c-green-600); }
+.about-net[data-shade^="light"] .hero-copy__stats { border-top-color: rgba(7,24,43,.18); }
+.about-net[data-shade^="light"] .hero-copy__stats strong { color: var(--c-navy-900); }
+.about-net[data-shade^="light"] .hero-copy__stats span { color: var(--c-text-muted); }
+.about-net[data-shade^="light"] .hero-copy .btn--ghost-light { color: var(--c-navy-900); border-color: rgba(7,24,43,.38); }
+.about-net[data-shade^="light"] .hero-copy .btn--ghost-light:hover { background: var(--c-navy-900); border-color: var(--c-navy-900); color: #fff; }
+/* 6 · mint: dark petrol type instead of navy */
+.about-net[data-shade="light-mint"] .hero-copy__title,
+.about-net[data-shade="light-mint"] .hero-copy__stats strong { color: #05302b; }
+.about-net[data-shade="light-mint"] .hero-copy__lead { color: rgba(5,48,43,.86); }
+
+@media (min-width: 960px) {
+  /* 4 white · 5 warm cream · 6 light mint: same vignette shape, light colour */
+  .about-net[data-shade="light-white"]::before,
+  .about-net[data-shade="light-cream"]::before,
+  .about-net[data-shade="light-mint"]::before {
+    background:
+      radial-gradient(ellipse 60% 82% at var(--vx) var(--vy), rgba(var(--shade),.92) 0%, rgba(var(--shade),.76) 45%, rgba(var(--shade),0) 85%),
+      radial-gradient(ellipse 32% 38% at 5% 7%, rgba(var(--shade),.3) 0%, rgba(var(--shade),0) 100%);
+  }
+  /* 7 · light frosted glass that fades out: the photo blurs behind the text */
+  .about-net[data-shade="light-frost"]::before {
+    background: radial-gradient(ellipse 60% 82% at var(--vx) var(--vy), rgba(255,255,255,.7) 0%, rgba(255,255,255,.55) 45%, rgba(255,255,255,0) 85%);
+  }
+  .about-net[data-shade="light-frost"]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    -webkit-backdrop-filter: blur(18px) saturate(120%);
+    backdrop-filter: blur(18px) saturate(120%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 82% at var(--vx) var(--vy), #000 0%, #000 42%, transparent 82%);
+    mask-image: radial-gradient(ellipse 60% 82% at var(--vx) var(--vy), #000 0%, #000 42%, transparent 82%);
+  }
+  /* 8 · white, stronger and wider */
+  .about-net[data-shade="light-strong"]::before {
+    background: radial-gradient(ellipse 68% 92% at var(--vx) var(--vy), rgba(255,255,255,.95) 0%, rgba(255,255,255,.86) 45%, rgba(255,255,255,0) 88%);
+  }
+  /* 9 · white band from the left edge, fading out after the text */
+  .about-net[data-shade="light-band"]::before {
+    background: linear-gradient(90deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.88) 36%, rgba(255,255,255,.5) 54%, rgba(255,255,255,0) 68%);
+  }
+}
+@media (max-width: 959px) {
+  .about-net[data-shade^="light"] .hero-copy { background: rgba(var(--shade),.9); }
+}
+
 /* ---------- Low desktop screens: copy fits the first screen -------------- */
 @media (min-width: 960px) and (max-height: 720px) {
   .hero-copy__title { font-size: clamp(2.2rem, 4.4vw, 3.4rem); }
