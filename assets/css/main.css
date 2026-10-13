@@ -2911,3 +2911,152 @@ img[aria-hidden="true"],
 @media (prefers-reduced-motion: reduce) {
   .coast__chip { transition: none; }
 }
+
+/* ---------- Om NetKem (home §2) — full-bleed net image with glass cards ---- */
+.about-net {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: clamp(640px, 92vh, 920px);
+  padding: clamp(72px, 10vw, 128px) 0;
+  background: #5a1a10;
+  color: var(--c-text);
+}
+.about-net__img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 45% 40%;
+}
+/* Wide screens: mirror and shift the photo so the point where the net
+   strands meet lands in the open area right of the card. */
+@media (min-width: 960px) {
+  .about-net__img {
+    scale: -1.3 1.3;
+    translate: 13% 0;
+  }
+}
+/* Navy tint: anchors the cards on the left, lets the net glow on the right */
+.about-net::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(7,24,43,.58) 0%, rgba(7,24,43,.28) 42%, rgba(7,24,43,.04) 72%, rgba(7,24,43,0) 100%),
+    linear-gradient(0deg, rgba(7,24,43,.42) 0%, rgba(7,24,43,0) 34%);
+  pointer-events: none;
+}
+.about-net > .container { width: 100%; }
+.about-net__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-5);
+}
+@media (min-width: 960px) {
+  .about-net__inner {
+    grid-template-columns: minmax(0, 600px) 1fr;
+    align-items: end;
+    gap: var(--sp-6);
+  }
+}
+
+.about-net__card {
+  background: rgba(255,255,255,.9);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255,255,255,.7);
+  border-radius: var(--radius-md);
+  box-shadow: 0 30px 60px -28px rgba(7,24,43,.55);
+  padding: clamp(28px, 4vw, 52px);
+}
+.about-net__card h2 { color: var(--c-navy-900); margin-bottom: var(--sp-4); }
+.about-net__card .lead { color: var(--c-text); }
+.about-net__card p:not(.lead) { color: var(--c-text-muted); }
+.about-net__card a:not(.btn) {
+  color: var(--c-navy-700);
+  text-decoration: underline;
+  text-decoration-color: rgba(19,54,87,.3);
+  text-underline-offset: 3px;
+}
+.about-net__card a:not(.btn):hover { color: var(--c-green-700); text-decoration-color: currentColor; }
+.about-net__card .btn { margin-top: var(--sp-3); }
+
+.about-net__facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+  margin: 0;
+}
+@media (min-width: 960px) {
+  .about-net__facts {
+    justify-self: end;
+    grid-template-columns: repeat(2, minmax(0, 220px));
+  }
+}
+@media (min-width: 960px) and (max-width: 1199px) {
+  .about-net__facts { grid-template-columns: minmax(0, 240px); }
+}
+.about-net__fact {
+  background: rgba(7,24,43,.74);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  backdrop-filter: blur(14px) saturate(130%);
+  border: 1px solid rgba(255,255,255,.14);
+  border-top: 2px solid var(--c-green-500);
+  border-radius: var(--radius-md);
+  padding: var(--sp-5);
+  color: #fff;
+}
+.about-net__fact dt {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: rgba(216,226,236,.78);
+  margin-bottom: 6px;
+}
+.about-net__fact dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #fff;
+}
+
+/* Mobile: show a clean band of the net above the card */
+@media (max-width: 959px) {
+  .about-net {
+    display: block;
+    min-height: 0;
+    padding: clamp(200px, 52vw, 380px) 0 var(--sp-7);
+  }
+  .about-net::before {
+    background: linear-gradient(180deg, rgba(7,24,43,0) 0%, rgba(7,24,43,.1) 30%, rgba(7,24,43,.55) 100%);
+  }
+}
+@media (max-width: 479px) {
+  .about-net__facts { grid-template-columns: 1fr; }
+  .about-net__fact { padding: var(--sp-4) var(--sp-5); }
+}
+
+/* Slow drift of the net while scrolling past (progressive enhancement) */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .about-net__img {
+      animation: aboutNetDrift linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+    @keyframes aboutNetDrift {
+      from { transform: scale(1.08) translateY(-3%); }
+      to   { transform: scale(1.08) translateY(3%); }
+    }
+  }
+}
