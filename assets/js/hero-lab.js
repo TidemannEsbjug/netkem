@@ -8,28 +8,16 @@
   if (!hero) return;
 
   var SHADES = [
-    'light-white',      // 1 white vignette (standard)
-    'light-frost',      // 2 white + blur, as first shown
-    'light-frost-1',    // 3 smaller
-    'light-frost-2',    // 4 larger
-    'light-frost-3',    // 5 wider and lower
-    'light-frost-4',    // 6 narrower and taller
-    'light-frost-5',    // 7 moved right
-    'light-frost-6',    // 8 moved left
-    'light-frost-7',    // 9 moved up
-    'light-frost-8',    // 10 moved down
-    'light-frost-9',    // 11 from the left edge
-    'light-frost-10',   // 12 from the top-left corner
-    'light-frost-11',   // 13 more blur
-    'light-frost-12',   // 14 a lot of blur, less white
-    'light-frost-13',   // 15 little blur, whiter
-    'light-frost-14',   // 16 mostly blur, barely white
-    'light-frost-15',   // 17 whiter
-    'light-frost-16',   // 18 harder edge
-    'light-frost-17',   // 19 long, soft fade
-    'light-frost-18',   // 20 large and mild
-    'light-frost-19',   // 21 centred on the title
-    'light-frost-20'    // 22 diagonal band (two areas)
+    'light-text',       // 1 white, soft field round the text (standard)
+    'light-text-frost', // 2 white + blur
+    'light-text-3',     // 3 frost, tighter round the text
+    'light-text-4',     // 4 frost, more room round the text
+    'light-text-5',     // 5 frost, more blur, less white
+    'light-text-6',     // 6 frost, whiter, little blur
+    'light-text-7',     // 7 frost, long fade out to the right
+    'light-text-8',     // 8 white, airy: very soft edges
+    'light-text-9',     // 9 white, crisper edges
+    'light-text-10'     // 10 frost, barely white, mostly blur
   ];
 
   /* Shrink the one-line title until it fits the content width */

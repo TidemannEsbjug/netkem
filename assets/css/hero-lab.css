@@ -1,7 +1,7 @@
 /* ==========================================================================
    Hero-lab — «Spesialist på nøter.» on the net photo (Norwegian home page).
    The design is locked; ← / → (assets/js/hero-lab.js) only switches the
-   light area behind the text, set as data-shade on .about-net.
+   light field behind the text, set as data-shade on .about-net.
    Temporary: fold the chosen shade into main.css and remove this file.
    ========================================================================== */
 
@@ -62,38 +62,31 @@
   color: rgba(216,226,236,.82);
 }
 
-/* ---------- Shade behind the text: white, light frost --------------------
-   1 light-white   white vignette (standard)
-   2 light-frost   white + blur, as first shown
-   3–22            versions of 2: size (--fx/--fy), position (--vx/--vy),
-                   blur (--blur), whiteness (--w0/--w1) and how hard the edge
-                   is (--g1/--g2 for the white, --ws/--we for the blur mask). */
-.about-net[data-copy="sikre"] { --shade: 255,255,255; --vx: 24.5%; --vy: 53.5%; }
-.about-net[data-shade^="light-frost"] {
-  --fx: 60%; --fy: 82%; --blur: 18px; --w0: .7; --w1: .55;
-  --g1: 45%; --g2: 85%; --ws: 42%; --we: 82%;
+/* ---------- Light field tied to the text --------------------------------
+   The light area sits on the text block itself (.hero-copy::before), so it
+   follows the text on every screen and stops short of the left edge.
+   Shape: a soft rectangle — two linear masks intersected — so the whole text
+   (eyebrow and stats in the corners too) is evenly light, fading out on all
+   sides. --it/--ir/--ib/--il: how far it reaches beyond the text block
+   (negative = outside); --ft/--fr/--fb/--fl: length of the fade on each
+   side; --w: whiteness; --blur: how soft the photo goes behind it.        */
+.about-net[data-copy="sikre"] { --shade: 255,255,255; }
+.about-net[data-shade^="light-text"] {
+  --w: .86; --blur: 0px;
+  --it: -100px; --ir: -70px; --ib: -90px; --il: -90px;
+  --ft: 80px; --fr: 80px; --fb: 80px; --fl: 80px;
 }
-.about-net[data-shade="light-frost-1"] { --fx: 52%; --fy: 72%; }  /* smaller */
-.about-net[data-shade="light-frost-2"] { --fx: 70%; --fy: 95%; }  /* larger */
-.about-net[data-shade="light-frost-3"] { --fx: 72%; --fy: 64%; }  /* wider and lower */
-.about-net[data-shade="light-frost-4"] { --fx: 52%; --fy: 100%; }  /* narrower and taller */
-.about-net[data-shade="light-frost-5"] { --vx: 32.5%; }  /* moved right */
-.about-net[data-shade="light-frost-6"] { --vx: 16.5%; }  /* moved left */
-.about-net[data-shade="light-frost-7"] { --vy: 44%; }  /* moved up */
-.about-net[data-shade="light-frost-8"] { --vy: 62%; }  /* moved down */
-.about-net[data-shade="light-frost-9"] { --fx: 78%; --fy: 110%; --vx: 2.5%; }  /* from the left edge */
-.about-net[data-shade="light-frost-10"] { --fx: 82%; --fy: 120%; --vx: 6.5%; --vy: 18%; }  /* from the top-left corner */
-.about-net[data-shade="light-frost-11"] { --blur: 32px; }  /* more blur */
-.about-net[data-shade="light-frost-12"] { --blur: 50px; --w0: .6; --w1: .45; }  /* a lot of blur, less white */
-.about-net[data-shade="light-frost-13"] { --blur: 8px; --w0: .78; --w1: .62; }  /* little blur, whiter */
-.about-net[data-shade="light-frost-14"] { --blur: 30px; --w0: .45; --w1: .32; }  /* mostly blur, barely white */
-.about-net[data-shade="light-frost-15"] { --w0: .86; --w1: .72; }  /* whiter */
-.about-net[data-shade="light-frost-16"] { --g1: 60%; --g2: 76%; --ws: 60%; --we: 74%; }  /* harder edge */
-.about-net[data-shade="light-frost-17"] { --g1: 32%; --g2: 96%; --ws: 18%; --we: 96%; }  /* long, soft fade */
-.about-net[data-shade="light-frost-18"] { --fx: 80%; --fy: 110%; --vx: 22.5%; --vy: 50%; --blur: 24px; --w0: .6; --w1: .48; }  /* large and mild */
-.about-net[data-shade="light-frost-19"] { --fx: 62%; --fy: 70%; --vy: 42%; }  /* centred on the title */
+.about-net[data-shade="light-text-frost"] { --w: .66; --blur: 18px; }  /* white + blur */
+.about-net[data-shade="light-text-3"] { --w: .68; --blur: 18px; --it: -70px; --ir: -40px; --ib: -60px; --il: -60px; --ft: 60px; --fr: 60px; --fb: 60px; --fl: 60px; }  /* frost, tighter round the text */
+.about-net[data-shade="light-text-4"] { --w: .66; --blur: 18px; --it: -140px; --ir: -110px; --ib: -120px; --il: -110px; --ft: 110px; --fr: 110px; --fb: 110px; --fl: 90px; }  /* frost, more room round the text */
+.about-net[data-shade="light-text-5"] { --w: .56; --blur: 30px; }  /* frost, more blur, less white */
+.about-net[data-shade="light-text-6"] { --w: .8; --blur: 10px; }  /* frost, whiter, little blur */
+.about-net[data-shade="light-text-7"] { --w: .66; --blur: 18px; --ir: -200px; --fr: 220px; }  /* frost, long fade out to the right */
+.about-net[data-shade="light-text-8"] { --w: .84; --it: -150px; --ir: -120px; --ib: -140px; --il: -100px; --ft: 160px; --fr: 160px; --fb: 160px; --fl: 90px; }  /* white, airy: very soft edges */
+.about-net[data-shade="light-text-9"] { --w: .88; --it: -60px; --ir: -50px; --ib: -50px; --il: -60px; --ft: 36px; --fr: 36px; --fb: 36px; --fl: 36px; }  /* white, crisper edges */
+.about-net[data-shade="light-text-10"] { --w: .42; --blur: 28px; }  /* frost, barely white, mostly blur */
 
-/* Dark type on the light shade */
+/* Dark type on the light field */
 .about-net[data-shade^="light"] .hero-copy { color: var(--c-navy-900); text-shadow: none; }
 .about-net[data-shade^="light"] .hero-copy__title { color: var(--c-navy-900); }
 .about-net[data-shade^="light"] .hero-copy__lead { color: rgba(7,24,43,.84); }
@@ -106,41 +99,24 @@
 .about-net[data-shade^="light"] .hero-copy .btn--ghost-light:hover { background: var(--c-navy-900); border-color: var(--c-navy-900); color: #fff; }
 
 @media (min-width: 960px) {
-  /* 1 · white vignette */
-  .about-net[data-copy="sikre"]::before {
-    background:
-      radial-gradient(ellipse 60% 82% at var(--vx) var(--vy), rgba(255,255,255,.92) 0%, rgba(255,255,255,.76) 45%, rgba(255,255,255,0) 85%),
-      radial-gradient(ellipse 32% 38% at 5% 7%, rgba(255,255,255,.3) 0%, rgba(255,255,255,0) 100%);
-  }
-  /* 2–22 · white + blur: the photo goes soft behind the text and sharpens outwards */
-  .about-net[data-shade^="light-frost"]::before {
-    background: radial-gradient(ellipse var(--fx) var(--fy) at var(--vx) var(--vy),
-      rgba(255,255,255,var(--w0)) 0%, rgba(255,255,255,var(--w1)) var(--g1), rgba(255,255,255,0) var(--g2));
-  }
-  .about-net[data-shade^="light-frost"]::after {
+  .about-net[data-copy="sikre"]::before { background: none; }
+  .about-net[data-shade^="light-text"] .hero-copy::before {
     content: "";
     position: absolute;
-    inset: 0;
+    inset: var(--it) var(--ir) var(--ib) var(--il);
     z-index: -1;
     pointer-events: none;
-    -webkit-backdrop-filter: blur(var(--blur)) saturate(120%);
-    backdrop-filter: blur(var(--blur)) saturate(120%);
-    -webkit-mask-image: radial-gradient(ellipse var(--fx) var(--fy) at var(--vx) var(--vy), #000 0%, #000 var(--ws), transparent var(--we));
-    mask-image: radial-gradient(ellipse var(--fx) var(--fy) at var(--vx) var(--vy), #000 0%, #000 var(--ws), transparent var(--we));
-  }
-  /* 22 · diagonal band: two overlapping areas, upper-left and lower-right of the text */
-  .about-net[data-shade="light-frost-20"]::before {
-    background:
-      radial-gradient(ellipse 46% 60% at 18.5% 38%, rgba(255,255,255,.72) 0%, rgba(255,255,255,.55) 45%, rgba(255,255,255,0) 85%),
-      radial-gradient(ellipse 48% 60% at 30.5% 66%, rgba(255,255,255,.72) 0%, rgba(255,255,255,.55) 45%, rgba(255,255,255,0) 85%);
-  }
-  .about-net[data-shade="light-frost-20"]::after {
+    background: rgba(255,255,255,var(--w));
+    -webkit-backdrop-filter: blur(var(--blur)) saturate(115%);
+    backdrop-filter: blur(var(--blur)) saturate(115%);
     -webkit-mask-image:
-      radial-gradient(ellipse 46% 60% at 18.5% 38%, #000 0%, #000 42%, transparent 82%),
-      radial-gradient(ellipse 48% 60% at 30.5% 66%, #000 0%, #000 42%, transparent 82%);
+      linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%),
+      linear-gradient(180deg, transparent 0, #000 var(--ft), #000 calc(100% - var(--fb)), transparent 100%);
+    -webkit-mask-composite: source-in;
     mask-image:
-      radial-gradient(ellipse 46% 60% at 18.5% 38%, #000 0%, #000 42%, transparent 82%),
-      radial-gradient(ellipse 48% 60% at 30.5% 66%, #000 0%, #000 42%, transparent 82%);
+      linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%),
+      linear-gradient(180deg, transparent 0, #000 var(--ft), #000 calc(100% - var(--fb)), transparent 100%);
+    mask-composite: intersect;
   }
 }
 @media (max-width: 959px) {
