@@ -6,6 +6,57 @@
   var hero = document.querySelector('[data-hero-lab]');
   if (!hero) return;
 
+  /* Copy variants for the «Det sikre valget» design (layout 'onimage').
+     long: smaller title size for headlines that run over several lines. */
+  var NOT = {
+    eneste: {
+      eyebrow: 'Det sikre valget',
+      title: 'Nota er det eneste som skiller fisken fra havet.',
+      lead: 'I 25 år har vi utviklet impregnering, coating og notrens som beskytter nota — og holder fisken trygg, sesong etter sesong.',
+      long: true
+    },
+    valget: {
+      eyebrow: 'Notimpregnering · Coating · Notrens',
+      title: 'Det sikre valget for nota',
+      lead: 'Gjennom 25 års erfaring i oppdrettsnæringen har produktene våre beskyttet og vedlikeholdt betydelige deler av all not i norsk sjø. Med ledende forskning i ryggen sikrer vi trygg drift og sunn fisk, sesong etter sesong.',
+      long: true
+    },
+    sterk: {
+      eyebrow: 'Det sikre valget',
+      title: 'Sterk not. Trygg drift.<br/>Sunn fisk.',
+      lead: 'Effektiv beskyttelse mot begroing, UV og uttørking — skånsomt mot notlinet og godkjent for alle kjente notlin-typer.',
+      long: true
+    },
+    godt: {
+      eyebrow: 'Det sikre valget',
+      title: 'Godt for nota.<br/>Godt for fisken.',
+      lead: 'Impregnering, coating og vannbaserte vaskemidler som bevarer notas styrke og kvalitet — utviklet i samarbeid med ledende forskningsmiljøer innen havbruk.',
+      long: true
+    },
+    tattvare: {
+      eyebrow: 'Siden 2001',
+      title: 'Vi har tatt vare på not i norsk sjø i 25 år.',
+      lead: 'Produktene våre har beskyttet og vedlikeholdt betydelige deler av all not i norsk sjø. Med ledende forskning i ryggen sikrer vi trygg drift og sunn fisk.',
+      long: true
+    },
+    starter: {
+      eyebrow: 'Det sikre valget',
+      title: 'Alt starter med nota.',
+      lead: 'Fra impregnering før utsetting til vask og desinfeksjon mellom syklusene — vi har løsninger for hele driftsløpet.'
+    },
+    holder: {
+      eyebrow: 'Det sikre valget',
+      title: 'Nota holder.<br/>Fisken trives.',
+      lead: 'Effektiv beskyttelse mot begroing, UV og uttørking. BPR-godkjent frem til 2033 — fri for PFAS og mikroplast.'
+    },
+    stole: {
+      eyebrow: 'Det sikre valget',
+      title: 'En not du kan stole på.<br/>Hele sesongen.',
+      lead: '25 års erfaring og ledende forskning i ryggen — for trygg drift og sunn fisk, sesong etter sesong.',
+      long: true
+    }
+  };
+
   var VARIANTS = [
     { layout: 'original',    copy: 'about' },  // 1  current hero
     { layout: 'dark',        copy: 'about' },  // 2  navy glass card
@@ -16,8 +67,33 @@
     { layout: 'onimage',     copy: 'sikre' },  // 7  «Det sikre valget» straight on the photo
     { layout: 'center',      copy: 'sunn'  },  // 8  centred statement
     { layout: 'corner',      copy: '25ar'  },  // 9  compact card bottom-left
-    { layout: 'glass-right', copy: 'sikre' }   // 10 «Det sikre valget» in dark glass, right
+    { layout: 'glass-right', copy: 'sikre' },  // 10 «Det sikre valget» in dark glass, right
+    { layout: 'onimage',     copy: 'sikre', text: NOT.eneste },   // 11
+    { layout: 'onimage',     copy: 'sikre', text: NOT.valget },   // 12
+    { layout: 'onimage',     copy: 'sikre', text: NOT.sterk },    // 13
+    { layout: 'onimage',     copy: 'sikre', text: NOT.godt },     // 14
+    { layout: 'onimage',     copy: 'sikre', text: NOT.tattvare }, // 15
+    { layout: 'onimage',     copy: 'sikre', text: NOT.starter },  // 16
+    { layout: 'onimage',     copy: 'sikre', text: NOT.holder },   // 17
+    { layout: 'onimage',     copy: 'sikre', text: NOT.stole }     // 18
   ];
+
+  var blocks = Array.prototype.slice.call(hero.querySelectorAll('[data-copy-id]'));
+  blocks.forEach(function (b) {
+    b._orig = {
+      eyebrow: b.querySelector('.eyebrow').textContent,
+      title: b.querySelector('.hero-copy__title').innerHTML,
+      lead: b.querySelector('.hero-copy__lead').textContent
+    };
+  });
+
+  function setText(block, text) {
+    var t = text || block._orig;
+    block.querySelector('.eyebrow').textContent = t.eyebrow;
+    block.querySelector('.hero-copy__title').innerHTML = t.title;
+    block.querySelector('.hero-copy__lead').textContent = t.lead;
+    block.querySelector('.hero-copy__title').classList.toggle('is-long', !!(text && text.long));
+  }
 
   var params = new URLSearchParams(window.location.search);
   var idx = (parseInt(params.get('hero'), 10) || 1) - 1;
@@ -28,6 +104,11 @@
     var v = VARIANTS[idx];
     hero.setAttribute('data-layout', v.layout);
     hero.setAttribute('data-copy', v.copy);
+    blocks.forEach(function (b) {
+      var on = b.getAttribute('data-copy-id') === v.copy;
+      b.classList.toggle('is-active', on);
+      setText(b, on ? v.text : null);
+    });
     if (animate) {
       hero.classList.remove('is-swapping');
       void hero.offsetWidth;
