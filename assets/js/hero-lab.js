@@ -1,5 +1,5 @@
 /* Hero-lab — the home hero «Spesialist på nøter.» is locked; ← / → only
-   switches small steps of the shade behind the text. No on-page indicators; the current
+   switches the light area behind the text. No on-page indicators; the current
    version shows as ?hero=N in the address bar (1 = no parameter).
    Also fits the one-line headline to the available width.
    Temporary: fold the chosen shade into main.css and remove this file. */
@@ -8,16 +8,28 @@
   if (!hero) return;
 
   var SHADES = [
-    'petrol',      // 1 petrol vignette, a hair further up than the original
-    'petrol-more', // 2 a hair more
-    'petrol-less',  // 3 the original position, in petrol
-    /* 4–9 inverted: light shade, dark text */
-    'light-white',  // 4 white vignette
-    'light-cream',  // 5 warm cream vignette
-    'light-mint',   // 6 light mint vignette, dark petrol type
-    'light-frost',  // 7 light frosted glass, photo blurred behind the text
-    'light-strong', // 8 white, stronger and wider
-    'light-band'    // 9 white band from the left edge
+    'light-white',      // 1 white vignette (standard)
+    'light-frost',      // 2 white + blur, as first shown
+    'light-frost-1',    // 3 smaller
+    'light-frost-2',    // 4 larger
+    'light-frost-3',    // 5 wider and lower
+    'light-frost-4',    // 6 narrower and taller
+    'light-frost-5',    // 7 moved right
+    'light-frost-6',    // 8 moved left
+    'light-frost-7',    // 9 moved up
+    'light-frost-8',    // 10 moved down
+    'light-frost-9',    // 11 from the left edge
+    'light-frost-10',   // 12 from the top-left corner
+    'light-frost-11',   // 13 more blur
+    'light-frost-12',   // 14 a lot of blur, less white
+    'light-frost-13',   // 15 little blur, whiter
+    'light-frost-14',   // 16 mostly blur, barely white
+    'light-frost-15',   // 17 whiter
+    'light-frost-16',   // 18 harder edge
+    'light-frost-17',   // 19 long, soft fade
+    'light-frost-18',   // 20 large and mild
+    'light-frost-19',   // 21 centred on the title
+    'light-frost-20'    // 22 diagonal band (two areas)
   ];
 
   /* Shrink the one-line title until it fits the content width */

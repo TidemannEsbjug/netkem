@@ -1,7 +1,7 @@
 /* ==========================================================================
    Hero-lab — «Spesialist på nøter.» on the net photo (Norwegian home page).
-   The design is locked; ← / → (assets/js/hero-lab.js) only switches small
-   steps of the shade behind the text, set as data-shade on .about-net.
+   The design is locked; ← / → (assets/js/hero-lab.js) only switches the
+   light area behind the text, set as data-shade on .about-net.
    Temporary: fold the chosen shade into main.css and remove this file.
    ========================================================================== */
 
@@ -62,29 +62,36 @@
   color: rgba(216,226,236,.82);
 }
 
-/* ---------- Shade behind the text ---------------------------------------
-   The vignette in petrol green. --vy moves it up/down, --corner is the extra
-   shade top-left; the versions are small steps of how far up it reaches.
-   --shade also tints the text box on phones.                              */
-.about-net[data-copy="sikre"] { --shade: 3,36,33; --vx: 22%; --vy: 53.5%; --corner: .07; } /* 1 a hair up from the original */
-.about-net[data-shade="petrol-more"]  { --vx: 22%; --vy: 53.2%; --corner: .12; }             /* 2 a hair more */
-.about-net[data-shade="petrol-less"]  { --vx: 22%; --vy: 54%; --corner: 0; }                 /* 3 the original position */
-
-@media (min-width: 960px) {
-  .about-net[data-copy="sikre"]::before {
-    background:
-      radial-gradient(ellipse 58% 78% at var(--vx) var(--vy), rgba(var(--shade),.86) 0%, rgba(var(--shade),.58) 45%, rgba(var(--shade),0) 82%),
-      radial-gradient(ellipse 32% 38% at 5% 7%, rgba(var(--shade),var(--corner)) 0%, rgba(var(--shade),0) 100%);
-  }
+/* ---------- Shade behind the text: white, light frost --------------------
+   1 light-white   white vignette (standard)
+   2 light-frost   white + blur, as first shown
+   3–22            versions of 2: size (--fx/--fy), position (--vx/--vy),
+                   blur (--blur), whiteness (--w0/--w1) and how hard the edge
+                   is (--g1/--g2 for the white, --ws/--we for the blur mask). */
+.about-net[data-copy="sikre"] { --shade: 255,255,255; --vx: 22%; --vy: 53.5%; }
+.about-net[data-shade^="light-frost"] {
+  --fx: 60%; --fy: 82%; --blur: 18px; --w0: .7; --w1: .55;
+  --g1: 45%; --g2: 85%; --ws: 42%; --we: 82%;
 }
-
-/* ---------- 4–9 · inverted: light shade, dark text ---------------------- */
-.about-net[data-shade="light-white"]  { --shade: 255,255,255; }
-.about-net[data-shade="light-cream"]  { --shade: 247,242,234; }
-.about-net[data-shade="light-mint"]   { --shade: 233,243,240; }
-.about-net[data-shade="light-frost"]  { --shade: 255,255,255; }
-.about-net[data-shade="light-strong"] { --shade: 255,255,255; }
-.about-net[data-shade="light-band"]   { --shade: 255,255,255; }
+.about-net[data-shade="light-frost-1"] { --fx: 52%; --fy: 72%; }  /* smaller */
+.about-net[data-shade="light-frost-2"] { --fx: 70%; --fy: 95%; }  /* larger */
+.about-net[data-shade="light-frost-3"] { --fx: 72%; --fy: 64%; }  /* wider and lower */
+.about-net[data-shade="light-frost-4"] { --fx: 52%; --fy: 100%; }  /* narrower and taller */
+.about-net[data-shade="light-frost-5"] { --vx: 30%; }  /* moved right */
+.about-net[data-shade="light-frost-6"] { --vx: 14%; }  /* moved left */
+.about-net[data-shade="light-frost-7"] { --vy: 44%; }  /* moved up */
+.about-net[data-shade="light-frost-8"] { --vy: 62%; }  /* moved down */
+.about-net[data-shade="light-frost-9"] { --fx: 78%; --fy: 110%; --vx: 0%; }  /* from the left edge */
+.about-net[data-shade="light-frost-10"] { --fx: 82%; --fy: 120%; --vx: 4%; --vy: 18%; }  /* from the top-left corner */
+.about-net[data-shade="light-frost-11"] { --blur: 32px; }  /* more blur */
+.about-net[data-shade="light-frost-12"] { --blur: 50px; --w0: .6; --w1: .45; }  /* a lot of blur, less white */
+.about-net[data-shade="light-frost-13"] { --blur: 8px; --w0: .78; --w1: .62; }  /* little blur, whiter */
+.about-net[data-shade="light-frost-14"] { --blur: 30px; --w0: .45; --w1: .32; }  /* mostly blur, barely white */
+.about-net[data-shade="light-frost-15"] { --w0: .86; --w1: .72; }  /* whiter */
+.about-net[data-shade="light-frost-16"] { --g1: 60%; --g2: 76%; --ws: 60%; --we: 74%; }  /* harder edge */
+.about-net[data-shade="light-frost-17"] { --g1: 32%; --g2: 96%; --ws: 18%; --we: 96%; }  /* long, soft fade */
+.about-net[data-shade="light-frost-18"] { --fx: 80%; --fy: 110%; --vx: 20%; --vy: 50%; --blur: 24px; --w0: .6; --w1: .48; }  /* large and mild */
+.about-net[data-shade="light-frost-19"] { --fx: 62%; --fy: 70%; --vy: 42%; }  /* centred on the title */
 
 /* Dark type on the light shade */
 .about-net[data-shade^="light"] .hero-copy { color: var(--c-navy-900); text-shadow: none; }
@@ -97,46 +104,47 @@
 .about-net[data-shade^="light"] .hero-copy__stats span { color: var(--c-text-muted); }
 .about-net[data-shade^="light"] .hero-copy .btn--ghost-light { color: var(--c-navy-900); border-color: rgba(7,24,43,.38); }
 .about-net[data-shade^="light"] .hero-copy .btn--ghost-light:hover { background: var(--c-navy-900); border-color: var(--c-navy-900); color: #fff; }
-/* 6 · mint: dark petrol type instead of navy */
-.about-net[data-shade="light-mint"] .hero-copy__title,
-.about-net[data-shade="light-mint"] .hero-copy__stats strong { color: #05302b; }
-.about-net[data-shade="light-mint"] .hero-copy__lead { color: rgba(5,48,43,.86); }
 
 @media (min-width: 960px) {
-  /* 4 white · 5 warm cream · 6 light mint: same vignette shape, light colour */
-  .about-net[data-shade="light-white"]::before,
-  .about-net[data-shade="light-cream"]::before,
-  .about-net[data-shade="light-mint"]::before {
+  /* 1 · white vignette */
+  .about-net[data-copy="sikre"]::before {
     background:
-      radial-gradient(ellipse 60% 82% at var(--vx) var(--vy), rgba(var(--shade),.92) 0%, rgba(var(--shade),.76) 45%, rgba(var(--shade),0) 85%),
-      radial-gradient(ellipse 32% 38% at 5% 7%, rgba(var(--shade),.3) 0%, rgba(var(--shade),0) 100%);
+      radial-gradient(ellipse 60% 82% at var(--vx) var(--vy), rgba(255,255,255,.92) 0%, rgba(255,255,255,.76) 45%, rgba(255,255,255,0) 85%),
+      radial-gradient(ellipse 32% 38% at 5% 7%, rgba(255,255,255,.3) 0%, rgba(255,255,255,0) 100%);
   }
-  /* 7 · light frosted glass that fades out: the photo blurs behind the text */
-  .about-net[data-shade="light-frost"]::before {
-    background: radial-gradient(ellipse 60% 82% at var(--vx) var(--vy), rgba(255,255,255,.7) 0%, rgba(255,255,255,.55) 45%, rgba(255,255,255,0) 85%);
+  /* 2–22 · white + blur: the photo goes soft behind the text and sharpens outwards */
+  .about-net[data-shade^="light-frost"]::before {
+    background: radial-gradient(ellipse var(--fx) var(--fy) at var(--vx) var(--vy),
+      rgba(255,255,255,var(--w0)) 0%, rgba(255,255,255,var(--w1)) var(--g1), rgba(255,255,255,0) var(--g2));
   }
-  .about-net[data-shade="light-frost"]::after {
+  .about-net[data-shade^="light-frost"]::after {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    -webkit-backdrop-filter: blur(18px) saturate(120%);
-    backdrop-filter: blur(18px) saturate(120%);
-    -webkit-mask-image: radial-gradient(ellipse 60% 82% at var(--vx) var(--vy), #000 0%, #000 42%, transparent 82%);
-    mask-image: radial-gradient(ellipse 60% 82% at var(--vx) var(--vy), #000 0%, #000 42%, transparent 82%);
+    -webkit-backdrop-filter: blur(var(--blur)) saturate(120%);
+    backdrop-filter: blur(var(--blur)) saturate(120%);
+    -webkit-mask-image: radial-gradient(ellipse var(--fx) var(--fy) at var(--vx) var(--vy), #000 0%, #000 var(--ws), transparent var(--we));
+    mask-image: radial-gradient(ellipse var(--fx) var(--fy) at var(--vx) var(--vy), #000 0%, #000 var(--ws), transparent var(--we));
   }
-  /* 8 · white, stronger and wider */
-  .about-net[data-shade="light-strong"]::before {
-    background: radial-gradient(ellipse 68% 92% at var(--vx) var(--vy), rgba(255,255,255,.95) 0%, rgba(255,255,255,.86) 45%, rgba(255,255,255,0) 88%);
+  /* 22 · diagonal band: two overlapping areas, upper-left and lower-right of the text */
+  .about-net[data-shade="light-frost-20"]::before {
+    background:
+      radial-gradient(ellipse 46% 60% at 16% 38%, rgba(255,255,255,.72) 0%, rgba(255,255,255,.55) 45%, rgba(255,255,255,0) 85%),
+      radial-gradient(ellipse 48% 60% at 28% 66%, rgba(255,255,255,.72) 0%, rgba(255,255,255,.55) 45%, rgba(255,255,255,0) 85%);
   }
-  /* 9 · white band from the left edge, fading out after the text */
-  .about-net[data-shade="light-band"]::before {
-    background: linear-gradient(90deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.88) 36%, rgba(255,255,255,.5) 54%, rgba(255,255,255,0) 68%);
+  .about-net[data-shade="light-frost-20"]::after {
+    -webkit-mask-image:
+      radial-gradient(ellipse 46% 60% at 16% 38%, #000 0%, #000 42%, transparent 82%),
+      radial-gradient(ellipse 48% 60% at 28% 66%, #000 0%, #000 42%, transparent 82%);
+    mask-image:
+      radial-gradient(ellipse 46% 60% at 16% 38%, #000 0%, #000 42%, transparent 82%),
+      radial-gradient(ellipse 48% 60% at 28% 66%, #000 0%, #000 42%, transparent 82%);
   }
 }
 @media (max-width: 959px) {
-  .about-net[data-shade^="light"] .hero-copy { background: rgba(var(--shade),.9); }
+  .about-net[data-shade^="light"] .hero-copy { background: rgba(255,255,255,.9); }
 }
 
 /* ---------- Low desktop screens: copy fits the first screen -------------- */
