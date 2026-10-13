@@ -8,9 +8,9 @@
   if (!hero) return;
 
   var SHADES = [
-    'petrol',      // 1 petrol vignette, reaching a little further up-left
-    'petrol-more', // 2 a touch more up-left
-    'petrol-less'  // 3 a touch less (the original position, in petrol)
+    'petrol',      // 1 petrol vignette, a hair further up than the original
+    'petrol-more', // 2 a hair more
+    'petrol-less'  // 3 the original position, in petrol
   ];
 
   /* Shrink the one-line title until it fits the content width */

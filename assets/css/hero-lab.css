@@ -66,9 +66,9 @@
    The vignette in petrol green. --vy moves it up/down, --corner is the extra
    shade top-left; the versions are small steps of how far up it reaches.
    --shade also tints the text box on phones.                              */
-.about-net[data-copy="sikre"] { --shade: 3,36,33; --vx: 21%; --vy: 53%; --corner: .2; }   /* 1 a little up */
-.about-net[data-shade="petrol-more"]  { --vx: 21%; --vy: 52%; --corner: .28; }            /* 2 a touch more */
-.about-net[data-shade="petrol-less"]  { --vx: 22%; --vy: 54%; --corner: 0; }              /* 3 a touch less */
+.about-net[data-copy="sikre"] { --shade: 3,36,33; --vx: 22%; --vy: 53.5%; --corner: .07; } /* 1 a hair up from the original */
+.about-net[data-shade="petrol-more"]  { --vx: 22%; --vy: 53.2%; --corner: .12; }             /* 2 a hair more */
+.about-net[data-shade="petrol-less"]  { --vx: 22%; --vy: 54%; --corner: 0; }                 /* 3 the original position */
 
 @media (min-width: 960px) {
   .about-net[data-copy="sikre"]::before {
