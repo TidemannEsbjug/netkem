@@ -49,6 +49,16 @@
       title: 'Nota holder.<br/>Fisken trives.',
       lead: 'Effektiv beskyttelse mot begroing, UV og uttørking. BPR-godkjent frem til 2033 — fri for PFAS og mikroplast.'
     },
+    kjemikalier: {
+      eyebrow: 'Det sikre valget',
+      title: 'Kjemikalier<br/>til nøter.',
+      lead: 'Impregnering, coating, notrens og desinfeksjon for oppdrettsnæringen — utviklet og levert av NetKem siden 2001.'
+    },
+    spesialist: {
+      eyebrow: 'Det sikre valget',
+      title: 'Spesialist<br/>på nøter.',
+      lead: 'I 25 år har vi utviklet kjemikalier og utstyr som beskytter, rengjør og vedlikeholder nota — sesong etter sesong.'
+    },
     stole: {
       eyebrow: 'Det sikre valget',
       title: 'En not du kan stole på.<br/>Hele sesongen.',
@@ -75,7 +85,9 @@
     { layout: 'onimage',     copy: 'sikre', text: NOT.tattvare }, // 15
     { layout: 'onimage',     copy: 'sikre', text: NOT.starter },  // 16
     { layout: 'onimage',     copy: 'sikre', text: NOT.holder },   // 17
-    { layout: 'onimage',     copy: 'sikre', text: NOT.stole }     // 18
+    { layout: 'onimage',     copy: 'sikre', text: NOT.stole },       // 18
+    { layout: 'onimage',     copy: 'sikre', text: NOT.kjemikalier }, // 19
+    { layout: 'onimage',     copy: 'sikre', text: NOT.spesialist }   // 20
   ];
 
   var blocks = Array.prototype.slice.call(hero.querySelectorAll('[data-copy-id]'));
