@@ -186,6 +186,37 @@
   .about-net[data-shade^="light-box"]::before { background: none; }
 }
 
+/* ---------- Version 21 («centred on the title»), refined ----------------
+   Same frost as 21, centre a touch lower (--vy 42% → 45%) so there is less
+   white above the text and more below. The left side no longer fades in a
+   straight vertical band: the mask is a big ellipse whose left edge sits at
+   the start of the text (--edge) and fades to nothing exactly at the screen
+   edge, so the white fades out in a curve there — full behind the text,
+   gone at the screen edge, earlier towards the corners.                  */
+.about-net[data-shade^="light-frost-t"] {
+  --fx: 62%; --fy: 70%; --vy: 45%;
+  --mr: 700px; --mry: 640px;
+}
+.about-net[data-shade="light-frost-t2"] { --vy: 47%; }      /* a touch lower */
+.about-net[data-shade="light-frost-t3"] { --vy: 43.5%; }    /* a touch higher */
+.about-net[data-shade="light-frost-t4"] { --mry: 480px; }    /* rounder, softer left side */
+@media (min-width: 960px) {
+  .about-net[data-shade^="light-frost-t"]::before {
+    -webkit-mask-image: radial-gradient(var(--mr) var(--mry) at calc(var(--edge) + var(--mr)) 50%, #000 var(--mr), transparent calc(var(--mr) + var(--edge)));
+    mask-image: radial-gradient(var(--mr) var(--mry) at calc(var(--edge) + var(--mr)) 50%, #000 var(--mr), transparent calc(var(--mr) + var(--edge)));
+  }
+  .about-net[data-shade^="light-frost-t"]::after {
+    -webkit-mask-image:
+      radial-gradient(var(--mr) var(--mry) at calc(var(--edge) + var(--mr)) 50%, #000 var(--mr), transparent calc(var(--mr) + var(--edge))),
+      radial-gradient(ellipse var(--fx) var(--fy) at var(--vx) var(--vy), #000 0%, #000 var(--ws), transparent var(--we));
+    -webkit-mask-composite: source-in;
+    mask-image:
+      radial-gradient(var(--mr) var(--mry) at calc(var(--edge) + var(--mr)) 50%, #000 var(--mr), transparent calc(var(--mr) + var(--edge))),
+      radial-gradient(ellipse var(--fx) var(--fy) at var(--vx) var(--vy), #000 0%, #000 var(--ws), transparent var(--we));
+    mask-composite: intersect;
+  }
+}
+
 /* ---------- Structured panels (square, hard edges) ----------------------
    A crisp rectangle behind the text: no fades, no shadow, square corners,
    the same room (--pad) between the edge and the content on every side.

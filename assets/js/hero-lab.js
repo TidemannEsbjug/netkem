@@ -8,40 +8,11 @@
   if (!hero) return;
 
   var SHADES = [
-    'light-white',      // 1 white vignette (standard)
-    'light-frost',      // 2 white + blur, as first shown
-    'light-frost-1',    // 3 smaller
-    'light-frost-2',    // 4 larger
-    'light-frost-3',    // 5 wider and lower
-    'light-frost-4',    // 6 narrower and taller
-    'light-frost-5',    // 7 moved right
-    'light-frost-6',    // 8 moved left
-    'light-frost-7',    // 9 moved up
-    'light-frost-8',    // 10 moved down
-    'light-frost-9',    // 11 from the left edge
-    'light-frost-10',   // 12 from the top-left corner
-    'light-frost-11',   // 13 more blur
-    'light-frost-12',   // 14 a lot of blur, less white
-    'light-frost-13',   // 15 little blur, whiter
-    'light-frost-14',   // 16 mostly blur, barely white
-    'light-frost-15',   // 17 whiter
-    'light-frost-16',   // 18 harder edge
-    'light-frost-17',   // 19 long, soft fade
-    'light-frost-18',   // 20 large and mild
-    'light-frost-19',   // 21 centred on the title
-    'light-frost-20',   // 22 diagonal band (two areas)
-    /* square, structured panels */
-    'light-box',        // 23 white panel, square corners
-    'light-box-solid',  // 24 fully white panel, more room
-    'light-box-frost',  // 25 frosted panel: white + blur
-    'light-box-line',   // 26 white panel with a thin outline
-    'light-box-top',    // 27 white panel with a green top bar
-    'light-box-left',   // 28 white panel with a green left bar
-    'light-box-col',    // 29 white column, top to bottom of the hero
-    'light-box-base',   // 30 white panel standing on the bottom edge
-    'light-box-frame',  // 31 white panel with a frame line outside it
-    'light-box-glass',  // 32 clear glass: mostly blur, little white
-    'light-box-roomy'   // 33 white panel, extra room round the text
+    'light-frost-t1',   // 1 version 21 refined: a touch lower, curved fade on the left
+    'light-frost-t2',   // 2 as 1, a touch lower
+    'light-frost-t3',   // 3 as 1, a touch higher
+    'light-frost-t4',   // 4 as 1, rounder, softer fade on the left
+    'light-frost-19'    // 5 version 21 as it was (for comparison)
   ];
 
   /* Shrink the one-line title until it fits the content width */
