@@ -3186,13 +3186,11 @@ img[aria-hidden="true"],
   border-radius: var(--radius-md);
   padding: var(--sp-5);
 }
-.area-card__icon { display: block; color: var(--c-green-500); margin-bottom: var(--sp-3); }
-.area-card__icon svg { width: 24px; height: 24px; }
 .area-card__title { color: #fff; font-size: 1.2rem; margin: 0 0 var(--sp-2); }
 .area-card__text { margin: 0; font-size: var(--fs-sm); line-height: 1.55; color: rgba(216,226,236,.88); }
 @media (min-width: 1100px) {
   /* Even panel tops across the row, whatever the text length */
-  .area-card__body { min-height: 236px; }
+  .area-card__body { min-height: 212px; }
 }
 
 @media (hover: hover) {
@@ -3208,7 +3206,7 @@ img[aria-hidden="true"],
 @media (max-width: 1099px) {
   .areas__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .area-card { min-height: 420px; }
-  .area-card__body { min-height: 190px; }
+  .area-card__body { min-height: 154px; }
 }
 /* Phone: swipeable row, next card peeks in */
 @media (max-width: 719px) {
@@ -3227,7 +3225,7 @@ img[aria-hidden="true"],
   .areas__grid::-webkit-scrollbar { display: none; }
   .areas__grid > li { scroll-snap-align: start; }
   .area-card { min-height: 440px; }
-  .area-card__body { min-height: 230px; }
+  .area-card__body { min-height: 194px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .area-card__img, .area-card__go { transition: none; }
