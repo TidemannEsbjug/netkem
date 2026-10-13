@@ -1,5 +1,5 @@
 /* Hero-lab — the home hero «Spesialist på nøter.» is locked; ← / → only
-   switches the shade behind the text. No on-page indicators; the current
+   switches the colour of the shade behind the text. No on-page indicators; the current
    version shows as ?hero=N in the address bar (1 = no parameter).
    Also fits the one-line headline to the available width.
    Temporary: fold the chosen shade into main.css and remove this file. */
@@ -8,13 +8,13 @@
   if (!hero) return;
 
   var SHADES = [
-    'radial',      // 1 the vignette as it was, fixed to the screen
-    'moved',       // 2 narrower to the right, higher, touch of top-left
-    'hug',         // 3 soft patch shaped like the text block
-    'hug-corner',  // 4 as 3 + darker top-left corner of the photo
-    'cloud',       // 5 as 3, tighter (more photo free)
-    'hug-strong',  // 6 as 3, stronger and larger
-    'hug-light'    // 7 as 3, lighter + soft shadow on the type
+    'navy',        // 1 the vignette in navy (as before, a touch more top-left)
+    'forest',      // 2 dark forest green
+    'petrol',      // 3 dark sea green / petrol
+    'logo',        // 4 deep logo green
+    'black-green', // 5 almost black green
+    'moss',        // 6 moss / olive
+    'two-tone'     // 7 navy behind the text, green towards the edge
   ];
 
   /* Shrink the one-line title until it fits the content width */

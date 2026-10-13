@@ -1,7 +1,7 @@
 /* ==========================================================================
    Hero-lab — «Spesialist på nøter.» on the net photo (Norwegian home page).
    The design is locked; ← / → (assets/js/hero-lab.js) only switches the
-   shade behind the text, set as data-shade on .about-net.
+   colour of the shade behind the text, set as data-shade on .about-net.
    Temporary: fold the chosen shade into main.css and remove this file.
    ========================================================================== */
 
@@ -62,77 +62,32 @@
   color: rgba(216,226,236,.82);
 }
 
-/* ---------- Shade behind the text (desktop) ------------------------------
-   1 radial   the chosen vignette as it was (fixed to the screen)
-   2 moved    same idea, narrower to the right, higher, touch of top-left
-   3–7        a soft blurred patch shaped like the text block itself
-              (.hero-copy::before), so it follows the text on every screen
-              size, reaches above/left of the eyebrow, and stops shortly
-              after the text on the right.                                */
+/* ---------- Shade behind the text ---------------------------------------
+   One shape (the vignette, version 1), only the colour changes. The colour
+   is --shade (r,g,b), set per data-shade; it also tints the text box on
+   phones.                                                                  */
+.about-net[data-copy="sikre"]                  { --shade: 7,24,43; }   /* 1 navy (as before) */
+.about-net[data-shade="forest"]                { --shade: 6,34,22; }   /* 2 dark forest green */
+.about-net[data-shade="petrol"]                { --shade: 3,36,33; }   /* 3 dark sea green / petrol */
+.about-net[data-shade="logo"]                  { --shade: 0,46,24; }   /* 4 deep logo green */
+.about-net[data-shade="black-green"]           { --shade: 4,20,13; }   /* 5 almost black green */
+.about-net[data-shade="moss"]                  { --shade: 20,32,14; }  /* 6 moss / olive */
+.about-net[data-shade="two-tone"]              { --shade: 7,24,43; }   /* 7 navy centre, green edge */
+
 @media (min-width: 960px) {
-  .about-net[data-copy="sikre"]::before { background: none; }
-  .hero-copy::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    pointer-events: none;
-  }
-
-  /* 1 · as it was: vignette fixed to the screen */
-  .about-net[data-shade="radial"]::before {
-    background: radial-gradient(ellipse 58% 78% at 22% 55%, rgba(7,24,43,.86) 0%, rgba(7,24,43,.58) 45%, rgba(7,24,43,0) 82%);
-  }
-
-  /* 2 · moved: narrower to the right, higher, plus a touch top-left */
-  .about-net[data-shade="moved"]::before {
+  /* The vignette, nudged a little up and to the left, with a light extra
+     shade in the top-left corner so «Det sikre valget» reads clearly. */
+  .about-net[data-copy="sikre"]::before {
     background:
-      radial-gradient(ellipse 46% 72% at 16% 46%, rgba(7,24,43,.86) 0%, rgba(7,24,43,.56) 45%, rgba(7,24,43,0) 84%),
-      radial-gradient(ellipse 42% 50% at 0% 0%, rgba(7,24,43,.5) 0%, rgba(7,24,43,0) 100%);
+      radial-gradient(ellipse 58% 78% at 20% 51%, rgba(var(--shade),.86) 0%, rgba(var(--shade),.58) 45%, rgba(var(--shade),0) 82%),
+      radial-gradient(ellipse 36% 44% at 4% 6%, rgba(var(--shade),.38) 0%, rgba(var(--shade),0) 100%);
   }
-
-  /* 3 · follows the text: even, soft patch */
-  .about-net[data-shade="hug"] .hero-copy::before {
-    inset: -130px 10px -110px -180px;
-    border-radius: 80px;
-    background: rgba(7,24,43,.72);
-    filter: blur(70px);
+  .about-net[data-shade="two-tone"]::before {
+    background:
+      radial-gradient(ellipse 44% 62% at 20% 51%, rgba(7,24,43,.72) 0%, rgba(7,24,43,0) 100%),
+      radial-gradient(ellipse 58% 78% at 20% 51%, rgba(6,34,22,.7) 0%, rgba(6,34,22,.5) 45%, rgba(6,34,22,0) 82%),
+      radial-gradient(ellipse 36% 44% at 4% 6%, rgba(6,34,22,.38) 0%, rgba(6,34,22,0) 100%);
   }
-
-  /* 4 · follows the text + darker top-left corner of the photo */
-  .about-net[data-shade="hug-corner"] .hero-copy::before {
-    inset: -130px 10px -110px -180px;
-    border-radius: 80px;
-    background: rgba(7,24,43,.72);
-    filter: blur(70px);
-  }
-  .about-net[data-shade="hug-corner"]::before {
-    background: radial-gradient(ellipse 50% 60% at 0% 0%, rgba(7,24,43,.55) 0%, rgba(7,24,43,.22) 55%, rgba(7,24,43,0) 100%);
-  }
-
-  /* 5 · follows the text, tighter patch (more photo free) */
-  .about-net[data-shade="cloud"] .hero-copy::before {
-    inset: -90px 30px -70px -120px;
-    border-radius: 60px;
-    background: rgba(7,24,43,.74);
-    filter: blur(50px);
-  }
-
-  /* 6 · follows the text, stronger and larger */
-  .about-net[data-shade="hug-strong"] .hero-copy::before {
-    inset: -150px -10px -130px -200px;
-    border-radius: 90px;
-    background: rgba(7,24,43,.82);
-    filter: blur(76px);
-  }
-
-  /* 7 · follows the text, lighter, with a soft shadow on the type itself */
-  .about-net[data-shade="hug-light"] .hero-copy::before {
-    inset: -130px 10px -110px -180px;
-    border-radius: 80px;
-    background: rgba(7,24,43,.58);
-    filter: blur(70px);
-  }
-  .about-net[data-shade="hug-light"] .hero-copy { text-shadow: 0 1px 16px rgba(7,24,43,.6); }
 }
 
 /* ---------- Low desktop screens: copy fits the first screen -------------- */
@@ -146,7 +101,7 @@
 @media (max-width: 959px) {
   .hero-copy {
     padding: var(--sp-6) var(--sp-5);
-    background: rgba(7,24,43,.72);
+    background: rgba(var(--shade, 7,24,43),.72);
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
     border-radius: var(--radius-md);
