@@ -28,6 +28,7 @@
 .hero-copy__lead {
   font-size: clamp(1rem, 1.4vw, 1.2rem);
   line-height: 1.6;
+  text-wrap: pretty;
   color: rgba(255,255,255,.9);
   max-width: 52ch;
   margin: 0 0 var(--sp-6);
@@ -200,6 +201,14 @@
 .about-net[data-shade="light-frost-t2"] { --vy: 47%; }      /* a touch lower */
 .about-net[data-shade="light-frost-t3"] { --vy: 43.5%; }    /* a touch higher */
 .about-net[data-shade="light-frost-t4"] { --mry: 480px; }    /* rounder, softer left side */
+
+/* ---------- The chosen light field (set with the J panel, 13 Oct) ---------- */
+.about-net[data-shade="light-frost-tuned"] {
+  --vx: 24.5%; --vy: 45%; --fx: 61%; --fy: 38%;
+  --w0: 1; --w1: .55; --g1: 45%; --g2: 85%;
+  --blur: 18px; --ws: 42%; --we: 82%;
+  --mr: 360px; --mry: 480px;
+}
 @media (min-width: 960px) {
   .about-net[data-shade^="light-frost-t"]::before {
     -webkit-mask-image: radial-gradient(var(--mr) var(--mry) at calc(var(--edge) + var(--mr)) 50%, #000 var(--mr), transparent calc(var(--mr) + var(--edge)));
