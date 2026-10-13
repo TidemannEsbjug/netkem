@@ -68,7 +68,7 @@
    3–22            versions of 2: size (--fx/--fy), position (--vx/--vy),
                    blur (--blur), whiteness (--w0/--w1) and how hard the edge
                    is (--g1/--g2 for the white, --ws/--we for the blur mask). */
-.about-net[data-copy="sikre"] { --shade: 255,255,255; --vx: 22%; --vy: 53.5%; }
+.about-net[data-copy="sikre"] { --shade: 255,255,255; --vx: 24.5%; --vy: 53.5%; }
 .about-net[data-shade^="light-frost"] {
   --fx: 60%; --fy: 82%; --blur: 18px; --w0: .7; --w1: .55;
   --g1: 45%; --g2: 85%; --ws: 42%; --we: 82%;
@@ -77,12 +77,12 @@
 .about-net[data-shade="light-frost-2"] { --fx: 70%; --fy: 95%; }  /* larger */
 .about-net[data-shade="light-frost-3"] { --fx: 72%; --fy: 64%; }  /* wider and lower */
 .about-net[data-shade="light-frost-4"] { --fx: 52%; --fy: 100%; }  /* narrower and taller */
-.about-net[data-shade="light-frost-5"] { --vx: 30%; }  /* moved right */
-.about-net[data-shade="light-frost-6"] { --vx: 14%; }  /* moved left */
+.about-net[data-shade="light-frost-5"] { --vx: 32.5%; }  /* moved right */
+.about-net[data-shade="light-frost-6"] { --vx: 16.5%; }  /* moved left */
 .about-net[data-shade="light-frost-7"] { --vy: 44%; }  /* moved up */
 .about-net[data-shade="light-frost-8"] { --vy: 62%; }  /* moved down */
-.about-net[data-shade="light-frost-9"] { --fx: 78%; --fy: 110%; --vx: 0%; }  /* from the left edge */
-.about-net[data-shade="light-frost-10"] { --fx: 82%; --fy: 120%; --vx: 4%; --vy: 18%; }  /* from the top-left corner */
+.about-net[data-shade="light-frost-9"] { --fx: 78%; --fy: 110%; --vx: 2.5%; }  /* from the left edge */
+.about-net[data-shade="light-frost-10"] { --fx: 82%; --fy: 120%; --vx: 6.5%; --vy: 18%; }  /* from the top-left corner */
 .about-net[data-shade="light-frost-11"] { --blur: 32px; }  /* more blur */
 .about-net[data-shade="light-frost-12"] { --blur: 50px; --w0: .6; --w1: .45; }  /* a lot of blur, less white */
 .about-net[data-shade="light-frost-13"] { --blur: 8px; --w0: .78; --w1: .62; }  /* little blur, whiter */
@@ -90,7 +90,7 @@
 .about-net[data-shade="light-frost-15"] { --w0: .86; --w1: .72; }  /* whiter */
 .about-net[data-shade="light-frost-16"] { --g1: 60%; --g2: 76%; --ws: 60%; --we: 74%; }  /* harder edge */
 .about-net[data-shade="light-frost-17"] { --g1: 32%; --g2: 96%; --ws: 18%; --we: 96%; }  /* long, soft fade */
-.about-net[data-shade="light-frost-18"] { --fx: 80%; --fy: 110%; --vx: 20%; --vy: 50%; --blur: 24px; --w0: .6; --w1: .48; }  /* large and mild */
+.about-net[data-shade="light-frost-18"] { --fx: 80%; --fy: 110%; --vx: 22.5%; --vy: 50%; --blur: 24px; --w0: .6; --w1: .48; }  /* large and mild */
 .about-net[data-shade="light-frost-19"] { --fx: 62%; --fy: 70%; --vy: 42%; }  /* centred on the title */
 
 /* Dark type on the light shade */
@@ -131,16 +131,16 @@
   /* 22 · diagonal band: two overlapping areas, upper-left and lower-right of the text */
   .about-net[data-shade="light-frost-20"]::before {
     background:
-      radial-gradient(ellipse 46% 60% at 16% 38%, rgba(255,255,255,.72) 0%, rgba(255,255,255,.55) 45%, rgba(255,255,255,0) 85%),
-      radial-gradient(ellipse 48% 60% at 28% 66%, rgba(255,255,255,.72) 0%, rgba(255,255,255,.55) 45%, rgba(255,255,255,0) 85%);
+      radial-gradient(ellipse 46% 60% at 18.5% 38%, rgba(255,255,255,.72) 0%, rgba(255,255,255,.55) 45%, rgba(255,255,255,0) 85%),
+      radial-gradient(ellipse 48% 60% at 30.5% 66%, rgba(255,255,255,.72) 0%, rgba(255,255,255,.55) 45%, rgba(255,255,255,0) 85%);
   }
   .about-net[data-shade="light-frost-20"]::after {
     -webkit-mask-image:
-      radial-gradient(ellipse 46% 60% at 16% 38%, #000 0%, #000 42%, transparent 82%),
-      radial-gradient(ellipse 48% 60% at 28% 66%, #000 0%, #000 42%, transparent 82%);
+      radial-gradient(ellipse 46% 60% at 18.5% 38%, #000 0%, #000 42%, transparent 82%),
+      radial-gradient(ellipse 48% 60% at 30.5% 66%, #000 0%, #000 42%, transparent 82%);
     mask-image:
-      radial-gradient(ellipse 46% 60% at 16% 38%, #000 0%, #000 42%, transparent 82%),
-      radial-gradient(ellipse 48% 60% at 28% 66%, #000 0%, #000 42%, transparent 82%);
+      radial-gradient(ellipse 46% 60% at 18.5% 38%, #000 0%, #000 42%, transparent 82%),
+      radial-gradient(ellipse 48% 60% at 30.5% 66%, #000 0%, #000 42%, transparent 82%);
   }
 }
 @media (max-width: 959px) {
