@@ -2360,9 +2360,11 @@ img[aria-hidden="true"],
 .coast .eyebrow { color: var(--c-brand-green); margin-bottom: 8px; }
 .coast .eyebrow::before { background: var(--c-brand-green); }
 
+/* Menu + map fill exactly one screen (map mode hides the menu → 100vh) */
 .coast__stage {
   position: relative;
-  height: clamp(620px, 86vh, 900px);
+  height: max(560px, calc(100vh - var(--header-h)));
+  height: max(560px, calc(100svh - var(--header-h)));
   background: #7eafc4;
   overflow: hidden;
 }
@@ -2809,21 +2811,22 @@ img[aria-hidden="true"],
     transform: none;
     pointer-events: auto;
   }
+  /* The menu stays visible on phones, so the map fills the screen below it */
   html.is-map-using .coast__stage {
-    height: 100vh;
-    height: 100svh;
-    max-height: 100svh;
+    height: calc(100vh - var(--header-h));
+    height: calc(100svh - var(--header-h));
+    max-height: calc(100svh - var(--header-h));
   }
   .coast {
-    min-height: 100vh;
-    min-height: 100svh;
+    min-height: calc(100vh - var(--header-h));
+    min-height: calc(100svh - var(--header-h));
   }
   .coast__stage {
     position: relative;
     display: block;
-    height: 100vh;
-    height: 100svh;
-    min-height: 100svh;
+    height: calc(100vh - var(--header-h));
+    height: calc(100svh - var(--header-h));
+    min-height: calc(100svh - var(--header-h));
     overflow: hidden;
   }
   .coast__stage::before { display: none; }
