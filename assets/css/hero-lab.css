@@ -1,0 +1,274 @@
+/* ==========================================================================
+   Hero-lab — design variants for the home hero (Om NetKem band).
+   Switched with ← / → by assets/js/hero-lab.js; the variant is set as
+   data-layout + data-copy on .about-net. Temporary: remove once a variant
+   is chosen and folded into main.css.
+   ========================================================================== */
+
+/* ---------- Shared ------------------------------------------------------- */
+@media (min-width: 960px) {
+  .about-net[data-layout] .about-net__img {
+    transition: scale 700ms cubic-bezier(.2,.6,.2,1), translate 700ms cubic-bezier(.2,.6,.2,1);
+  }
+}
+.about-net::before { transition: background 500ms ease; }
+@keyframes heroSwap {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+.about-net.is-swapping > .container { animation: heroSwap 420ms cubic-bezier(.2,.6,.2,1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .about-net.is-swapping > .container { animation: none; }
+  .about-net[data-layout] .about-net__img { transition: none; }
+}
+
+/* Which copy is shown */
+.hero-copy { display: none; }
+.about-net[data-copy]:not([data-copy="about"]) .about-net__inner { display: none; }
+.about-net[data-copy="sikre"] .hero-copy--sikre,
+.about-net[data-copy="sunn"] .hero-copy--sunn,
+.about-net[data-copy="25ar"] .hero-copy--25ar { display: block; }
+
+/* Alternative copy — default look: white type straight on the photo */
+.hero-copy { position: relative; max-width: 660px; color: #fff; }
+.hero-copy .eyebrow { color: #2fbd5e; }
+.hero-copy .eyebrow::before { background: #2fbd5e; }
+.hero-copy__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.4rem, 5.2vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: -.01em;
+  color: #fff;
+  margin: 0 0 var(--sp-5);
+}
+.hero-copy--sikre .hero-copy__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+}
+.hero-copy__lead {
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+  color: rgba(255,255,255,.9);
+  max-width: 52ch;
+  margin: 0 0 var(--sp-6);
+}
+.hero-copy__cta { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
+.hero-copy__stats {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: start;
+  gap: var(--sp-4) clamp(24px, 3vw, 48px);
+  margin: clamp(28px, 5vh, 56px) 0 0;
+  padding: var(--sp-5) 0 0;
+  border-top: 1px solid rgba(255,255,255,.24);
+}
+.hero-copy__stats li { margin: 0; }
+.hero-copy__stats strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: #fff;
+}
+.hero-copy__stats span {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(216,226,236,.82);
+}
+
+/* ---------- 2 · dark — navy glass card --------------------------------- */
+.about-net[data-layout="dark"]::before {
+  background: linear-gradient(90deg, rgba(7,24,43,.3) 0%, rgba(7,24,43,0) 60%);
+}
+.about-net[data-layout="dark"] .about-net__card {
+  background: rgba(7,24,43,.72);
+  border-color: rgba(255,255,255,.14);
+  border-top: 2px solid var(--c-green-500);
+}
+.about-net[data-layout="dark"] .about-net__card h1 { color: #fff; }
+.about-net[data-layout="dark"] .about-net__card .lead { color: rgba(255,255,255,.92); }
+.about-net[data-layout="dark"] .about-net__card p:not(.lead) { color: rgba(216,226,236,.8); }
+.about-net[data-layout="dark"] .about-net__card a:not(.btn) { color: #9fdcb4; text-decoration-color: rgba(159,220,180,.4); }
+.about-net[data-layout="dark"] .about-net__card .eyebrow { color: #2fbd5e; }
+.about-net[data-layout="dark"] .about-net__card .eyebrow::before { background: #2fbd5e; }
+
+/* ---------- 3 · clear — narrow, very transparent frosted glass ---------- */
+.about-net[data-layout="clear"]::before {
+  background: linear-gradient(90deg, rgba(7,24,43,.16) 0%, rgba(7,24,43,0) 50%);
+}
+.about-net[data-layout="clear"] .about-net__card {
+  background: rgba(255,255,255,.56);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+  backdrop-filter: blur(28px) saturate(170%);
+  border-color: rgba(255,255,255,.55);
+}
+.about-net[data-layout="clear"] .about-net__card p:not(.lead) { color: var(--c-text); }
+.about-net[data-layout="clear"] .about-net__fact { background: rgba(7,24,43,.48); }
+@media (min-width: 960px) {
+  .about-net[data-layout="clear"] .about-net__inner { grid-template-columns: minmax(0, 500px) 1fr; }
+}
+
+/* ---------- 4 · right — card on the right, net centre on the left ------ */
+@media (min-width: 960px) {
+  .about-net[data-layout="right"] .about-net__img,
+  .about-net[data-layout="glass-right"] .about-net__img {
+    scale: 1.3 1.3;
+    translate: -13% 0;
+  }
+  .about-net[data-layout="right"]::before {
+    background:
+      linear-gradient(270deg, rgba(7,24,43,.58) 0%, rgba(7,24,43,.28) 42%, rgba(7,24,43,.04) 72%, rgba(7,24,43,0) 100%),
+      linear-gradient(0deg, rgba(7,24,43,.42) 0%, rgba(7,24,43,0) 34%);
+  }
+  .about-net[data-layout="right"] .about-net__inner { grid-template-columns: 1fr minmax(0, 600px); }
+  .about-net[data-layout="right"] .about-net__card { grid-column: 2; grid-row: 1; }
+  .about-net[data-layout="right"] .about-net__facts { grid-column: 1; grid-row: 1; justify-self: start; }
+}
+
+/* ---------- 5 · bar — wide frosted bar along the bottom ---------------- */
+@media (min-width: 960px) {
+  .about-net[data-layout="bar"] {
+    align-items: flex-end;
+    padding-bottom: clamp(20px, 4vh, 48px);
+  }
+  .about-net[data-layout="bar"]::before {
+    background: linear-gradient(0deg, rgba(7,24,43,.45) 0%, rgba(7,24,43,0) 45%);
+  }
+  .about-net[data-layout="bar"] .about-net__inner {
+    position: relative;
+    grid-template-columns: 1fr;
+  }
+  .about-net[data-layout="bar"] .about-net__card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) auto;
+    column-gap: clamp(28px, 4vw, 56px);
+    align-items: start;
+    padding: clamp(24px, 3.5vh, 40px) clamp(28px, 3vw, 44px);
+  }
+  .about-net[data-layout="bar"] .about-net__card .eyebrow { grid-column: 1; grid-row: 1; }
+  .about-net[data-layout="bar"] .about-net__card h1 { grid-column: 1; grid-row: 2; margin: 0; font-size: clamp(1.4rem, 2.2vw, 1.9rem); }
+  .about-net[data-layout="bar"] .about-net__card .lead { grid-column: 2; grid-row: 1 / 3; margin: 0; font-size: var(--fs-base); }
+  .about-net[data-layout="bar"] .about-net__card p:not(.lead) { display: none; }
+  .about-net[data-layout="bar"] .about-net__card .btn { grid-column: 3; grid-row: 1 / 3; align-self: center; margin: 0; }
+  .about-net[data-layout="bar"] .about-net__facts {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + var(--sp-4));
+  }
+}
+
+/* ---------- 6 · split — solid white half, photo half ------------------- */
+@media (min-width: 960px) {
+  .about-net[data-layout="split"]::before { background: none; }
+  .about-net[data-layout="split"]::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 50%;
+    z-index: -1;
+    background: #fff;
+    box-shadow: 1px 0 0 rgba(7,24,43,.08);
+  }
+  .about-net[data-layout="split"] .about-net__inner { grid-template-columns: min(520px, 34vw) 1fr; }
+  .about-net[data-layout="split"] .about-net__card {
+    background: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+  .about-net[data-layout="split"] .about-net__card h1 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+}
+
+/* ---------- 7 · onimage — no card, «Det sikre valget» on the photo ----- */
+@media (min-width: 960px) {
+  .about-net[data-layout="onimage"]::before {
+    background:
+      linear-gradient(90deg, rgba(7,24,43,.86) 0%, rgba(7,24,43,.62) 38%, rgba(7,24,43,.14) 68%, rgba(7,24,43,0) 100%),
+      linear-gradient(0deg, rgba(7,24,43,.35) 0%, rgba(7,24,43,0) 30%);
+  }
+}
+
+/* ---------- 8 · center — centred statement over the net centre --------- */
+@media (min-width: 960px) {
+  .about-net[data-layout="center"] .about-net__img {
+    scale: 1.2 1.2;
+    translate: 6% 0;
+  }
+  .about-net[data-layout="center"]::before {
+    background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(7,24,43,.74) 0%, rgba(7,24,43,.52) 50%, rgba(7,24,43,.3) 100%);
+  }
+  .about-net[data-layout="center"] .hero-copy {
+    margin: 0 auto;
+    max-width: 900px;
+    text-align: center;
+  }
+  .about-net[data-layout="center"] .hero-copy .eyebrow { padding-left: 0; }
+  .about-net[data-layout="center"] .hero-copy .eyebrow::before { display: none; }
+  .about-net[data-layout="center"] .hero-copy__lead { margin-inline: auto; }
+  .about-net[data-layout="center"] .hero-copy__cta { justify-content: center; }
+}
+
+/* ---------- 9 · corner — compact card bottom-left, photo untouched ----- */
+.about-net[data-layout="corner"]::before {
+  background: linear-gradient(0deg, rgba(7,24,43,.3) 0%, rgba(7,24,43,0) 40%);
+}
+.about-net[data-layout="corner"] .hero-copy {
+  max-width: 440px;
+  padding: clamp(24px, 4vh, 40px) clamp(24px, 3vw, 40px);
+  background: rgba(255,255,255,.93);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  border-radius: var(--radius-md);
+  box-shadow: 0 30px 60px -28px rgba(7,24,43,.55);
+  color: var(--c-text);
+}
+.about-net[data-layout="corner"] .hero-copy .eyebrow { color: var(--c-green-700); }
+.about-net[data-layout="corner"] .hero-copy .eyebrow::before { background: var(--c-green-600); }
+.about-net[data-layout="corner"] .hero-copy__title { color: var(--c-navy-900); font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: var(--sp-4); }
+.about-net[data-layout="corner"] .hero-copy__lead { color: var(--c-text-muted); font-size: var(--fs-base); margin-bottom: var(--sp-5); }
+@media (min-width: 960px) {
+  .about-net[data-layout="corner"] { align-items: flex-end; padding-bottom: clamp(24px, 5vh, 56px); }
+}
+
+/* ---------- 10 · glass-right — «Det sikre valget» in a dark glass card -- */
+@media (min-width: 960px) {
+  .about-net[data-layout="glass-right"]::before {
+    background: linear-gradient(270deg, rgba(7,24,43,.3) 0%, rgba(7,24,43,0) 55%);
+  }
+  .about-net[data-layout="glass-right"] .hero-copy { margin-left: auto; max-width: 560px; }
+}
+.about-net[data-layout="glass-right"] .hero-copy {
+  padding: clamp(28px, 5vh, 52px) clamp(28px, 3.5vw, 52px);
+  background: rgba(7,24,43,.66);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255,255,255,.14);
+  border-top: 2px solid var(--c-green-500);
+  border-radius: var(--radius-md);
+  box-shadow: 0 30px 60px -28px rgba(7,24,43,.6);
+}
+.about-net[data-layout="glass-right"] .hero-copy__title { font-size: clamp(2.2rem, 4.2vw, 3.6rem); }
+.about-net[data-layout="glass-right"] .hero-copy__stats { grid-template-columns: repeat(2, auto); }
+
+/* ---------- Phones: keep the alternative copy readable ----------------- */
+@media (max-width: 959px) {
+  .about-net[data-layout="onimage"] .hero-copy,
+  .about-net[data-layout="center"] .hero-copy {
+    padding: var(--sp-6) var(--sp-5);
+    background: rgba(7,24,43,.72);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-radius: var(--radius-md);
+  }
+  .hero-copy__stats { grid-template-columns: repeat(2, auto); }
+}
