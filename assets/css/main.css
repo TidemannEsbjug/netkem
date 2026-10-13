@@ -3060,3 +3060,152 @@ img[aria-hidden="true"],
     }
   }
 }
+
+/* ---------- Produktområder (home §3) — image cards from the farms -------- */
+.areas {
+  padding: clamp(72px, 9vw, 120px) 0;
+  background: var(--c-bg);
+}
+.areas__head {
+  display: grid;
+  gap: var(--sp-4) var(--sp-8);
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+.areas__head h2 { margin: 0; max-width: 24ch; }
+.areas__head p {
+  margin: 0;
+  color: var(--c-text-muted);
+  font-size: var(--fs-md);
+  max-width: 46ch;
+}
+@media (min-width: 900px) {
+  .areas__head { grid-template-columns: 1fr 1fr; align-items: end; }
+}
+
+.areas__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--sp-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.areas__grid > li { margin: 0; display: flex; }
+
+.area-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  min-height: clamp(440px, 38vw, 540px);
+  padding: var(--sp-3);
+  border-radius: var(--radius-md);
+  background: var(--c-navy-800);
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 24px 48px -30px rgba(7,24,43,.6);
+}
+.area-card:hover { color: #fff; }
+.area-card:focus-visible { outline: 3px solid var(--c-green-500); outline-offset: 3px; }
+.area-card__img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  transition: transform 700ms cubic-bezier(.2,.6,.2,1);
+}
+.area-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(7,24,43,.35) 0%, rgba(7,24,43,0) 26%, rgba(7,24,43,0) 50%, rgba(7,24,43,.55) 100%);
+  pointer-events: none;
+}
+.area-card__num {
+  position: absolute;
+  top: var(--sp-5);
+  left: var(--sp-5);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  color: rgba(255,255,255,.9);
+}
+.area-card__go {
+  position: absolute;
+  top: var(--sp-4);
+  right: var(--sp-4);
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.16);
+  border: 1px solid rgba(255,255,255,.32);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+.area-card__go svg { width: 16px; height: 10px; }
+.area-card__body {
+  background: rgba(7,24,43,.76);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  backdrop-filter: blur(14px) saturate(130%);
+  border: 1px solid rgba(255,255,255,.12);
+  border-top: 2px solid var(--c-green-500);
+  border-radius: var(--radius-md);
+  padding: var(--sp-5);
+}
+.area-card__icon { display: block; color: var(--c-green-500); margin-bottom: var(--sp-3); }
+.area-card__icon svg { width: 24px; height: 24px; }
+.area-card__title { color: #fff; font-size: 1.2rem; margin: 0 0 var(--sp-2); }
+.area-card__text { margin: 0; font-size: var(--fs-sm); line-height: 1.55; color: rgba(216,226,236,.88); }
+@media (min-width: 1100px) {
+  /* Even panel tops across the row, whatever the text length */
+  .area-card__body { min-height: 236px; }
+}
+
+@media (hover: hover) {
+  .area-card:hover .area-card__img { transform: scale(1.06); }
+  .area-card:hover .area-card__go {
+    background: var(--c-green-700);
+    border-color: var(--c-green-700);
+    transform: translateX(2px);
+  }
+}
+
+/* Tablet: 2 × 2 */
+@media (max-width: 1099px) {
+  .areas__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .area-card { min-height: 420px; }
+  .area-card__body { min-height: 190px; }
+}
+/* Phone: swipeable row, next card peeks in */
+@media (max-width: 719px) {
+  .areas__grid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 82%;
+    gap: var(--sp-3);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: clamp(24px, 4.5vw, 68px);
+    margin-inline: calc(-1 * clamp(24px, 4.5vw, 68px));
+    padding: 4px clamp(24px, 4.5vw, 68px) var(--sp-4);
+    scrollbar-width: none;
+  }
+  .areas__grid::-webkit-scrollbar { display: none; }
+  .areas__grid > li { scroll-snap-align: start; }
+  .area-card { min-height: 440px; }
+  .area-card__body { min-height: 230px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .area-card__img, .area-card__go { transition: none; }
+}
