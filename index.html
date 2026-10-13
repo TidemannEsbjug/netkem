@@ -14,7 +14,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title data-i18n="meta.home.title">NetKem AS – Coating og notimpregnering for oppdrettsnæringen</title>
 <meta content="NetKem AS utvikler, produserer og leverer impregnerings- og coatingprodukter, notrensemidler, desinfeksjonsmidler og notvaskemaskiner til akvakulturnæringen siden 2001." name="description"/>
-<link href="assets/css/main.css?v=20261013b" rel="stylesheet"/>
+<link href="assets/css/main.css?v=20261013c" rel="stylesheet"/>
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css" rel="stylesheet"/>
 <link href="assets/img/favicon.png" rel="icon" type="image/png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -23,7 +23,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 <link href="/index.html" hreflang="nb" rel="alternate"/><link href="/en/index.html" hreflang="en" rel="alternate"/><link href="/es/index.html" hreflang="es" rel="alternate"/><link href="/tr/index.html" hreflang="tr" rel="alternate"/><link href="/index.html" hreflang="x-default" rel="alternate"/><link href="/index.html" rel="canonical"/></head>
 <body>
 <!-- ======================== HEADER ======================== -->
-<header class="site-header">
+<header class="site-header site-header--solid is-scrolled">
 <div class="container site-header__inner site-header__inner--center">
 <a class="site-header__brand" href="index.html"><img class="site-header__logo site-header__logo--light" src="assets/img/Logo-Netkem-AS-white.png" alt="NetKem AS" width="396" height="96"/><img class="site-header__logo site-header__logo--dark" src="assets/img/Logo-Netkem-AS-dark.png" alt="" aria-hidden="true" width="396" height="96"/></a>
 <nav aria-label="Hovedmeny" class="site-nav" data-i18n-attr="aria-label:nav.menu">
@@ -75,34 +75,17 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 <li><a data-i18n="nav.contact" href="kontakt.html">Kontakt</a></li>
 </ul>
 </nav>
-<!-- ======================== HERO ======================== -->
-<section class="hero hero--photo-first">
-<img alt="" aria-hidden="true" class="hero__image" decoding="async" fetchpriority="high" src="assets/img/hero-fjord-v3.jpg"/>
-<div class="container">
-<div class="hero__grid">
-<div>
-<h1 class="hero__title" data-i18n="home.hero.title">Det sikre valget</h1>
-<p class="hero__lead" data-i18n="home.hero.lead">Gjennom 25 års erfaring i oppdrettsnæringen har produktene våre beskyttet og vedlikeholdt betydelige deler av all not i norsk sjø. Med ledende forskning i ryggen sikrer vi trygg drift og sunn fisk, sesong etter sesong.</p>
-<div class="hero__cta-row">
-<a class="btn btn--primary" href="produkter.html">
-<span data-i18n="btn.see_all">Se alle produkter</span>
-<svg aria-hidden="true" class="btn__arrow" fill="none" viewbox="0 0 16 10"><path d="M1 5h13M10 1l4 4-4 4" stroke="currentColor" stroke-linecap="square" stroke-width="1.6"></path></svg>
-</a>
-<a class="btn btn--ghost-light" data-i18n="btn.contact" href="kontakt.html">Kontakt oss</a>
-</div>
-</div>
-</div>
-</div>
-<a class="hero__scroll" href="#om-netkem" aria-label="Bla ned"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></a>
-</section>
 <!-- ======================== ABOUT TEASER ======================== -->
 <section class="about-net" id="om-netkem">
-<img class="about-net__img" src="assets/img/hero-secondary.jpg" alt="Rødt impregnert notlin på nært hold" decoding="async" loading="lazy"/>
+<picture>
+<source type="image/avif" srcset="assets/img/nett-1600.avif 1600w, assets/img/nett-2400.avif 2400w, assets/img/nett-3200.avif 3200w" sizes="(min-width: 960px) 140vw, 200vw"/>
+<img class="about-net__img" src="assets/img/nett-2400.jpg" srcset="assets/img/nett-1600.jpg 1600w, assets/img/nett-2400.jpg 2400w" sizes="(min-width: 960px) 140vw, 200vw" alt="Rødt impregnert notlin på nært hold" width="2400" height="1601" decoding="async" fetchpriority="high"/>
+</picture>
 <div class="container">
 <div class="about-net__inner">
 <div class="about-net__card reveal">
 <span class="eyebrow" data-i18n="eb.about_netkem">Om NetKem</span>
-<h2>Faglig dybde fra Mobil Oil &amp; ExxonMobil — anvendt på havbruk</h2>
+<h1>Faglig dybde fra Mobil Oil &amp; ExxonMobil — anvendt på havbruk</h1>
 <p class="lead" data-i18n="home.about.lead">NetKem AS ble startet i 2001 av Øistein Antonsen, som i mange år hadde arbeidet med disse produktene i <a href="https://www.mobil.com/" target="_blank" rel="noopener">Mobil Oil</a>, og senere <a href="https://corporate.exxonmobil.com/" target="_blank" rel="noopener">ExxonMobil</a>. Ekspertisen er i behold, og nye produkter er stadig under utvikling.</p>
 <p data-i18n="home.about.body">Firmaet har et utstrakt samarbeid med ledende forskningsmiljøer innen havbruk, og leverer både kjemiske produkter og teknisk utstyr som notvaskemaskiner.</p>
 <a class="btn btn--primary" href="om-oss.html">
@@ -344,6 +327,6 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 </footer>
 <script defer="" src="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js"></script>
 <script defer="" src="assets/js/coast-map.js"></script>
-<script defer="" src="assets/js/main.js"></script>
+<script defer="" src="assets/js/main.js?v=20261013c"></script>
 </body>
 </html>

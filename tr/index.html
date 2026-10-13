@@ -14,7 +14,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title data-i18n="meta.home.title">Netkem AS – Su ürünleri yetiştiriciliği için kaplama ve ağ emprenyesi</title>
 <meta content="Netkem AS, 2001'den bu yana su ürünleri yetiştiriciliği sektörü için emprenye ve kaplama ürünleri, ağ temizleyicileri, dezenfektanlar ve ağ yıkama makineleri geliştiriyor, üretiyor ve tedarik ediyor." name="description"/>
-<link href="../assets/css/main.css?v=20261013b" rel="stylesheet"/>
+<link href="../assets/css/main.css?v=20261013c" rel="stylesheet"/>
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css" rel="stylesheet"/>
 <link href="../assets/img/favicon.png" rel="icon" type="image/png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -23,7 +23,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 <link href="/index.html" hreflang="nb" rel="alternate"/><link href="/en/index.html" hreflang="en" rel="alternate"/><link href="/es/index.html" hreflang="es" rel="alternate"/><link href="/tr/index.html" hreflang="tr" rel="alternate"/><link href="/index.html" hreflang="x-default" rel="alternate"/><link href="/tr/index.html" rel="canonical"/></head>
 <body>
 <!-- ======================== HEADER ======================== -->
-<header class="site-header">
+<header class="site-header site-header--solid is-scrolled">
 <div class="container site-header__inner site-header__inner--center">
 <a class="site-header__brand" href="index.html"><img class="site-header__logo site-header__logo--light" src="../assets/img/Logo-Netkem-AS-white.png" alt="NetKem AS" width="396" height="96"/><img class="site-header__logo site-header__logo--dark" src="../assets/img/Logo-Netkem-AS-dark.png" alt="" aria-hidden="true" width="396" height="96"/></a>
 <nav aria-label="Ana menü" class="site-nav" data-i18n-attr="aria-label:nav.menu">
@@ -75,34 +75,17 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 <li><a data-i18n="nav.contact" href="iletisim.html">İletişim</a></li>
 </ul>
 </nav>
-<!-- ======================== HERO ======================== -->
-<section class="hero hero--photo-first">
-<img alt="" aria-hidden="true" class="hero__image" decoding="async" fetchpriority="high" src="../assets/img/hero-fjord-v3.jpg"/>
-<div class="container">
-<div class="hero__grid">
-<div>
-<h1 class="hero__title" data-i18n="home.hero.title">Güvenli tercih</h1>
-<p class="hero__lead" data-i18n="home.hero.lead">Su ürünleri yetiştiriciliğinde 25 yıl boyunca ürünlerimiz, Norveç sularındaki ağların önemli bir bölümünü korudu ve bakımını üstlendi. Öncü araştırmaların desteğiyle her sezon güvenli işletmeyi ve sağlıklı balığı güvence altına alıyoruz.</p>
-<div class="hero__cta-row">
-<a class="btn btn--primary" href="urunler.html">
-<span data-i18n="btn.see_all">Tüm ürünleri görün</span>
-<svg aria-hidden="true" class="btn__arrow" fill="none" viewbox="0 0 16 10"><path d="M1 5h13M10 1l4 4-4 4" stroke="currentColor" stroke-linecap="square" stroke-width="1.6"></path></svg>
-</a>
-<a class="btn btn--ghost-light" data-i18n="btn.contact" href="iletisim.html">Bize ulaşın</a>
-</div>
-</div>
-</div>
-</div>
-<a class="hero__scroll" href="#om-netkem" aria-label="Aşağı kaydır"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></a>
-</section>
 <!-- ======================== ABOUT TEASER ======================== -->
 <section class="about-net" id="om-netkem">
-<img class="about-net__img" src="../assets/img/hero-secondary.jpg" alt="Kırmızı emprenyeli ağ ipi, yakın plan" decoding="async" loading="lazy"/>
+<picture>
+<source type="image/avif" srcset="../assets/img/nett-1600.avif 1600w, ../assets/img/nett-2400.avif 2400w, ../assets/img/nett-3200.avif 3200w" sizes="(min-width: 960px) 140vw, 200vw"/>
+<img class="about-net__img" src="../assets/img/nett-2400.jpg" srcset="../assets/img/nett-1600.jpg 1600w, ../assets/img/nett-2400.jpg 2400w" sizes="(min-width: 960px) 140vw, 200vw" alt="Kırmızı emprenyeli ağ ipi, yakın plan" width="2400" height="1601" decoding="async" fetchpriority="high"/>
+</picture>
 <div class="container">
 <div class="about-net__inner">
 <div class="about-net__card reveal">
 <span class="eyebrow" data-i18n="eb.about_netkem">NetKem hakkında</span>
-<h2>Mobil Oil &amp; ExxonMobil'den gelen uzmanlık — su ürünleri yetiştiriciliğine uygulandı</h2>
+<h1>Mobil Oil &amp; ExxonMobil'den gelen uzmanlık — su ürünleri yetiştiriciliğine uygulandı</h1>
 <p class="lead" data-i18n="home.about.lead">NetKem AS, uzun yıllar <a href="https://www.mobil.com/" target="_blank" rel="noopener">Mobil Oil</a> ve ardından <a href="https://corporate.exxonmobil.com/" target="_blank" rel="noopener">ExxonMobil</a> bünyesinde bu ürünlerle çalışan Øistein Antonsen tarafından 2001 yılında kuruldu. Uzmanlık yerinde duruyor, yeni ürünler ise sürekli geliştiriliyor.</p>
 <p data-i18n="home.about.body">Şirket, su ürünleri yetiştiriciliği alanındaki öncü araştırma kuruluşlarıyla geniş bir iş birliği yürütüyor; hem kimyasal ürünler hem de ağ yıkama makineleri gibi teknik ekipman tedarik ediyor.</p>
 <a class="btn btn--primary" href="hakkimizda.html">
@@ -344,6 +327,6 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 </footer>
 <script defer="" src="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js"></script>
 <script defer="" src="../assets/js/coast-map.js"></script>
-<script defer="" src="../assets/js/main.js"></script>
+<script defer="" src="../assets/js/main.js?v=20261013c"></script>
 </body>
 </html>

@@ -2912,15 +2912,19 @@ img[aria-hidden="true"],
   .coast__chip { transition: none; }
 }
 
-/* ---------- Om NetKem (home §2) — full-bleed net image with glass cards ---- */
+/* ---------- Om NetKem (home §1) — full-bleed net image with glass cards ---- */
+/* First section on the home page: starts below the solid header and fills
+   the rest of the first screen. */
 .about-net {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   display: flex;
   align-items: center;
-  min-height: clamp(640px, 92vh, 920px);
-  padding: clamp(72px, 10vw, 128px) 0;
+  margin-top: var(--header-h);
+  min-height: clamp(600px, calc(100vh - var(--header-h)), 1000px);
+  min-height: clamp(600px, calc(100svh - var(--header-h)), 1000px);
+  padding: clamp(56px, 8vw, 112px) 0;
   background: #5a1a10;
   color: var(--c-text);
 }
@@ -2934,6 +2938,7 @@ img[aria-hidden="true"],
   object-fit: cover;
   object-position: 45% 40%;
 }
+.about-net > picture { display: contents; }
 /* Wide screens: mirror and shift the photo so the point where the net
    strands meet lands in the open area right of the card. */
 @media (min-width: 960px) {
@@ -2976,7 +2981,12 @@ img[aria-hidden="true"],
   box-shadow: 0 30px 60px -28px rgba(7,24,43,.55);
   padding: clamp(28px, 4vw, 52px);
 }
-.about-net__card h2 { color: var(--c-navy-900); margin-bottom: var(--sp-4); }
+.about-net__card h1 {
+  color: var(--c-navy-900);
+  margin-bottom: var(--sp-4);
+  font-size: clamp(1.55rem, 2.8vw, 2.15rem);
+  line-height: 1.18;
+}
 .about-net__card .lead { color: var(--c-text); }
 .about-net__card p:not(.lead) { color: var(--c-text-muted); }
 .about-net__card a:not(.btn) {

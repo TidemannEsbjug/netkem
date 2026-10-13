@@ -33,8 +33,10 @@
   var header = document.querySelector('.site-header');
   if (header) {
     var SCROLL_THRESHOLD = 30;
+    /* Pages without a hero keep the solid header from the top */
+    var solidHeader = header.classList.contains('site-header--solid');
     var setScrolled = function () {
-      if (window.scrollY > SCROLL_THRESHOLD) {
+      if (solidHeader || window.scrollY > SCROLL_THRESHOLD) {
         header.classList.add('is-scrolled');
       } else {
         header.classList.remove('is-scrolled');
