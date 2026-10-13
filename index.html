@@ -15,7 +15,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 <title data-i18n="meta.home.title">NetKem AS – Coating og notimpregnering for oppdrettsnæringen</title>
 <meta content="NetKem AS utvikler, produserer og leverer impregnerings- og coatingprodukter, notrensemidler, desinfeksjonsmidler og notvaskemaskiner til akvakulturnæringen siden 2001." name="description"/>
 <link href="assets/css/main.css?v=20261013g" rel="stylesheet"/>
-<link href="assets/css/hero-lab.css?v=8" rel="stylesheet"/>
+<link href="assets/css/hero-lab.css?v=11" rel="stylesheet"/>
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css" rel="stylesheet"/>
 <link href="assets/img/favicon.png" rel="icon" type="image/png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -77,7 +77,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 </ul>
 </nav>
 <!-- ======================== ABOUT TEASER ======================== -->
-<section class="about-net" id="om-netkem" data-hero-lab>
+<section class="about-net" id="om-netkem" data-hero-lab data-layout="onimage" data-copy="sikre" data-shade="radial">
 <picture>
 <source type="image/avif" srcset="assets/img/nett-1600.avif 1600w, assets/img/nett-2400.avif 2400w, assets/img/nett-3200.avif 3200w" sizes="(min-width: 960px) 140vw, 200vw"/>
 <img class="about-net__img" src="assets/img/nett-2400.jpg" srcset="assets/img/nett-1600.jpg 1600w, assets/img/nett-2400.jpg 2400w" sizes="(min-width: 960px) 140vw, 200vw" alt="Rødt impregnert notlin på nært hold" width="2400" height="1601" decoding="async" fetchpriority="high"/>
@@ -105,11 +105,11 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 </div>
 </dl>
 </div>
-<!-- Hero-lab: alternative hero copy (shown by assets/js/hero-lab.js) -->
-<div class="hero-copy hero-copy--sikre" data-copy-id="sikre">
-<span class="eyebrow">Notimpregnering · Coating · Notrens</span>
-<h1 class="hero-copy__title">Det sikre valget</h1>
-<p class="hero-copy__lead">Gjennom 25 års erfaring i oppdrettsnæringen har produktene våre beskyttet og vedlikeholdt betydelige deler av all not i norsk sjø. Med ledende forskning i ryggen sikrer vi trygg drift og sunn fisk, sesong etter sesong.</p>
+<!-- Hero: «Spesialist på nøter.» — the shade behind it is switched by assets/js/hero-lab.js -->
+<div class="hero-copy is-active">
+<span class="eyebrow">Det sikre valget</span>
+<h1 class="hero-copy__title is-one-line">Spesialist på nøter.</h1>
+<p class="hero-copy__lead">I 25 år har vi utviklet kjemikalier og utstyr som beskytter, rengjør og vedlikeholder nota — sesong etter sesong.</p>
 <div class="hero-copy__cta">
 <a class="btn btn--primary" href="produkter.html"><span>Se alle produkter</span>
 <svg aria-hidden="true" class="btn__arrow" fill="none" viewbox="0 0 16 10"><path d="M1 5h13M10 1l4 4-4 4" stroke="currentColor" stroke-linecap="square" stroke-width="1.6"></path></svg>
@@ -122,25 +122,6 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 <li><strong>ISO</strong><span>9001 · 14001</span></li>
 <li><strong>PFAS-fri</strong><span>Og uten mikroplast</span></li>
 </ul>
-</div>
-<div class="hero-copy hero-copy--sunn" data-copy-id="sunn">
-<span class="eyebrow">Siden 2001</span>
-<h1 class="hero-copy__title">Ren not. Sunn fisk.<br/>Sesong etter sesong.</h1>
-<p class="hero-copy__lead">Impregnering, coating, notrens og notvaskemaskiner — utviklet i tett samarbeid med ledende forskningsmiljøer innen havbruk.</p>
-<div class="hero-copy__cta">
-<a class="btn btn--primary" href="produkter.html"><span>Se alle produkter</span>
-<svg aria-hidden="true" class="btn__arrow" fill="none" viewbox="0 0 16 10"><path d="M1 5h13M10 1l4 4-4 4" stroke="currentColor" stroke-linecap="square" stroke-width="1.6"></path></svg>
-</a>
-<a class="btn btn--ghost-light" href="kontakt.html">Kontakt oss</a>
-</div>
-</div>
-<div class="hero-copy hero-copy--25ar" data-copy-id="25ar">
-<span class="eyebrow">NetKem AS</span>
-<h1 class="hero-copy__title">25 år med not i norsk sjø</h1>
-<p class="hero-copy__lead">Produktene våre har beskyttet og vedlikeholdt betydelige deler av all not i norsk sjø — og er BPR-godkjent frem til 2033.</p>
-<a class="btn btn--primary" href="produkter.html"><span>Se alle produkter</span>
-<svg aria-hidden="true" class="btn__arrow" fill="none" viewbox="0 0 16 10"><path d="M1 5h13M10 1l4 4-4 4" stroke="currentColor" stroke-linecap="square" stroke-width="1.6"></path></svg>
-</a>
 </div>
 </div>
 </section>
@@ -322,7 +303,7 @@ if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go);setTimeou
 </footer>
 <script defer="" src="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js"></script>
 <script defer="" src="assets/js/coast-map.js"></script>
-<script defer="" src="assets/js/hero-lab.js?v=8"></script>
+<script defer="" src="assets/js/hero-lab.js?v=10"></script>
 <script defer="" src="assets/js/main.js?v=20261013c"></script>
 </body>
 </html>
