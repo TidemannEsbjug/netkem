@@ -3146,7 +3146,8 @@ img[aria-hidden="true"],
   font-size: 13px;
   font-weight: 600;
   letter-spacing: .14em;
-  color: rgba(255,255,255,.9);
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(7,24,43,.7);
 }
 .area-card__go {
   position: absolute;
@@ -3157,8 +3158,8 @@ img[aria-hidden="true"],
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(255,255,255,.16);
-  border: 1px solid rgba(255,255,255,.32);
+  background: rgba(7,24,43,.32);
+  border: 1px solid rgba(255,255,255,.4);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   transition: background var(--transition), border-color var(--transition), transform var(--transition);
