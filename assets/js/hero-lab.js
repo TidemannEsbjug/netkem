@@ -1,6 +1,6 @@
-/* Hero-lab — the home hero «Spesialist på nøter.» and its light field are
-   locked; ← / → switches the subtitle under the title. No on-page
-   indicators; the current subtitle shows as ?hero=N in the address bar
+/* Hero-lab — the subtitle under the title and the light field are locked;
+   ← / → switches the headline (1 = «Spesialist på nøter.»). No on-page
+   indicators; the current headline shows as ?hero=N in the address bar
    (1 = no parameter).
    J (or ?juster in the address) opens a panel with sliders for the light
    field; the settings are kept in this browser (localStorage).
@@ -12,20 +12,27 @@
 
   var SHADE = 'light-frost-tuned';   // the light field chosen with the J panel
 
-  /* Subtitles under «Spesialist på nøter.» — only claims already on the site */
+  /* Headlines to try in place of «Spesialist på nøter.» — the subtitle under them is fixed in index.html.
+     The earlier subtitle candidates are in git history (commit 7210023). */
   var LEADS = [
-    'I 25 år har vi utviklet kjemikalier og utstyr som beskytter, rengjør og vedlikeholder nota — sesong etter sesong.', // 1 as now
-    'Impregnering, coating, notvask og desinfeksjon — for oppdrettsnæringen siden 2001.',                            // 2
-    'Vi beskytter nota mot begroing, UV og uttørking — skånsomt mot notlinet, sesong etter sesong.',                    // 3
-    'Fra impregnering før utsetting til vask og desinfeksjon mellom syklusene.',                                        // 4
-    'Produktene våre har beskyttet betydelige deler av all not i norsk sjø i 25 år.',                                   // 5
-    'Notimpregnering, coating og notrens — BPR-godkjent, uten PFAS og mikroplast.',                                     // 6
-    'Kjemikalier og utstyr for hele driftsløpet, utviklet sammen med ledende forskningsmiljøer innen havbruk.',           // 7
-    'Sterk not, trygg drift og sunn fisk — med 25 års erfaring i ryggen.',                                              // 8
-    'Alt nota trenger, fra første impregnering til siste vask.',                                                        // 9
-    'Skånsomt mot notlinet. Effektivt mot begroing.',                                                                   // 10
-    'Kompetanse fra Mobil Oil og ExxonMobil — brukt på norske nøter siden 2001.',                                       // 11
-    'Impregnering og notvask som tar vare på nota — og fisken innenfor.'                                                // 12
+    'Spesialist på nøter.',              // 1 as now
+    'Kjemikalier for sterke nøter.',     // 2
+    'Spesialist på notkjemi.',           // 3
+    'Kjemi som tar vare på nota.',       // 4
+    'Nøter som varer.',                  // 5
+    'Vi tar vare på nota.',              // 6
+    'Kjemikalier for nøter.',            // 7
+    'Sterke nøter. Sunn fisk.',          // 8
+    'Notkjemi siden 2001.',              // 9
+    'Ren not. Trygg drift.',             // 10
+    'Kjemikalier for havbruk.',          // 11
+    'Eksperter på nøter.',               // 12
+    'Alt nota trenger.',                 // 13
+    'Norsk notkjemi.',                   // 14
+    'Nota i trygge hender.',             // 15
+    'Spesialist på impregnering.',       // 16
+    'Kjemikalier som beskytter nota.',   // 17
+    'Beskyttelse for nota.'              // 18
   ];
 
   /* Sliders: [css variable, label, min, max, step, unit] */
@@ -83,7 +90,7 @@
     Object.keys(t).forEach(function (k) { hero.style.setProperty(k, t[k]); });
   }
 
-  var leadEl = hero.querySelector('.hero-copy.is-active .hero-copy__lead');
+  var leadEl = hero.querySelector('.hero-copy.is-active .hero-copy__title');
 
   function apply(i) {
     idx = (i + LEADS.length) % LEADS.length;
@@ -111,7 +118,7 @@
       rows[p[0]].range.value = v;
       rows[p[0]].out.textContent = fmt(v, p[5]);
     });
-    panel.querySelector('[data-tune-version]').textContent = 'Undertekst ' + (idx + 1) + ' / ' + LEADS.length;
+    panel.querySelector('[data-tune-version]').textContent = 'Overskrift ' + (idx + 1) + ' / ' + LEADS.length;
   }
   function valuesText() {
     return '/* NetKem hero – lyst felt (' + SHADE + ') */\n' +
@@ -158,7 +165,7 @@
       '<button type="button" class="hero-tune__btn" data-tune-copy>Kopier verdier</button>' +
       '<button type="button" class="hero-tune__btn hero-tune__btn--ghost" data-tune-reset>Nullstill</button>' +
       '<span class="hero-tune__msg" data-tune-msg></span></div>' +
-      '<p class="hero-tune__hint">← / → bytter undertekst · J skjuler panelet</p>';
+      '<p class="hero-tune__hint">← / → bytter overskrift · J skjuler panelet</p>';
     panel.innerHTML = html;
     PARAMS.forEach(function (p) {
       var range = panel.querySelector('[data-var="' + p[0] + '"]');
