@@ -62,29 +62,25 @@
   color: rgba(216,226,236,.82);
 }
 
-/* ---------- Light field tied to the text --------------------------------
-   The light area sits on the text block itself (.hero-copy::before), so it
-   follows the text on every screen and stops short of the left edge.
-   Shape: a soft rectangle — two linear masks intersected — so the whole text
-   (eyebrow and stats in the corners too) is evenly light, fading out on all
-   sides. --it/--ir/--ib/--il: how far it reaches beyond the text block
-   (negative = outside); --ft/--fr/--fb/--fl: length of the fade on each
-   side; --w: whiteness; --blur: how soft the photo goes behind it.        */
+/* ---------- Round light field tied to the text ---------------------------
+   A round (oval) light area on the text block itself (.hero-copy::before),
+   so it follows the text on every screen. Its left side never reaches the
+   screen edge: --il is capped by the space left of the text (container
+   gutter), minus 16px.
+   --it/--ir/--ib: how far it reaches beyond the text block; --reach: how far
+   it may reach left at most; --core: solid middle; --mid: half-fade point;
+   --w: whiteness; --blur: how soft the photo goes behind it.             */
 .about-net[data-copy="sikre"] { --shade: 255,255,255; }
-.about-net[data-shade^="light-text"] {
+.about-net[data-shade^="light-round"] {
   --w: .86; --blur: 0px;
-  --it: -100px; --ir: -70px; --ib: -90px; --il: -90px;
-  --ft: 80px; --fr: 80px; --fb: 80px; --fl: 80px;
+  --it: -230px; --ir: -150px; --ib: -180px; --reach: 110px;
+  --core: 64%; --mid: 85%;
 }
-.about-net[data-shade="light-text-frost"] { --w: .66; --blur: 18px; }  /* white + blur */
-.about-net[data-shade="light-text-3"] { --w: .68; --blur: 18px; --it: -70px; --ir: -40px; --ib: -60px; --il: -60px; --ft: 60px; --fr: 60px; --fb: 60px; --fl: 60px; }  /* frost, tighter round the text */
-.about-net[data-shade="light-text-4"] { --w: .66; --blur: 18px; --it: -140px; --ir: -110px; --ib: -120px; --il: -110px; --ft: 110px; --fr: 110px; --fb: 110px; --fl: 90px; }  /* frost, more room round the text */
-.about-net[data-shade="light-text-5"] { --w: .56; --blur: 30px; }  /* frost, more blur, less white */
-.about-net[data-shade="light-text-6"] { --w: .8; --blur: 10px; }  /* frost, whiter, little blur */
-.about-net[data-shade="light-text-7"] { --w: .66; --blur: 18px; --ir: -200px; --fr: 220px; }  /* frost, long fade out to the right */
-.about-net[data-shade="light-text-8"] { --w: .84; --it: -150px; --ir: -120px; --ib: -140px; --il: -100px; --ft: 160px; --fr: 160px; --fb: 160px; --fl: 90px; }  /* white, airy: very soft edges */
-.about-net[data-shade="light-text-9"] { --w: .88; --it: -60px; --ir: -50px; --ib: -50px; --il: -60px; --ft: 36px; --fr: 36px; --fb: 36px; --fl: 36px; }  /* white, crisper edges */
-.about-net[data-shade="light-text-10"] { --w: .42; --blur: 28px; }  /* frost, barely white, mostly blur */
+.about-net[data-shade="light-round-frost"] { --w: .66; --blur: 18px; }  /* white + blur, round */
+.about-net[data-shade="light-round-3"] { --it: -195px; --ir: -120px; --ib: -150px; --reach: 90px; }  /* a little smaller */
+.about-net[data-shade="light-round-4"] { --it: -265px; --ir: -180px; --ib: -210px; --reach: 130px; }  /* a little larger */
+.about-net[data-shade="light-round-5"] { --core: 40%; --mid: 74%; }  /* softer fade */
+.about-net[data-shade="light-round-6"] { --w: .8; --blur: 10px; }  /* frost, whiter, little blur */
 
 /* Dark type on the light field */
 .about-net[data-shade^="light"] .hero-copy { color: var(--c-navy-900); text-shadow: none; }
@@ -100,7 +96,8 @@
 
 @media (min-width: 960px) {
   .about-net[data-copy="sikre"]::before { background: none; }
-  .about-net[data-shade^="light-text"] .hero-copy::before {
+  .about-net[data-shade^="light-round"] .hero-copy::before {
+    --il: calc(-1 * min(var(--reach), max(0px, (100vw - var(--container)) / 2) + clamp(24px, 4.5vw, 68px) - 16px));
     content: "";
     position: absolute;
     inset: var(--it) var(--ir) var(--ib) var(--il);
@@ -109,18 +106,51 @@
     background: rgba(255,255,255,var(--w));
     -webkit-backdrop-filter: blur(var(--blur)) saturate(115%);
     backdrop-filter: blur(var(--blur)) saturate(115%);
-    -webkit-mask-image:
-      linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%),
-      linear-gradient(180deg, transparent 0, #000 var(--ft), #000 calc(100% - var(--fb)), transparent 100%);
-    -webkit-mask-composite: source-in;
-    mask-image:
-      linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%),
-      linear-gradient(180deg, transparent 0, #000 var(--ft), #000 calc(100% - var(--fb)), transparent 100%);
-    mask-composite: intersect;
+    -webkit-mask-image: radial-gradient(closest-side, #000 0%, #000 var(--core), rgba(0,0,0,.5) var(--mid), transparent 100%);
+    mask-image: radial-gradient(closest-side, #000 0%, #000 var(--core), rgba(0,0,0,.5) var(--mid), transparent 100%);
   }
 }
 @media (max-width: 959px) {
   .about-net[data-shade^="light"] .hero-copy { background: rgba(255,255,255,.9); }
+}
+
+/* ---------- Structured panels (square, hard edges) ----------------------
+   A crisp rectangle behind the text: no fades, no shadow, square corners,
+   the same room (--pad) between the edge and the content on every side.
+   Where the gutter left of the text is narrower than --pad, the text moves
+   right so the panel stays 16px off the screen edge and the room stays even. */
+.about-net[data-shade^="light-box"] { --pad: 56px; --w: .92; --blur: 0px; }
+.about-net[data-shade="light-box-solid"] { --pad: 64px; --w: 1; }
+.about-net[data-shade="light-box-frost"] { --w: .72; --blur: 20px; }
+.about-net[data-shade="light-box-glass"] { --w: .45; --blur: 26px; }
+.about-net[data-shade="light-box-roomy"] { --pad: 80px; }
+
+@media (min-width: 960px) {
+  .about-net[data-shade^="light-box"] .hero-copy {
+    --gutter: calc(max(0px, (100vw - var(--container)) / 2) + clamp(24px, 4.5vw, 68px));
+    width: fit-content;
+    margin-left: max(0px, calc(var(--pad) + 16px - var(--gutter)));
+  }
+  .about-net[data-shade^="light-box"] .hero-copy::before {
+    content: "";
+    position: absolute;
+    inset: calc(-1 * var(--pad));
+    z-index: -1;
+    pointer-events: none;
+    background: rgba(255,255,255,var(--w));
+    -webkit-backdrop-filter: blur(var(--blur)) saturate(115%);
+    backdrop-filter: blur(var(--blur)) saturate(115%);
+  }
+  .about-net[data-shade="light-box-line"] .hero-copy::before { border: 1px solid rgba(7,24,43,.16); }
+  .about-net[data-shade="light-box-top"] .hero-copy::before { border-top: 4px solid var(--c-green-600); }
+  .about-net[data-shade="light-box-left"] .hero-copy::before { border-left: 4px solid var(--c-green-600); }
+  /* column / base: run past the hero edges, clipped by the section */
+  .about-net[data-shade="light-box-col"] .hero-copy::before { top: -100vh; bottom: -100vh; }
+  .about-net[data-shade="light-box-base"] .hero-copy::before { bottom: -100vh; }
+  .about-net[data-shade="light-box-frame"] .hero-copy::before {
+    outline: 1px solid rgba(255,255,255,.9);
+    outline-offset: 12px;
+  }
 }
 
 /* ---------- Low desktop screens: copy fits the first screen -------------- */

@@ -8,16 +8,24 @@
   if (!hero) return;
 
   var SHADES = [
-    'light-text',       // 1 white, soft field round the text (standard)
-    'light-text-frost', // 2 white + blur
-    'light-text-3',     // 3 frost, tighter round the text
-    'light-text-4',     // 4 frost, more room round the text
-    'light-text-5',     // 5 frost, more blur, less white
-    'light-text-6',     // 6 frost, whiter, little blur
-    'light-text-7',     // 7 frost, long fade out to the right
-    'light-text-8',     // 8 white, airy: very soft edges
-    'light-text-9',     // 9 white, crisper edges
-    'light-text-10'     // 10 frost, barely white, mostly blur
+    'light-round',       // 1 white, round, tied to the text (standard)
+    'light-round-frost', // 2 white + blur, round
+    'light-round-3',     // 3 a little smaller
+    'light-round-4',     // 4 a little larger
+    'light-round-5',     // 5 softer fade
+    'light-round-6',     // 6 frost, whiter, little blur
+    /* square, structured panels */
+    'light-box',         // 7 white panel, square corners
+    'light-box-solid',   // 8 fully white panel, more room
+    'light-box-frost',   // 9 frosted panel: white + blur
+    'light-box-line',    // 10 white panel with a thin outline
+    'light-box-top',     // 11 white panel with a green top bar
+    'light-box-left',    // 12 white panel with a green left bar
+    'light-box-col',     // 13 white column, top to bottom of the hero
+    'light-box-base',    // 14 white panel standing on the bottom edge
+    'light-box-frame',   // 15 white panel with a frame line outside it
+    'light-box-glass',   // 16 clear glass: mostly blur, little white
+    'light-box-roomy'    // 17 white panel, extra room round the text
   ];
 
   /* Shrink the one-line title until it fits the content width */
@@ -31,7 +39,7 @@
     var cs = window.getComputedStyle(c);
     var bs = window.getComputedStyle(block);
     var avail = c.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) -
-                parseFloat(bs.paddingLeft) - parseFloat(bs.paddingRight);
+                parseFloat(bs.paddingLeft) - parseFloat(bs.paddingRight) - parseFloat(bs.marginLeft);
     var w = t.getBoundingClientRect().width;
     if (w > avail) {
       t.style.fontSize = (parseFloat(window.getComputedStyle(t).fontSize) * avail / w * 0.98) + 'px';
@@ -45,6 +53,7 @@
   function apply(i) {
     idx = (i + SHADES.length) % SHADES.length;
     hero.setAttribute('data-shade', SHADES[idx]);
+    fit();
     if (window.history && window.history.replaceState && window.URL) {
       var url = new URL(window.location.href);
       if (idx === 0) url.searchParams.delete('hero');
