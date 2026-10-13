@@ -1,7 +1,7 @@
 /* ==========================================================================
    Hero-lab — «Spesialist på nøter.» on the net photo (Norwegian home page).
-   The design is locked; ← / → (assets/js/hero-lab.js) only switches the
-   colour of the shade behind the text, set as data-shade on .about-net.
+   The design is locked; ← / → (assets/js/hero-lab.js) only switches small
+   steps of the shade behind the text, set as data-shade on .about-net.
    Temporary: fold the chosen shade into main.css and remove this file.
    ========================================================================== */
 
@@ -63,30 +63,18 @@
 }
 
 /* ---------- Shade behind the text ---------------------------------------
-   One shape (the vignette, version 1), only the colour changes. The colour
-   is --shade (r,g,b), set per data-shade; it also tints the text box on
-   phones.                                                                  */
-.about-net[data-copy="sikre"]                  { --shade: 7,24,43; }   /* 1 navy (as before) */
-.about-net[data-shade="forest"]                { --shade: 6,34,22; }   /* 2 dark forest green */
-.about-net[data-shade="petrol"]                { --shade: 3,36,33; }   /* 3 dark sea green / petrol */
-.about-net[data-shade="logo"]                  { --shade: 0,46,24; }   /* 4 deep logo green */
-.about-net[data-shade="black-green"]           { --shade: 4,20,13; }   /* 5 almost black green */
-.about-net[data-shade="moss"]                  { --shade: 20,32,14; }  /* 6 moss / olive */
-.about-net[data-shade="two-tone"]              { --shade: 7,24,43; }   /* 7 navy centre, green edge */
+   The vignette in petrol green. --vy moves it up/down, --corner is the extra
+   shade top-left; the versions are small steps of how far up it reaches.
+   --shade also tints the text box on phones.                              */
+.about-net[data-copy="sikre"] { --shade: 3,36,33; --vx: 21%; --vy: 53%; --corner: .2; }   /* 1 a little up */
+.about-net[data-shade="petrol-more"]  { --vx: 21%; --vy: 52%; --corner: .28; }            /* 2 a touch more */
+.about-net[data-shade="petrol-less"]  { --vx: 22%; --vy: 54%; --corner: 0; }              /* 3 a touch less */
 
 @media (min-width: 960px) {
-  /* The vignette, nudged a little up and to the left, with a light extra
-     shade in the top-left corner so «Det sikre valget» reads clearly. */
   .about-net[data-copy="sikre"]::before {
     background:
-      radial-gradient(ellipse 58% 78% at 20% 51%, rgba(var(--shade),.86) 0%, rgba(var(--shade),.58) 45%, rgba(var(--shade),0) 82%),
-      radial-gradient(ellipse 36% 44% at 4% 6%, rgba(var(--shade),.38) 0%, rgba(var(--shade),0) 100%);
-  }
-  .about-net[data-shade="two-tone"]::before {
-    background:
-      radial-gradient(ellipse 44% 62% at 20% 51%, rgba(7,24,43,.72) 0%, rgba(7,24,43,0) 100%),
-      radial-gradient(ellipse 58% 78% at 20% 51%, rgba(6,34,22,.7) 0%, rgba(6,34,22,.5) 45%, rgba(6,34,22,0) 82%),
-      radial-gradient(ellipse 36% 44% at 4% 6%, rgba(6,34,22,.38) 0%, rgba(6,34,22,0) 100%);
+      radial-gradient(ellipse 58% 78% at var(--vx) var(--vy), rgba(var(--shade),.86) 0%, rgba(var(--shade),.58) 45%, rgba(var(--shade),0) 82%),
+      radial-gradient(ellipse 32% 38% at 5% 7%, rgba(var(--shade),var(--corner)) 0%, rgba(var(--shade),0) 100%);
   }
 }
 

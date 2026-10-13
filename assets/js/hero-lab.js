@@ -1,5 +1,5 @@
 /* Hero-lab — the home hero «Spesialist på nøter.» is locked; ← / → only
-   switches the colour of the shade behind the text. No on-page indicators; the current
+   switches small steps of the shade behind the text. No on-page indicators; the current
    version shows as ?hero=N in the address bar (1 = no parameter).
    Also fits the one-line headline to the available width.
    Temporary: fold the chosen shade into main.css and remove this file. */
@@ -8,13 +8,9 @@
   if (!hero) return;
 
   var SHADES = [
-    'navy',        // 1 the vignette in navy (as before, a touch more top-left)
-    'forest',      // 2 dark forest green
-    'petrol',      // 3 dark sea green / petrol
-    'logo',        // 4 deep logo green
-    'black-green', // 5 almost black green
-    'moss',        // 6 moss / olive
-    'two-tone'     // 7 navy behind the text, green towards the edge
+    'petrol',      // 1 petrol vignette, reaching a little further up-left
+    'petrol-more', // 2 a touch more up-left
+    'petrol-less'  // 3 a touch less (the original position, in petrol)
   ];
 
   /* Shrink the one-line title until it fits the content width */
