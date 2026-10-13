@@ -91,7 +91,22 @@
     { layout: 'onimage',     copy: 'sikre', text: NOT.holder },   // 17
     { layout: 'onimage',     copy: 'sikre', text: NOT.stole },       // 18
     { layout: 'onimage',     copy: 'sikre', text: NOT.kjemikalier }, // 19
-    { layout: 'onimage',     copy: 'sikre', text: NOT.spesialist }   // 20
+    { layout: 'onimage',     copy: 'sikre', text: NOT.spesialist },  // 20
+    /* 21–28: «Spesialist på nøter.» — the shade behind the text varies */
+    { layout: 'onimage', copy: 'sikre', text: NOT.spesialist, shade: 'charcoal' }, // 21 neutral dark
+    { layout: 'onimage', copy: 'sikre', text: NOT.spesialist, shade: 'burgundy' }, // 22 warm wine red
+    { layout: 'onimage', copy: 'sikre', text: NOT.spesialist, shade: 'seagreen' }, // 23 deep sea green
+    { layout: 'onimage', copy: 'sikre', text: NOT.spesialist, shade: 'soft' },     // 24 short and soft
+    { layout: 'onimage', copy: 'sikre', text: NOT.spesialist, shade: 'radial' },   // 25 vignette round the text
+    { layout: 'onimage', copy: 'sikre', text: NOT.spesialist, shade: 'frost' },    // 26 frosted blur fading out
+    { layout: 'onimage', copy: 'sikre', text: NOT.spesialist, shade: 'deep' },     // 27 strong, wide navy
+    { layout: 'onimage', copy: 'sikre', text: NOT.spesialist, shade: 'flat' },     // 28 even tone + light fade
+    /* 29–33: «Spesialist på nøter.» — the green varies */
+    { layout: 'onimage', copy: 'sikre', text: NOT.spesialist, green: 'logo' },     // 29 exact logo green
+    { layout: 'onimage', copy: 'sikre', text: NOT.spesialist, green: 'deep' },     // 30 darker, muted
+    { layout: 'onimage', copy: 'sikre', text: NOT.spesialist, green: 'bright' },   // 31 lighter, brighter
+    { layout: 'onimage', copy: 'sikre', text: NOT.spesialist, green: 'neon' },     // 32 vivid green, dark text
+    { layout: 'onimage', copy: 'sikre', text: NOT.spesialist, green: 'glass' }     // 33 green glass button
   ];
 
   var blocks = Array.prototype.slice.call(hero.querySelectorAll('[data-copy-id]'));
@@ -138,6 +153,8 @@
     var v = VARIANTS[idx];
     hero.setAttribute('data-layout', v.layout);
     hero.setAttribute('data-copy', v.copy);
+    if (v.shade) hero.setAttribute('data-shade', v.shade); else hero.removeAttribute('data-shade');
+    if (v.green) hero.setAttribute('data-green', v.green); else hero.removeAttribute('data-green');
     blocks.forEach(function (b) {
       var on = b.getAttribute('data-copy-id') === v.copy;
       b.classList.toggle('is-active', on);
